@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dog, DOGGIES } from "./constants";
 import { Flex } from "./Flex";
 import { OptionCard } from "./OptionCard";
@@ -40,7 +40,10 @@ export const OptionGroup = ({
   onCorrectAnswer,
   setStreak,
 }: OptionGroupProps) => {
-  const options = generateOptions(activeDog, totalOptions);
+  const options = useMemo<Dog[]>(() => {
+    const generatedOptions = generateOptions(activeDog, totalOptions);
+    return shuffleArray(generatedOptions);
+  }, [activeDog]);
 
   const [showConfirmationModal, setShowConfirmationModal] =
     useState<boolean>(false);
@@ -103,7 +106,7 @@ export const OptionGroup = ({
           <Flex flexDirection="column" alignItems="center">
             <DogImage size="small" dog={selectedDog} />
             <p style={{ paddingBottom: 16 }}>
-              You are are right! This dog is an{" "}
+              You are are right! This dog is a(n){" "}
               <b>{kebabToTitleCase(selectedDog.key)}</b>.
             </p>
             <Flex justifyContent="center">
@@ -139,7 +142,7 @@ export const OptionGroup = ({
           <p>Uh Oh. An error occured. Please refresh the page.</p>
         )}
       </Modal>
-      {shuffleArray(options).map((option) => (
+      {options.map((option) => (
         <OptionCard
           key={option.key}
           dog={option}

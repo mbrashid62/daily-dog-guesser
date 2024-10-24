@@ -5,6 +5,7 @@ import { DOGGIES } from "./constants";
 import { getRandomInt } from "./utils";
 import { OptionGroup } from "./OptionGroup";
 import { Flex } from "./Flex";
+import Modal from "./Modal";
 
 function App() {
   const [successCount, setSuccessCount] = useState(0);
@@ -16,6 +17,8 @@ function App() {
   const activeDog = DOGGIES[randomInt];
 
   const [streak, setStreak] = useState(0);
+
+  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
 
   if (!activeDog) {
     return <div>Uh Oh! No doggy.</div>;
@@ -41,17 +44,34 @@ function App() {
         {!!successCount && (
           <Flex flexDirection="column">
             <span>
-              You correctly named <b>{successCount}</b> doggies!
+              {" "}
+              You correclty named <b>{successCount}</b>{" "}
+              {successCount === 1 ? "doggy" : "doggies"}.
             </span>
             {!!streak && (
-              <span>
-                Streak <b>{streak}</b>
+              <span style={{ paddingTop: 8 }}>
+                Streak (<b>{streak}</b>)
               </span>
             )}
             <div style={{ marginTop: 32 }}>
-              <button onClick={() => setSuccessCount(() => 0)}>
+              <button onClick={() => setShowResetConfirmation(true)}>
                 Reset your score
               </button>
+              <Modal
+                isOpen={showResetConfirmation}
+                onClose={() => setShowResetConfirmation(false)}
+              >
+                <p>Are you sure? You will lose your streak too.</p>
+                <button
+                  onClick={() => {
+                    setSuccessCount(0);
+                    setStreak(0);
+                    setShowResetConfirmation(false);
+                  }}
+                >
+                  Yup
+                </button>
+              </Modal>
             </div>
           </Flex>
         )}

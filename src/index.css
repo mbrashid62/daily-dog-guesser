@@ -117,7 +117,6 @@ button:focus-visible {
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
 }
 
 .modal-overlay.open {
@@ -138,7 +137,6 @@ button:focus-visible {
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
   animation: zoomIn 0.3s forwards;
-  pointer-events: all;
 }
 
 .modal-overlay.close .modal-content {
