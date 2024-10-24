@@ -1,55 +1,60 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import "./App.css";
 
-import { Dog, DOGGIES } from "./constants";
+import { DOGGIES } from "./constants";
 import { getRandomInt } from "./utils";
 import { OptionGroup } from "./OptionGroup";
+import { Flex } from "./Flex";
 
 function App() {
   const [successCount, setSuccessCount] = useState(0);
 
-  const [randomInt, setRandomInt] = useState(getRandomInt(0, DOGGIES.length));
+  const [randomInt, setRandomInt] = useState(
+    getRandomInt(0, DOGGIES.length - 1),
+  );
 
-  // const activeDog = useMemo<Dog>(() => DOGGIES[randomInt], [randomInt]);
   const activeDog = DOGGIES[randomInt];
-  console.log("activeDog --> ", activeDog);
+
+  const [streak, setStreak] = useState(0);
 
   if (!activeDog) {
-    return <div>Uh OH! No doggy.</div>;
+    return <div>Uh Oh! No doggy.</div>;
   }
 
   return (
     <div>
-      <h1>Who Dis Doggy?</h1>
+      <h1>Can you name this dog?</h1>
       <img
-        style={{ width: 100, height: 100, cursor: "pointer" }}
+        style={{ width: 100, height: 100, cursor: "pointer", marginBottom: 32 }}
         src={activeDog.image}
       />
-      <div>
-        <OptionGroup activeDog={activeDog} totalOptions={4} />
-      </div>
+      <OptionGroup
+        activeDog={activeDog}
+        totalOptions={4}
+        setStreak={setStreak}
+        onCorrectAnswer={() => {
+          setSuccessCount((count) => count + 1);
+          setRandomInt(() => getRandomInt(0, DOGGIES.length - 1));
+        }}
+      />
       <div className="card">
-        <button
-          onClick={() => {
-            setSuccessCount((count) => count + 1);
-
-            // TODO: Ensure the same number can't be set twice in a row
-            setRandomInt(() => {
-              return getRandomInt(0, DOGGIES.length);
-            });
-          }}
-        >
-          Count is {successCount}
-        </button>
-        <button
-          style={{ marginLeft: 8 }}
-          onClick={() => {
-            setSuccessCount(() => 0);
-            // set
-          }}
-        >
-          Reset state
-        </button>
+        {!!successCount && (
+          <Flex flexDirection="column">
+            <span>
+              You correctly named <b>{successCount}</b> doggies!
+            </span>
+            {!!streak && (
+              <span>
+                Streak <b>{streak}</b>
+              </span>
+            )}
+            <div style={{ marginTop: 32 }}>
+              <button onClick={() => setSuccessCount(() => 0)}>
+                Reset your score
+              </button>
+            </div>
+          </Flex>
+        )}
       </div>
     </div>
   );

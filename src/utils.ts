@@ -9,3 +9,10 @@ export function shuffleArray<T>(array: T[]): T[] {
   }
   return array;
 }
+
+export function kebabToTitleCase(str: string): string {
+  return str
+    .split("-") // Split the string by the hyphen
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
+    .join(" "); // Join the words with a space
+}
