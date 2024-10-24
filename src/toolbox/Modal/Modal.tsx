@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import "./Modal.css"; // Import the CSS for animations
+import "./Modal.css";
 
 type ModalProps = {
   isOpen: boolean;
@@ -7,7 +7,7 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   // Handle modal open and close animation timing
@@ -45,5 +45,3 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     </div>
   );
 };
-
-export default Modal;

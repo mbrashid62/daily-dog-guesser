@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react";
-import { Dog } from "./constants";
-import { kebabToTitleCase } from "./utils";
+import { Dog } from "../../constants";
+import { kebabToTitleCase } from "../../utils";
 
 type OptionCardProps = {
   dog: Dog;

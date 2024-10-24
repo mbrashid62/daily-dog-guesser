@@ -1,0 +1,38 @@
+/* Container for the doggy options */
+.doggy-options-container {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
+  gap: 16px; /* Adds spacing between the cards */
+}
+
+/* Doggy option styles */
+.doggy-option {
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  transition:
+    border-color 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.doggy-option:hover {
+  border-color: #646cff;
+  transform: scale(1.05);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(100, 108, 255, 0.3);
+}
+
+/* Media query for small screens (below 600px) */
+@media (max-width: 600px) {
+  .doggy-options-container {
+    grid-template-columns: 1fr; /* Stacks the cards vertically */
+  }
+}

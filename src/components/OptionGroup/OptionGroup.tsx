@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import { Dog, DOGGIES } from "./constants";
-import { Flex } from "./Flex";
+import { useMemo, useState } from "react";
+import { Dog, DOGGIES } from "../../constants";
+import { Flex } from "../../toolbox/Flex/Flex";
 import { OptionCard } from "./OptionCard";
-import { kebabToTitleCase, shuffleArray } from "./utils";
-import Modal from "./Modal";
-import { DogImage } from "./DogImage";
+import { kebabToTitleCase, shuffleArray } from "../../utils";
+import { Modal } from "../../toolbox/Modal/Modal";
+import { DogImage } from "../DogImage/DogImage";
+import "./OptionGroup.css";
+import { Button } from "../../toolbox/Button/Button";
 
 type OptionGroupProps = {
   activeDog: Dog;
@@ -81,19 +83,19 @@ export const OptionGroup = ({
               A <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
             </p>
             <Flex justifyContent="center">
-              <button onClick={() => setShowConfirmationModal(false)}>
-                No, Go Back
-              </button>
-              <button
+              <Button
+                onClick={() => setShowConfirmationModal(false)}
+                label="No, Go Back"
+              />
+              <Button
+                margin="0 0 0 16px"
                 onClick={() => assertSelection(selectedDog)}
-                style={{ marginLeft: 16 }}
-              >
-                Yes, I'm Sure
-              </button>
+                label="Yes, I'm Sure"
+              />
             </Flex>
           </Flex>
         ) : (
-          <p>Uh Oh. No selected dog.</p>
+          <p>Uh Oh. An error occured. Please refresh the page.</p>
         )}
       </Modal>
       <Modal
@@ -110,9 +112,10 @@ export const OptionGroup = ({
               <b>{kebabToTitleCase(selectedDog.key)}</b>.
             </p>
             <Flex justifyContent="center">
-              <button onClick={() => setShowCorrectAnswerModal(false)}>
-                Play Again
-              </button>
+              <Button
+                onClick={() => setShowCorrectAnswerModal(false)}
+                label="Play Again"
+              />
             </Flex>
           </Flex>
         ) : (
@@ -133,9 +136,10 @@ export const OptionGroup = ({
               <b>{kebabToTitleCase(selectedDog.key)}</b>.
             </p>
             <Flex justifyContent="center">
-              <button onClick={() => setShowWrongAnswerModal(false)}>
-                Try Again
-              </button>
+              <Button
+                onClick={() => setShowWrongAnswerModal(false)}
+                label="Try Again"
+              />
             </Flex>
           </Flex>
         ) : (
