@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { Dog } from "../../constants";
-import { kebabToTitleCase } from "../../utils";
+import { isFirstCharVowel, kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 import { DogImage } from "../DogImage/DogImage";
@@ -20,6 +20,8 @@ export const CorrectAnswerModal = ({
 }: CorrectAnswerModalProps) => {
   const [showCorrectAnswerModal, setShowCorrectAnswerModal] = modalState;
 
+  const doesDogNameStartWithVowel = isFirstCharVowel(selectedDog?.key || "");
+
   return (
     <Modal
       isOpen={showCorrectAnswerModal}
@@ -31,9 +33,19 @@ export const CorrectAnswerModal = ({
         <Flex flexDirection="column" alignItems="center">
           <DogImage size="small" dog={selectedDog} />
           <p style={{ paddingBottom: 16 }}>
-            You are are right! This dog is a(n){" "}
+            You are are right! That dog is{" "}
+            {doesDogNameStartWithVowel ? "an" : "a"}{" "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>.
           </p>
+          <p>{selectedDog.info.bio}</p>
+          <p>
+            Want to learn more? Click{" "}
+            <a href={selectedDog.info.wikipediaUrl} target="_blank">
+              here
+            </a>
+            !
+          </p>
+
           <Flex justifyContent="center">
             <Button
               onClick={() => setShowCorrectAnswerModal(false)}

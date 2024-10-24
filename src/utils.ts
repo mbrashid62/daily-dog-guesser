@@ -16,3 +16,16 @@ export function kebabToTitleCase(str: string): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
     .join(" "); // Join the words with a space
 }
+
+export function isFirstCharVowel(str: string): boolean {
+  // Check if string is not empty
+  if (!str) {
+    return false;
+  }
+
+  // Define a string of vowels (both lowercase and uppercase)
+  const vowels = "aeiouAEIOU";
+
+  // Check if the first character of the string is in the vowels list
+  return vowels.includes(str[0]);
+}
