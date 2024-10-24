@@ -1,12 +1,11 @@
 import { useMemo, useState } from "react";
 import { Dog, DOGGIES } from "../../constants";
-import { Flex } from "../../toolbox/Flex/Flex";
 import { OptionCard } from "./OptionCard";
-import { kebabToTitleCase, shuffleArray } from "../../utils";
-import { Modal } from "../../toolbox/Modal/Modal";
-import { DogImage } from "../DogImage/DogImage";
+import { shuffleArray } from "../../utils";
 import "./OptionGroup.css";
-import { Button } from "../../toolbox/Button/Button";
+import { ConfirmationModal } from "../StateModals/ConfirmationModal";
+import { CorrectAnswerModal } from "../StateModals/CorrectAnswerModal";
+import { WrongAnswerModal } from "../StateModals/WrongAnswerModal";
 
 type OptionGroupProps = {
   activeDog: Dog;
@@ -18,9 +17,9 @@ type OptionGroupProps = {
 function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
   const options = [activeDog];
 
-  const dogsWithoutActiveDog = DOGGIES.filter((dog) => {
-    return dog.key !== activeDog.key;
-  });
+  const dogsWithoutActiveDog = DOGGIES.filter(
+    (dog) => dog.key !== activeDog.key,
+  );
 
   while (options.length < totalOptions) {
     const shuffled = shuffleArray(dogsWithoutActiveDog);
@@ -71,81 +70,22 @@ export const OptionGroup = ({
 
   return (
     <div className="doggy-options-container">
-      <Modal
-        isOpen={showConfirmationModal}
-        onClose={() => {
-          setShowConfirmationModal(false);
-        }}
-      >
-        {selectedDog ? (
-          <Flex flexDirection="column">
-            <p style={{ paddingBottom: 16 }}>
-              A <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
-            </p>
-            <Flex justifyContent="center">
-              <Button
-                onClick={() => setShowConfirmationModal(false)}
-                label="No, Go Back"
-              />
-              <Button
-                margin="0 0 0 16px"
-                onClick={() => assertSelection(selectedDog)}
-                label="Yes, I'm Sure"
-              />
-            </Flex>
-          </Flex>
-        ) : (
-          <p>Uh Oh. An error occured. Please refresh the page.</p>
-        )}
-      </Modal>
-      <Modal
-        isOpen={showCorrectAnswerModal}
-        onClose={() => {
-          setShowCorrectAnswerModal(false);
-        }}
-      >
-        {selectedDog ? (
-          <Flex flexDirection="column" alignItems="center">
-            <DogImage size="small" dog={selectedDog} />
-            <p style={{ paddingBottom: 16 }}>
-              You are are right! This dog is a(n){" "}
-              <b>{kebabToTitleCase(selectedDog.key)}</b>.
-            </p>
-            <Flex justifyContent="center">
-              <Button
-                onClick={() => setShowCorrectAnswerModal(false)}
-                label="Play Again"
-              />
-            </Flex>
-          </Flex>
-        ) : (
-          <p>Uh Oh. An error occured. Please refresh the page.</p>
-        )}
-      </Modal>
-      <Modal
-        isOpen={showWrongAnswerModal}
-        onClose={() => {
-          setShowWrongAnswerModal(false);
-        }}
-      >
-        {selectedDog ? (
-          <Flex flexDirection="column" alignItems="center">
-            <DogImage size="small" dog={selectedDog} />
-            <p style={{ paddingBottom: 16 }}>
-              Not quite! This dog is not a{" "}
-              <b>{kebabToTitleCase(selectedDog.key)}</b>.
-            </p>
-            <Flex justifyContent="center">
-              <Button
-                onClick={() => setShowWrongAnswerModal(false)}
-                label="Try Again"
-              />
-            </Flex>
-          </Flex>
-        ) : (
-          <p>Uh Oh. An error occured. Please refresh the page.</p>
-        )}
-      </Modal>
+      <ConfirmationModal
+        assertSelection={assertSelection}
+        errorCopy="Uh oh! Something went wrong. Please refresh the page."
+        modalState={[showConfirmationModal, setShowConfirmationModal]}
+        selectedDog={selectedDog}
+      />
+      <CorrectAnswerModal
+        errorCopy="Uh oh! Something went wrong. Please refresh the page."
+        modalState={[showCorrectAnswerModal, setShowCorrectAnswerModal]}
+        selectedDog={selectedDog}
+      />
+      <WrongAnswerModal
+        errorCopy="Uh oh! Something went wrong. Please refresh the page."
+        modalState={[showWrongAnswerModal, setShowWrongAnswerModal]}
+        selectedDog={selectedDog}
+      />
       {options.map((option) => (
         <OptionCard
           key={option.key}

@@ -33,12 +33,21 @@ export const Home = () => {
         setStreak={setStreak}
         onCorrectAnswer={() => {
           setSuccessCount((count) => count + 1);
-          setRandomInt(() => getRandomInt(0, DOGGIES.length - 1));
+          setRandomInt((previousInt) => {
+            let newInt = previousInt;
+
+            // Keep generating a new random integer until it's different from the previous one
+            while (newInt === previousInt) {
+              newInt = getRandomInt(0, DOGGIES.length - 1);
+            }
+
+            return newInt;
+          });
         }}
       />
       <div>
         {!!successCount && (
-          <Flex flexDirection="column">
+          <Flex flexDirection="column" margin="32px 0 0 0">
             <span>
               {" "}
               You correctly named <b>{successCount}</b>{" "}
