@@ -25,7 +25,7 @@ export const Home = () => {
     <div>
       <h1>Can you name this dog?</h1>
       <div style={{ marginBottom: 32 }}>
-        <DogImage size="large" dog={activeDog} />
+        <DogImage size="xlarge" dog={activeDog} />
       </div>
       <OptionGroup
         activeDog={activeDog}

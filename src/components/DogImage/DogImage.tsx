@@ -3,7 +3,7 @@ import { kebabToTitleCase } from "../../utils";
 
 type DogImageProps = {
   dog: Dog;
-  size: "small" | "medium" | "large";
+  size: "small" | "medium" | "large" | "xlarge";
 };
 
 function getSize(size: DogImageProps["size"]) {
@@ -15,6 +15,8 @@ function getSize(size: DogImageProps["size"]) {
       return 100;
     case "large":
       return 150;
+    case "xlarge":
+      return 200;
   }
 }
 
