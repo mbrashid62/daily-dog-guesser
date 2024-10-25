@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { Dog, DOGGIES } from "../../constants";
+import { Dog } from "../../global-types";
+import { DOGGIES } from "../../constants";
 import { OptionCard } from "./OptionCard";
 import { shuffleArray } from "../../utils";
 import "./OptionGroup.css";

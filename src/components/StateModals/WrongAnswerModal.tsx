@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
-import { Dog } from "../../constants";
+import { Dog } from "../../global-types";
 import { kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";

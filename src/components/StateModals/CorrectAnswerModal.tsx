@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
-import { Dog } from "../../constants";
+import { Dog } from "../../global-types";
 import { isFirstCharVowel, kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
@@ -31,7 +31,7 @@ export const CorrectAnswerModal = ({
     >
       {selectedDog ? (
         <Flex flexDirection="column" alignItems="center">
-          <DogImage size="small" dog={selectedDog} />
+          <DogImage size="large" dog={selectedDog} />
           <p style={{ paddingBottom: 16 }}>
             You are are right! That dog is{" "}
             {doesDogNameStartWithVowel ? "an" : "a"}{" "}
