@@ -3,6 +3,7 @@ import { CSSProperties, SyntheticEvent } from "react";
 import "./Button.css";
 
 type ButtonProps = {
+  className?: string;
   label: string;
   onClick: (arg0: SyntheticEvent<HTMLButtonElement>) => void;
   margin?: CSSProperties["margin"]; // Type-safe margin, can be string or number

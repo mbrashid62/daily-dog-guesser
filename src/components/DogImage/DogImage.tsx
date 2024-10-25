@@ -1,4 +1,4 @@
-import { Dog } from "../../constants";
+import { Dog } from "../../global-types";
 import { kebabToTitleCase } from "../../utils";
 
 type DogImageProps = {

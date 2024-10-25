@@ -32,7 +32,7 @@ export const CorrectAnswerModal = ({
       {selectedDog ? (
         <Flex flexDirection="column" alignItems="center">
           <DogImage size="large" dog={selectedDog} />
-          <p style={{ paddingBottom: 16 }}>
+          <p>
             You are are right! That dog is{" "}
             {doesDogNameStartWithVowel ? "an" : "a"}{" "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>.
