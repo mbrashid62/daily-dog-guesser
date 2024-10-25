@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { Dog } from "../../global-types";
-import { kebabToTitleCase } from "../../utils";
+import { isFirstCharVowel, kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 
@@ -21,6 +21,7 @@ export const ConfirmationModal = ({
 }: ConfirmationModalProps) => {
   const [showConfirmationModal, setShowConfirmationModal] = modalState;
 
+  const doesDogNameStartWithVowel = isFirstCharVowel(selectedDog?.key || "");
   return (
     <Modal
       isOpen={showConfirmationModal}
@@ -31,7 +32,8 @@ export const ConfirmationModal = ({
       {selectedDog ? (
         <Flex flexDirection="column">
           <p style={{ paddingBottom: 16 }}>
-            A <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
+            {doesDogNameStartWithVowel ? "An " : "A "}
+            <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
           </p>
           <Flex justifyContent="center">
             <Button

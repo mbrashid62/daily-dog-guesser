@@ -14,11 +14,14 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  transform: scale(1.08);
-  box-shadow:
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    0 4px 8px rgba(100, 108, 255, 0.3);
+/* Apply hover on desktop only */
+@media (min-width: 768px) {
+  button:hover {
+    transform: scale(1.08);
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(100, 108, 255, 0.3);
+  }
 }
 
 button:focus,
