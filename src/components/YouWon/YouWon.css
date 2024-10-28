@@ -1,0 +1,45 @@
+/* Confetti container for full-screen effect */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffc700;
+  animation: fall 3s infinite ease-in;
+  border-radius: 50%;
+}
+
+.confetti:nth-child(2n) {
+  background-color: #ff5e78;
+}
+
+.confetti:nth-child(3n) {
+  background-color: #7c99ff;
+}
+
+.confetti:nth-child(4n) {
+  background-color: #79ffb1;
+}
+
+/* Keyframes for falling confetti */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(95vh) rotate(360deg);
+    opacity: 0;
+  }
+}

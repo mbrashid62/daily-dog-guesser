@@ -34,6 +34,7 @@ export const ConfirmationModal = ({
           <p style={{ paddingBottom: 16 }}>
             {doesDogNameStartWithVowel ? "An " : "A "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
+            <p>Double click to skip this next time.</p>
           </p>
           <Flex justifyContent="center">
             <Button

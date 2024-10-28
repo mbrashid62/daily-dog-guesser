@@ -11,7 +11,7 @@ import { WrongAnswerModal } from "../StateModals/WrongAnswerModal";
 type OptionGroupProps = {
   activeDog: Dog;
   totalOptions: number;
-  onCorrectAnswer: () => void;
+  onCorrectAnswer: (dog: Dog) => void;
   setStreak: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -61,7 +61,7 @@ export const OptionGroup = ({
 
     if (selectedDog.key === activeDog.key) {
       setShowCorrectAnswerModal(true);
-      onCorrectAnswer();
+      onCorrectAnswer(selectedDog);
       setStreak((c) => c + 1);
     } else {
       setShowWrongAnswerModal(true);
@@ -91,11 +91,16 @@ export const OptionGroup = ({
         <OptionCard
           key={option.key}
           dog={option}
-          onOptionSelect={(e, dog: Dog) => {
+          onOptionSelect={(e, dog: Dog, clickType) => {
             e.preventDefault();
 
             setSelectedDog(dog);
-            setShowConfirmationModal(true);
+
+            if (clickType === "single") {
+              setShowConfirmationModal(true);
+            } else {
+              assertSelection(dog);
+            }
           }}
         />
       ))}

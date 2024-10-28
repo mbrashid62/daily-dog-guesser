@@ -7,19 +7,33 @@ import { Flex } from "../../toolbox/Flex/Flex";
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DogImage } from "../../components/DogImage/DogImage";
 import { Button } from "../../toolbox/Button/Button";
+import { Dog } from "../../global-types";
+import { YouWon } from "../YouWon/YouWon";
 
 export const Home = () => {
+  const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
   const [successCount, setSuccessCount] = useState(0);
 
   const [randomInt, setRandomInt] = useState(
-    getRandomInt(0, DOGGIES.length - 1),
+    getRandomInt(0, dogsRemaining.length - 1),
   );
 
-  const activeDog = DOGGIES[randomInt];
+  const activeDog = dogsRemaining[randomInt];
 
   const [streak, setStreak] = useState(0);
 
   const [showResetConfirmation, setShowResetConfirmation] = useState(false);
+
+  const resetGame = () => {
+    setDogsRemaining(DOGGIES);
+    setSuccessCount(0);
+    setStreak(0);
+    setShowResetConfirmation(false);
+  };
+
+  if (dogsRemaining.length === 0) {
+    return <YouWon resetGame={resetGame} />;
+  }
 
   return (
     <div>
@@ -31,14 +45,17 @@ export const Home = () => {
         activeDog={activeDog}
         totalOptions={4}
         setStreak={setStreak}
-        onCorrectAnswer={() => {
+        onCorrectAnswer={(dog) => {
+          setDogsRemaining(dogsRemaining.filter(({ key }) => key !== dog.key));
+
           setSuccessCount((count) => count + 1);
+
           setRandomInt((previousInt) => {
             let newInt = previousInt;
 
             // Keep generating a new random integer until it's different from the previous one
             while (newInt === previousInt) {
-              newInt = getRandomInt(0, DOGGIES.length - 1);
+              newInt = getRandomInt(0, dogsRemaining.length - 1);
             }
 
             return newInt;
@@ -53,8 +70,11 @@ export const Home = () => {
               You correctly named <b>{successCount}</b>{" "}
               {successCount === 1 ? "doggy" : "doggies"}.
             </span>
+            <span style={{ paddingTop: 8, paddingBottom: 8 }}>
+              Can you name the remaining <b>{dogsRemaining.length}</b>?
+            </span>
             {!!streak && (
-              <span style={{ paddingTop: 8 }}>
+              <span>
                 Streak (<b>{streak}</b>)
               </span>
             )}
@@ -75,11 +95,7 @@ export const Home = () => {
                 <Button
                   label="Yes, Reset"
                   margin="0 0 0 16px"
-                  onClick={() => {
-                    setSuccessCount(0);
-                    setStreak(0);
-                    setShowResetConfirmation(false);
-                  }}
+                  onClick={resetGame}
                 />
               </Modal>
             </div>

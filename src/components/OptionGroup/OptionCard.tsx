@@ -5,7 +5,11 @@ import { Button } from "../../toolbox/Button/Button";
 
 type OptionCardProps = {
   dog: Dog;
-  onOptionSelect: (e: SyntheticEvent<HTMLButtonElement>, dog: Dog) => void;
+  onOptionSelect: (
+    e: SyntheticEvent<HTMLButtonElement>,
+    dog: Dog,
+    clickType: "single" | "double",
+  ) => void;
 };
 
 export const OptionCard = ({ dog, onOptionSelect }: OptionCardProps) => {
@@ -13,7 +17,10 @@ export const OptionCard = ({ dog, onOptionSelect }: OptionCardProps) => {
     <Button
       className="doggy-option"
       onClick={(e) => {
-        onOptionSelect(e, dog);
+        onOptionSelect(e, dog, "single");
+      }}
+      onDoubleClick={(e) => {
+        onOptionSelect(e, dog, "double");
       }}
       label={kebabToTitleCase(dog.key)}
     />
