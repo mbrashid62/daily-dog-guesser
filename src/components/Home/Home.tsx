@@ -52,6 +52,15 @@ export const Home = () => {
 
           setRandomInt((previousInt) => {
             let newInt = previousInt;
+            // TODO: there's a bug here...
+
+            if (dogsRemaining.length === 1) {
+              return 1;
+            }
+
+            if (dogsRemaining.length === 0) {
+              return 0;
+            }
 
             // Keep generating a new random integer until it's different from the previous one
             while (newInt === previousInt) {
