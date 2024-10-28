@@ -1,4 +1,4 @@
-import { CSSProperties, SyntheticEvent, useState, useRef } from "react";
+import { CSSProperties, SyntheticEvent, useRef } from "react";
 
 import "./Button.css";
 

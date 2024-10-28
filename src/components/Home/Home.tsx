@@ -98,7 +98,9 @@ export const Home = () => {
                 isOpen={showResetConfirmation}
                 onClose={() => setShowResetConfirmation(false)}
               >
-                <p>Are you sure? You will lose your streak too.</p>
+                <p style={{ paddingBottom: 24 }}>
+                  Are you sure? You will lose your streak too.
+                </p>
                 <Button
                   onClick={() => setShowResetConfirmation(false)}
                   label="Nevermind"
