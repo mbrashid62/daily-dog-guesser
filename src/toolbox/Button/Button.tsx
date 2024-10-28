@@ -1,4 +1,4 @@
-import { CSSProperties, SyntheticEvent, useState } from "react";
+import { CSSProperties, SyntheticEvent, useState, useRef } from "react";
 
 import "./Button.css";
 
@@ -17,25 +17,34 @@ export const Button = ({
   onClick,
   ...rest
 }: ButtonProps) => {
-  const [clickTimeout, setClickTimeout] = useState<number | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const handleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    if (clickTimeout) {
-      clearTimeout(clickTimeout); // Clear the timeout if a double click occurs
-      setClickTimeout(null);
+    if (timeoutRef.current) {
+      // Clear the timeout if a double click occurs
+      clearTimeout(timeoutRef.current);
+
+      timeoutRef.current = null;
     } else {
       // Set a timeout to trigger the single-click action
       const timeoutId = window.setTimeout(() => {
         onClick(e);
-        setClickTimeout(null);
-      }, 300); // 300ms delay to differentiate single and double click
-      setClickTimeout(timeoutId);
+
+        timeoutRef.current = null;
+      }, 300);
+
+      timeoutRef.current = timeoutId;
     }
   };
 
   const handleDoubleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    clearTimeout(clickTimeout!); // Prevent the single-click action
-    setClickTimeout(null);
+    if (timeoutRef.current) {
+      // Prevent the single-click action
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = null;
+
     if (onDoubleClick) {
       onDoubleClick(e);
     }
