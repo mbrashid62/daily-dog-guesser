@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { Dog } from "../../global-types";
-import { kebabToTitleCase } from "../../utils";
+import { isFirstCharVowel, kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 
@@ -19,6 +19,8 @@ export const WrongAnswerModal = ({
 }: WrongAnswerModalProps) => {
   const [showWrongAnswerModal, setShowWrongAnswerModal] = modalState;
 
+  const doesDogNameStartWithVowel = isFirstCharVowel(selectedDog?.key || "");
+
   return (
     <Modal
       isOpen={showWrongAnswerModal}
@@ -29,13 +31,13 @@ export const WrongAnswerModal = ({
       {selectedDog ? (
         <Flex flexDirection="column" alignItems="center">
           <p style={{ paddingBottom: 16 }}>
-            Not quite! That dog is not a{" "}
+            Not quite! That dog is not {doesDogNameStartWithVowel ? "an" : "a"}{" "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>.
           </p>
           <Flex justifyContent="center">
             <Button
               onClick={() => setShowWrongAnswerModal(false)}
-              label="Try Again"
+              label="Try again"
             />
           </Flex>
         </Flex>

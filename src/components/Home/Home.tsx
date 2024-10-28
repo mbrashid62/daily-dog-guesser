@@ -46,25 +46,27 @@ export const Home = () => {
         totalOptions={4}
         setStreak={setStreak}
         onCorrectAnswer={(dog) => {
-          setDogsRemaining(dogsRemaining.filter(({ key }) => key !== dog.key));
+          const dogsRemainingFiltered = dogsRemaining.filter(
+            ({ key }) => key !== dog.key,
+          );
+
+          setDogsRemaining(dogsRemainingFiltered);
 
           setSuccessCount((count) => count + 1);
 
           setRandomInt((previousInt) => {
-            let newInt = previousInt;
-            // TODO: there's a bug here...
-
-            if (dogsRemaining.length === 1) {
-              return 1;
-            }
-
-            if (dogsRemaining.length === 0) {
+            if (dogsRemainingFiltered.length === 1) {
               return 0;
             }
 
+            if (dogsRemainingFiltered.length === 0) {
+              return 1;
+            }
+
+            let newInt = previousInt;
             // Keep generating a new random integer until it's different from the previous one
             while (newInt === previousInt) {
-              newInt = getRandomInt(0, dogsRemaining.length - 1);
+              newInt = getRandomInt(0, dogsRemainingFiltered.length);
             }
 
             return newInt;
@@ -102,7 +104,7 @@ export const Home = () => {
                   label="Nevermind"
                 />
                 <Button
-                  label="Yes, Reset"
+                  label="Yes, reset"
                   margin="0 0 0 16px"
                   onClick={resetGame}
                 />

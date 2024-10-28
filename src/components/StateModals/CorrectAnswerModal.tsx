@@ -25,9 +25,7 @@ export const CorrectAnswerModal = ({
   return (
     <Modal
       isOpen={showCorrectAnswerModal}
-      onClose={() => {
-        setShowCorrectAnswerModal(false);
-      }}
+      onClose={() => setShowCorrectAnswerModal(false)}
     >
       {selectedDog ? (
         <Flex flexDirection="column" alignItems="center">
@@ -38,18 +36,19 @@ export const CorrectAnswerModal = ({
             <b>{kebabToTitleCase(selectedDog.key)}</b>.
           </p>
           <p>{selectedDog.info.bio}</p>
-          <p>
+          <p style={{ paddingBottom: 24 }}>
             Want to learn more? Click{" "}
-            <a href={selectedDog.info.wikipediaUrl} target="_blank">
-              here
-            </a>
+            <b>
+              <a href={selectedDog.info.wikipediaUrl} target="_blank">
+                here
+              </a>
+            </b>
             !
           </p>
-
           <Flex justifyContent="center">
             <Button
               onClick={() => setShowCorrectAnswerModal(false)}
-              label="Play Again"
+              label="Guess another"
             />
           </Flex>
         </Flex>

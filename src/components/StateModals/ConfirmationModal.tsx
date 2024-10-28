@@ -31,20 +31,22 @@ export const ConfirmationModal = ({
     >
       {selectedDog ? (
         <Flex flexDirection="column">
-          <p style={{ paddingBottom: 16 }}>
+          <p>
             {doesDogNameStartWithVowel ? "An " : "A "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>! Are you sure?
-            <p>Double click to skip this next time.</p>
+          </p>
+          <p style={{ paddingBottom: 24 }}>
+            Double tap to skip this next time.
           </p>
           <Flex justifyContent="center">
             <Button
               onClick={() => setShowConfirmationModal(false)}
-              label="No, Go Back"
+              label="No, go back"
             />
             <Button
               margin="0 0 0 16px"
               onClick={() => assertSelection(selectedDog)}
-              label="Yes, I'm Sure"
+              label="Yes, I'm sure"
             />
           </Flex>
         </Flex>

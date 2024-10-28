@@ -31,11 +31,11 @@ export const YouWon = ({ resetGame }: YouWonProps) => {
   return (
     <div className="confett-container">
       {confettiElements}
-      <h1>Congratluations!</h1>
+      <h1>Congratulations!</h1>
       <h3 style={{ paddingBottom: 16 }}>
         Wow, you named all {DOGGIES.length} doggies. That's impressive!
       </h3>
-      <Button onClick={resetGame} label="Play Again" />
+      <Button onClick={resetGame} label="Play again" />
     </div>
   );
 };
