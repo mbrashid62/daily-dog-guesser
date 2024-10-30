@@ -61,10 +61,10 @@ export const CorrectAnswerModal = ({
 
   const { correctGuesses, streak } = metrics;
 
-  const showGuessesCelebration = Boolean(streak > 0 && streak % 5 === 0);
-  const showStreakCelebration = Boolean(
+  const showGuessesCelebration = Boolean(
     correctGuesses > 0 && correctGuesses % 5 === 0,
   );
+  const showStreakCelebration = Boolean(streak > 0 && streak % 5 === 0);
 
   const handleClose = () => {
     setShowCorrectAnswerModal(false);
