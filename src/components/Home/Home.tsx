@@ -47,7 +47,7 @@ export const Home = () => {
     <>
       <div className="top-container">
         <h1 className="title">Can you name this dog?</h1>
-        <div style={{ paddingBottom: 32 }}>
+        <div className="dog-img-container">
           <DogImage size="xlarge" dog={activeDog} />
         </div>
         <OptionGroup
