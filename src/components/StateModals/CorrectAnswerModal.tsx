@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { Dog } from "../../global-types";
@@ -61,27 +61,13 @@ export const CorrectAnswerModal = ({
 
   const { correctGuesses, streak } = metrics;
 
-  const [showStreakCelebration, setShowStreakCelebration] = useState(false);
-  const [showGuessesCelebration, setShowGuessesCelebration] = useState(false);
-
-  useEffect(() => {
-    if (streak > 0 && streak % 5 === 0) {
-      setShowStreakCelebration(true);
-    } else if (correctGuesses > 0 && correctGuesses % 5 === 0) {
-      setShowGuessesCelebration(true);
-    }
-  }, [streak, correctGuesses]);
+  const showGuessesCelebration = Boolean(streak > 0 && streak % 5 === 0);
+  const showStreakCelebration = Boolean(
+    correctGuesses > 0 && correctGuesses % 5 === 0,
+  );
 
   const handleClose = () => {
     setShowCorrectAnswerModal(false);
-
-    if (showStreakCelebration) {
-      setShowStreakCelebration(false);
-    }
-
-    if (showGuessesCelebration) {
-      setShowGuessesCelebration(false);
-    }
   };
 
   const showCelebration = Boolean(
@@ -121,13 +107,17 @@ export const CorrectAnswerModal = ({
           </p>
           <p>{selectedDog.info.bio}</p>
           <p style={{ paddingBottom: 24 }}>
-            Want to learn more? Click{" "}
+            Click{" "}
             <b>
-              <a href={selectedDog.info.wikipediaUrl} target="_blank">
+              <a
+                className="third-color"
+                href={selectedDog.info.wikipediaUrl}
+                target="_blank"
+              >
                 here
               </a>
-            </b>
-            !
+            </b>{" "}
+            to learn more.
           </p>
           <Flex justifyContent="center">
             <Button onClick={handleClose} label="Guess another" />

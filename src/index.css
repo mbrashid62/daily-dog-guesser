@@ -1,18 +1,18 @@
-/* .first-color {
-  background: #f4f9f4;
+.first-color {
+  color: #f4f9f4;
 }
 
 .second-color {
-  background: #c4e3cb;
+  color: #c4e3cb;
 }
 
 .third-color {
-  background: #8aae92;
+  color: #8aae92;
 }
 
 .fourth-color {
-  background: #616161;
-} */
+  color: #616161;
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
