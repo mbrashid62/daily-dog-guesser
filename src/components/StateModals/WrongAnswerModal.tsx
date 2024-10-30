@@ -30,10 +30,11 @@ export const WrongAnswerModal = ({
     >
       {selectedDog ? (
         <Flex flexDirection="column" alignItems="center">
-          <p style={{ paddingBottom: 16 }}>
-            Not quite! That dog is not {doesDogNameStartWithVowel ? "an" : "a"}{" "}
+          <span>Not quite!</span>
+          <span style={{ paddingTop: 24, paddingBottom: 32 }}>
+            That dog is not {doesDogNameStartWithVowel ? "an" : "a"}{" "}
             <b>{kebabToTitleCase(selectedDog.key)}</b>.
-          </p>
+          </span>
           <Flex justifyContent="center">
             <Button
               onClick={() => setShowWrongAnswerModal(false)}

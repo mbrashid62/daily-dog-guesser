@@ -3,7 +3,6 @@ import { useState } from "react";
 import { DOGGIES } from "../../constants";
 import { getRandomInt } from "../../utils";
 import { OptionGroup } from "../../components/OptionGroup/OptionGroup";
-import { Flex } from "../../toolbox/Flex/Flex";
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DogImage } from "../../components/DogImage/DogImage";
 import { Button } from "../../toolbox/Button/Button";
@@ -45,59 +44,61 @@ export const Home = () => {
   }
 
   return (
-    <div>
-      <h1>Can you name this dog?</h1>
-      <div style={{ marginBottom: 32 }}>
-        <DogImage size="xlarge" dog={activeDog} />
+    <>
+      <div className="top-container">
+        <h1 className="title">Can you name this dog?</h1>
+        <div style={{ paddingBottom: 32 }}>
+          <DogImage size="xlarge" dog={activeDog} />
+        </div>
+        <OptionGroup
+          activeDog={activeDog}
+          metrics={{
+            correctGuesses: successCount,
+            streak,
+            remaining: dogsRemaining.length,
+          }}
+          onWrongAnswer={() => setStreak(0)}
+          onCorrectAnswer={(dog) => {
+            setStreak((s) => s + 1);
+
+            const dogsRemainingFiltered = dogsRemaining.filter(
+              ({ key }) => key !== dog.key,
+            );
+
+            setDogsRemaining(dogsRemainingFiltered);
+
+            setSuccessCount((count) => count + 1);
+
+            setRandomInt((previousInt) => {
+              if (dogsRemainingFiltered.length === 1) {
+                return 0;
+              }
+
+              if (dogsRemainingFiltered.length === 0) {
+                return 1;
+              }
+
+              let newInt = previousInt;
+
+              // Keep generating a new random integer until it's different from the previous one
+              while (newInt === previousInt) {
+                newInt = getRandomInt(0, dogsRemainingFiltered.length);
+              }
+
+              return newInt;
+            });
+          }}
+        />
       </div>
-      <OptionGroup
-        activeDog={activeDog}
-        metrics={{
-          correctGuesses: successCount,
-          streak,
-          remaining: dogsRemaining.length,
-        }}
-        onWrongAnswer={() => setStreak(0)}
-        onCorrectAnswer={(dog) => {
-          setStreak((s) => s + 1);
-
-          const dogsRemainingFiltered = dogsRemaining.filter(
-            ({ key }) => key !== dog.key,
-          );
-
-          setDogsRemaining(dogsRemainingFiltered);
-
-          setSuccessCount((count) => count + 1);
-
-          setRandomInt((previousInt) => {
-            if (dogsRemainingFiltered.length === 1) {
-              return 0;
-            }
-
-            if (dogsRemainingFiltered.length === 0) {
-              return 1;
-            }
-
-            let newInt = previousInt;
-
-            // Keep generating a new random integer until it's different from the previous one
-            while (newInt === previousInt) {
-              newInt = getRandomInt(0, dogsRemainingFiltered.length);
-            }
-
-            return newInt;
-          });
-        }}
-      />
-      <div>
+      <div className="middle-container">
         {!!successCount && (
-          <Flex flexDirection="column" margin="32px 0 0 0">
+          <>
             <Metrics
               correctGuesses={successCount}
               remaining={dogsRemaining.length}
               streak={streak}
             />
-            <div style={{ marginTop: 32 }}>
+            <div className="reset-container">
               <Button
                 onClick={() => setShowResetConfirmation(true)}
                 label="Reset your score"
@@ -120,9 +121,28 @@ export const Home = () => {
                 />
               </Modal>
             </div>
-          </Flex>
+          </>
         )}
       </div>
-    </div>
+      <footer className="footer-container">
+        <div className="footer-content">
+          <img
+            style={{ width: 20, height: 20, marginRight: 8 }}
+            src="/github-mark.png"
+            alt="GitHub logo"
+          />
+          See an issue?
+          <span style={{ margin: "0 4px" }}></span> {/* This adds a space */}
+          <a
+            href="https://github.com/mbrashid62/daily-dog-guesser/issues"
+            target="_blank"
+            rel="noopener noreferrer" // Always a good practice for links with target="_blank"
+          >
+            Log it on GitHub
+          </a>
+          .
+        </div>
+      </footer>
+    </>
   );
 };
