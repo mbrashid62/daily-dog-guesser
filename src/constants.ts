@@ -108,7 +108,7 @@ export const DOGGIES: Dog[] = [
     key: "affenpinscher",
     image: AffenPinscher,
     info: {
-      bio: "A small and lively dog with a distinctive beard.",
+      bio: "A small and lively dog with a distinctive beard, the Affenpinscher is often called the 'monkey dog' due to its expressive face. This breed is curious and playful but also fearless, making it a charming watchdog despite its size. They are excellent with families and adapt well to indoor living.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Affenpinscher",
     },
   },
@@ -116,7 +116,7 @@ export const DOGGIES: Dog[] = [
     key: "airedale-terrier",
     image: AiredaleTerrier,
     info: {
-      bio: "The largest of all terrier breeds, friendly and intelligent.",
+      bio: "The largest of all terrier breeds, friendly and intelligent, the Airedale Terrier is known for its versatile skills, excelling in hunting, sports, and as a loyal companion. Often called the 'King of Terriers,' they are highly trainable, with a dense, wiry coat that requires regular grooming.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Airedale_Terrier",
     },
   },
@@ -124,7 +124,7 @@ export const DOGGIES: Dog[] = [
     key: "akita-inu",
     image: AkitaInu,
     info: {
-      bio: "A large breed with a noble and intimidating presence.",
+      bio: "A large breed with a noble and intimidating presence, the Akita Inu is deeply loyal and protective of its family. Originally from Japan, this breed is known for its courage and devotion, often associated with the famous story of Hachiko, an Akita who waited for his owner every day, even after his passing.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Akita",
     },
   },
@@ -132,7 +132,7 @@ export const DOGGIES: Dog[] = [
     key: "alano-espanol-dog",
     image: AlanoEspanolDog,
     info: {
-      bio: "An ancient breed from Spain known for its strength.",
+      bio: "An ancient breed from Spain known for its strength, the Alano Español has been historically used for hunting, herding, and as a guard dog. It is known for its muscular build, endurance, and gentle temperament with family members, balancing strength with a calm, loyal disposition.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Alano_Español",
     },
   },
@@ -140,7 +140,7 @@ export const DOGGIES: Dog[] = [
     key: "alaskan-klee-kai",
     image: AlaskanKleeKai,
     info: {
-      bio: "A small breed that resembles a miniature Alaskan Husky.",
+      bio: "A small breed that resembles a miniature Alaskan Husky, the Alaskan Klee Kai is known for its intelligence and high energy. Despite their small size, they retain the adventurous spirit of larger sled dogs. This breed is affectionate with family but can be reserved with strangers.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Alaskan_Klee_Kai",
     },
   },
@@ -148,7 +148,7 @@ export const DOGGIES: Dog[] = [
     key: "alaskan-malamute",
     image: AlaskanMalamute,
     info: {
-      bio: "A large breed known for its strength and endurance.",
+      bio: "A large breed known for its strength and endurance, the Alaskan Malamute was bred to haul heavy loads over long distances. This powerful, gentle giant is a friendly and loyal family companion, though it has a strong prey drive and independent streak, which requires consistent training.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Alaskan_Malamute",
     },
   },
@@ -156,7 +156,7 @@ export const DOGGIES: Dog[] = [
     key: "american-akita",
     image: AmericanAkita,
     info: {
-      bio: "A powerful and loyal breed, originally from Japan.",
+      bio: "A powerful and loyal breed, originally from Japan, the American Akita is known for its bravery and dignified demeanor. This breed is a devoted companion that bonds closely with its family, though it tends to be reserved with strangers, making it an excellent guard dog.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Akita",
     },
   },
@@ -164,7 +164,7 @@ export const DOGGIES: Dog[] = [
     key: "american-bulldog",
     image: AmericanBulldog,
     info: {
-      bio: "A medium to large breed known for its strength.",
+      bio: "A medium to large breed known for its strength, the American Bulldog is muscular, agile, and affectionate. Originally used for farm work and protection, they are loyal and protective of their family and excel in agility and obedience training, making them both a loving companion and watchdog.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Bulldog",
     },
   },
@@ -172,7 +172,7 @@ export const DOGGIES: Dog[] = [
     key: "american-bully",
     image: AmericanBully,
     info: {
-      bio: "A breed developed for its friendly and gentle nature.",
+      bio: "A breed developed for its friendly and gentle nature, the American Bully is known for its muscular build and calm demeanor. Despite its imposing appearance, this breed is affectionate and gets along well with children and other pets, making it a popular family dog.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Bully",
     },
   },
@@ -180,7 +180,7 @@ export const DOGGIES: Dog[] = [
     key: "american-cocker-spaniel",
     image: AmericanCockerSpaniel,
     info: {
-      bio: "A friendly and affectionate breed with long ears.",
+      bio: "A friendly and affectionate breed with long ears, the American Cocker Spaniel is known for its playful, gentle nature and luxurious coat. Originally bred for hunting, it has evolved into a popular companion dog that loves human interaction and thrives in active, loving homes.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Cocker_Spaniel",
     },
   },
@@ -188,7 +188,7 @@ export const DOGGIES: Dog[] = [
     key: "american-english-coonhound",
     image: AmericanEnglishCoonhound,
     info: {
-      bio: "An energetic breed known for its hunting abilities.",
+      bio: "An energetic breed known for its hunting abilities, the American English Coonhound is a dedicated and loyal hunter, especially skilled in tracking raccoons. It requires plenty of exercise and mental stimulation and is a friendly, social breed that enjoys spending time with its family.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_English_Coonhound",
     },
   },
@@ -196,7 +196,7 @@ export const DOGGIES: Dog[] = [
     key: "american-eskimo-dog",
     image: AmericanEskimoDog,
     info: {
-      bio: "A small to medium-sized breed known for its intelligence.",
+      bio: "A small to medium-sized breed known for its intelligence and beautiful white coat, the American Eskimo Dog is playful and affectionate. Known for its trainability, this breed excels in agility and obedience. They are energetic and thrive on family interaction and activity.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Eskimo_Dog",
     },
   },
@@ -204,7 +204,7 @@ export const DOGGIES: Dog[] = [
     key: "american-foxhound",
     image: AmericanFoxhound,
     info: {
-      bio: "A breed known for its hunting skills and friendly nature.",
+      bio: "A breed known for its hunting skills and friendly nature, the American Foxhound has a gentle personality and a high energy level. Originally bred for fox hunting, it has a strong sense of smell and is happiest with plenty of space to roam and exercise.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Foxhound",
     },
   },
@@ -212,7 +212,7 @@ export const DOGGIES: Dog[] = [
     key: "american-hairless-terrier",
     image: AmericanHairlessTerrier,
     info: {
-      bio: "A playful and energetic breed, known for being hairless.",
+      bio: "A playful and energetic breed, known for being hairless, the American Hairless Terrier is a unique, friendly companion that requires minimal grooming. Its lack of fur makes it hypoallergenic, and it is highly social and intelligent, making it ideal for families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Hairless_Terrier",
     },
   },
@@ -220,7 +220,7 @@ export const DOGGIES: Dog[] = [
     key: "american-leopard-hound",
     image: AmericanLeopardHound,
     info: {
-      bio: "A versatile hunting dog known for its distinctive coat.",
+      bio: "A versatile hunting dog known for its distinctive coat and strong hunting instincts, the American Leopard Hound is agile, intelligent, and loyal. It is capable of tracking scents over long distances and is both a skilled hunter and affectionate family pet.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Leopard_Hound",
     },
   },
@@ -228,7 +228,7 @@ export const DOGGIES: Dog[] = [
     key: "american-staffordshire-terrier",
     image: AmericanStaffordshireTerrier,
     info: {
-      bio: "A strong and loyal breed, often confused with the Pit Bull.",
+      bio: "A strong and loyal breed, often confused with the Pit Bull, the American Staffordshire Terrier is affectionate and playful with family members. It has a muscular build and protective nature, making it an excellent watchdog and a devoted companion.",
       wikipediaUrl:
         "https://en.wikipedia.org/wiki/American_Staffordshire_Terrier",
     },
@@ -237,7 +237,7 @@ export const DOGGIES: Dog[] = [
     key: "american-water-spaniel",
     image: AmericanWaterSpaniel,
     info: {
-      bio: "A medium-sized breed known for its hunting skills in water.",
+      bio: "A medium-sized breed known for its hunting skills in water, the American Water Spaniel is versatile, energetic, and enjoys both retrieving and companionship. Its wavy, waterproof coat makes it well-suited for various weather conditions, and it thrives on activity and training.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/American_Water_Spaniel",
     },
   },
@@ -245,7 +245,7 @@ export const DOGGIES: Dog[] = [
     key: "anatolian-shepherd",
     image: AnatolianShepherd,
     info: {
-      bio: "A large and powerful breed, often used as a guard dog.",
+      bio: "A large and powerful breed, often used as a guard dog, the Anatolian Shepherd is highly protective and loyal. Originally from Turkey, it is known for its independence and excellent guarding instincts, often used to protect livestock from predators.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Anatolian_Shepherd_Dog",
     },
   },
@@ -253,7 +253,7 @@ export const DOGGIES: Dog[] = [
     key: "appenzeller-sennenhund",
     image: AppenzellerSennenhund,
     info: {
-      bio: "A medium-sized breed known for its herding capabilities.",
+      bio: "A medium-sized breed known for its herding capabilities, the Appenzeller Sennenhund is agile, energetic, and intelligent. Originating from the Swiss Alps, it is an excellent working dog with strong instincts, often used for herding and as a watchdog.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Appenzeller_Sennenhund",
     },
   },
@@ -261,7 +261,7 @@ export const DOGGIES: Dog[] = [
     key: "apricot-pug",
     image: ApricotPug,
     info: {
-      bio: "A small breed known for its charming personality.",
+      bio: "A small breed known for its charming personality, the Apricot Pug has a distinctive wrinkled face and is affectionate and playful. Pugs are social and bond closely with their families, making them excellent companions for city or apartment living.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Pug",
     },
   },
@@ -269,7 +269,7 @@ export const DOGGIES: Dog[] = [
     key: "armenian-gampr-dog",
     image: ArmenianGamprDog,
     info: {
-      bio: "An ancient breed known for its guarding abilities.",
+      bio: "An ancient breed known for its guarding abilities, the Armenian Gampr is fearless, loyal, and highly protective of its family. It has been used for guarding livestock for centuries, and its gentle nature makes it a reliable family companion.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Armenian_Gampr_Dog",
     },
   },
@@ -277,7 +277,7 @@ export const DOGGIES: Dog[] = [
     key: "australian-cattle-dog",
     image: AustralianCattleDog,
     info: {
-      bio: "An intelligent and energetic breed used for herding.",
+      bio: "An intelligent and energetic breed used for herding, the Australian Cattle Dog is known for its loyalty and agility. This breed is highly trainable and thrives in active environments, making it an excellent choice for outdoor-loving families or farms.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Australian_Cattle_Dog",
     },
   },
@@ -285,7 +285,7 @@ export const DOGGIES: Dog[] = [
     key: "australian-shepherd",
     image: AustralianShepherd,
     info: {
-      bio: "A highly intelligent breed known for its herding skills.",
+      bio: "A highly intelligent breed known for its herding skills and vibrant energy, the Australian Shepherd is a loyal and affectionate family dog. Known for its agility, it excels in dog sports and herding, making it ideal for active families or owners.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Australian_Shepherd",
     },
   },
@@ -293,7 +293,7 @@ export const DOGGIES: Dog[] = [
     key: "australian-terrier",
     image: AustralianTerrier,
     info: {
-      bio: "A small and hardy breed, known for its loyalty.",
+      bio: "A small and hardy breed, known for its loyalty and alertness, the Australian Terrier is an excellent watchdog with a lively and affectionate personality. Originally bred to hunt small animals, it is spirited, intelligent, and easy to train.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Australian_Terrier",
     },
   },
@@ -301,7 +301,7 @@ export const DOGGIES: Dog[] = [
     key: "azawakh",
     image: Azawakh,
     info: {
-      bio: "A graceful and agile breed originally from Africa.",
+      bio: "A graceful and agile breed originally from Africa, the Azawakh is known for its speed, endurance, and elegance. It has a protective nature with a reserved demeanor but forms strong bonds with its family, making it a unique and loyal companion.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Azawakh",
     },
   },
@@ -309,7 +309,7 @@ export const DOGGIES: Dog[] = [
     key: "bakharwal",
     image: Bakharwal,
     info: {
-      bio: "A strong and protective breed used for herding.",
+      bio: "A strong and protective breed used for herding, the Bakharwal dog is known for its loyalty and fierce guarding instincts. Originating from the Himalayan region of India, these dogs have been used for centuries to protect livestock from predators. They are known for their endurance and adaptability to harsh environments.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bakharwal_Dog",
     },
   },
@@ -317,7 +317,7 @@ export const DOGGIES: Dog[] = [
     key: "barbet",
     image: Barbet,
     info: {
-      bio: "A friendly and intelligent breed known for its curly coat.",
+      bio: "A friendly and intelligent breed known for its curly coat, the Barbet is a versatile water dog originally bred in France for retrieving game. They are highly trainable and make excellent family pets, thriving in active households. Their playful and affectionate nature makes them great companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Barbet",
     },
   },
@@ -325,7 +325,7 @@ export const DOGGIES: Dog[] = [
     key: "basenji",
     image: Basenji,
     info: {
-      bio: "Known as the 'barkless dog', it's highly intelligent.",
+      bio: "Known as the 'barkless dog', the Basenji is highly intelligent and has a unique yodel-like sound. Originating from Central Africa, this breed is known for its hunting abilities and strong prey drive. Basenjis are also quite clean and often groom themselves like cats.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Basenji",
     },
   },
@@ -333,7 +333,7 @@ export const DOGGIES: Dog[] = [
     key: "basset-hound",
     image: BassetHound,
     info: {
-      bio: "A short-legged breed with a keen sense of smell.",
+      bio: "A short-legged breed with a keen sense of smell, Basset Hounds are known for their laid-back demeanor and gentle nature. Originally bred for hunting, they have a strong tracking instinct. Their unique appearance and soulful eyes have made them popular in media and as family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Basset_Hound",
     },
   },
@@ -341,7 +341,7 @@ export const DOGGIES: Dog[] = [
     key: "beagle",
     image: Beagle,
     info: {
-      bio: "A small hound breed known for its friendly demeanor.",
+      bio: "A small hound breed known for its friendly demeanor and strong sense of smell, Beagles are social dogs that thrive in family environments. They were originally bred for hunting, which contributes to their energetic and playful nature. Their love for exploration often leads them on scent-driven adventures.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Beagle",
     },
   },
@@ -349,7 +349,7 @@ export const DOGGIES: Dog[] = [
     key: "bearded-collie",
     image: BeardedCollie,
     info: {
-      bio: "A lively and affectionate breed with a shaggy coat.",
+      bio: "A lively and affectionate breed with a shaggy coat, Bearded Collies are known for their herding abilities and playful personality. Originating from Scotland, they are highly intelligent and require regular exercise and mental stimulation to keep them happy. They are also known for their love of family and children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bearded_Collie",
     },
   },
@@ -357,7 +357,7 @@ export const DOGGIES: Dog[] = [
     key: "beauceron",
     image: Beauceron,
     info: {
-      bio: "A large breed known for its guarding capabilities.",
+      bio: "A large breed known for its guarding capabilities, the Beauceron is intelligent and versatile. Originally bred in France for herding and guarding livestock, they are highly trainable and excel in various dog sports. They are loyal and protective of their families, making them excellent companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Beauceron",
     },
   },
@@ -365,7 +365,7 @@ export const DOGGIES: Dog[] = [
     key: "belgian-groenendael",
     image: BelgianGroenendael,
     info: {
-      bio: "A herding breed known for its intelligence and loyalty.",
+      bio: "A herding breed known for its intelligence and loyalty, the Belgian Groenendael is versatile and excels in obedience and agility. They require regular exercise and mental challenges to thrive. Their strong work ethic and protective nature make them great family pets and working dogs.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Belgian_Groenendael",
     },
   },
@@ -373,7 +373,7 @@ export const DOGGIES: Dog[] = [
     key: "belgian-laekenois",
     image: BelgianLaekenois,
     info: {
-      bio: "A versatile working breed known for its guarding skills.",
+      bio: "A versatile working breed known for its guarding skills, the Belgian Laekenois is one of four Belgian herding breeds. They are known for their unique rough coat and friendly disposition. Laekenois dogs are intelligent and trainable, often excelling in obedience and agility competitions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Belgian_Laekenois",
     },
   },
@@ -381,7 +381,7 @@ export const DOGGIES: Dog[] = [
     key: "belgian-malinois",
     image: BelgianMalinois,
     info: {
-      bio: "An intelligent and hardworking breed often used in police work.",
+      bio: "An intelligent and hardworking breed often used in police work, the Belgian Malinois is known for its agility and drive. They require plenty of physical and mental exercise to stay happy and healthy. Their loyalty and protective instincts make them excellent companions and working dogs.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Belgian_Malinois",
     },
   },
@@ -389,7 +389,7 @@ export const DOGGIES: Dog[] = [
     key: "belgian-tervuren",
     image: BelgianTervuren,
     info: {
-      bio: "A herding breed known for its agility and intelligence.",
+      bio: "A herding breed known for its agility and intelligence, the Belgian Tervuren is a highly trainable dog that excels in obedience and herding tasks. Their affectionate nature makes them great family pets, and they thrive on companionship and activity. Regular exercise is essential for their well-being.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Belgian_Tervuren",
     },
   },
@@ -397,7 +397,7 @@ export const DOGGIES: Dog[] = [
     key: "bernese-mountain-dog",
     image: BerneseMountainDog,
     info: {
-      bio: "A large, gentle breed known for its loyalty and friendliness.",
+      bio: "A large, gentle breed known for its loyalty and friendliness, the Bernese Mountain Dog is often used as a family pet and working dog. They are known for their beautiful tricolor coat and sweet disposition. These dogs enjoy being part of family activities and are great with children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bernese_Mountain_Dog",
     },
   },
@@ -405,7 +405,7 @@ export const DOGGIES: Dog[] = [
     key: "bichon-frise",
     image: BichonFrise,
     info: {
-      bio: "A small breed known for its cheerful and playful nature.",
+      bio: "A small breed known for its cheerful and playful nature, the Bichon Frise is often described as a happy companion. They are hypoallergenic, making them suitable for allergy sufferers. Bichons are highly social and love to be around people, making them ideal family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bichon_Frise",
     },
   },
@@ -413,7 +413,7 @@ export const DOGGIES: Dog[] = [
     key: "bloodhound",
     image: Bloodhound,
     info: {
-      bio: "A breed famous for its incredible sense of smell.",
+      bio: "A breed famous for its incredible sense of smell, the Bloodhound is often used in tracking and search-and-rescue operations. Their ability to follow scents is unmatched, and they are known for their friendly and gentle temperament. Despite their size, they are affectionate and great with families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bloodhound",
     },
   },
@@ -421,7 +421,7 @@ export const DOGGIES: Dog[] = [
     key: "border-collie",
     image: BorderCollie,
     info: {
-      bio: "A highly intelligent breed, renowned for its herding skills.",
+      bio: "A highly intelligent breed, renowned for its herding skills, the Border Collie is often considered the smartest dog breed. They require extensive physical and mental stimulation, excelling in various dog sports. Their loyal nature and strong work ethic make them excellent companions and working dogs.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Border_Collie",
     },
   },
@@ -429,7 +429,7 @@ export const DOGGIES: Dog[] = [
     key: "border-terrier",
     image: BorderTerrier,
     info: {
-      bio: "A small and friendly breed with a wiry coat.",
+      bio: "A small and friendly breed with a wiry coat, the Border Terrier is known for its lively and affectionate personality. Originally bred for hunting, they are energetic and require regular exercise. Their charming nature makes them great companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Border_Terrier",
     },
   },
@@ -437,7 +437,7 @@ export const DOGGIES: Dog[] = [
     key: "boston-terrier",
     image: BostonTerrier,
     info: {
-      bio: "A small breed known for its friendly and outgoing nature.",
+      bio: "A small breed known for its friendly and outgoing nature, the Boston Terrier is often referred to as the 'American Gentleman' due to its tuxedo-like markings. They are adaptable and do well in various living situations. Their affectionate demeanor makes them great family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Boston_Terrier",
     },
   },
@@ -445,7 +445,7 @@ export const DOGGIES: Dog[] = [
     key: "bouvier-des-flandres",
     image: BouvierDesFlandres,
     info: {
-      bio: "A large, powerful breed known for its herding abilities.",
+      bio: "A large, powerful breed known for its herding abilities, the Bouvier des Flandres is intelligent and versatile. They are often used in working roles due to their strength and protective instincts. Their loyal nature makes them great family pets as well.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bouvier_des_Flandres",
     },
   },
@@ -453,7 +453,7 @@ export const DOGGIES: Dog[] = [
     key: "boxer",
     image: Boxer,
     info: {
-      bio: "A medium to large breed known for its playful and energetic nature.",
+      bio: "A medium to large breed known for its playful and energetic nature, the Boxer is a loyal family companion. They are intelligent and require regular exercise to stay happy and healthy. Boxers are known for their boundless energy and affectionate temperament.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Boxer_(dog)",
     },
   },
@@ -461,7 +461,7 @@ export const DOGGIES: Dog[] = [
     key: "bracco-italiano",
     image: BraccoItaliano,
     info: {
-      bio: "An Italian hunting breed known for its gentle temperament.",
+      bio: "An Italian hunting breed known for its gentle temperament, the Bracco Italiano is versatile and excels in both hunting and family settings. They are affectionate and social, thriving in active households. Their elegant appearance and friendly nature make them popular companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bracco_Italiano",
     },
   },
@@ -469,7 +469,7 @@ export const DOGGIES: Dog[] = [
     key: "briard",
     image: Briard,
     info: {
-      bio: "A large breed known for its intelligence and loyalty.",
+      bio: "A large breed known for its intelligence and loyalty, the Briard is an excellent working dog and family companion. They are protective and affectionate, often forming strong bonds with their families. Their unique appearance and calm demeanor make them distinctive.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Briard",
     },
   },
@@ -477,7 +477,7 @@ export const DOGGIES: Dog[] = [
     key: "brittany",
     image: Brittany,
     info: {
-      bio: "A medium-sized breed known for its agility and hunting skills.",
+      bio: "A medium-sized breed known for its agility and hunting skills, the Brittany is an energetic and intelligent dog. They excel in various dog sports and require regular exercise. Their friendly and affectionate nature makes them great family pets and companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Brittany_(dog)",
     },
   },
@@ -485,7 +485,7 @@ export const DOGGIES: Dog[] = [
     key: "bull-terrier",
     image: BullTerrier,
     info: {
-      bio: "A muscular breed known for its playful and affectionate nature.",
+      bio: "A muscular breed known for its playful and affectionate nature, the Bull Terrier is often characterized by its distinctive egg-shaped head. They are energetic and require regular exercise. Their loyal temperament makes them great family companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bull_Terrier",
     },
   },
@@ -493,7 +493,7 @@ export const DOGGIES: Dog[] = [
     key: "bulldog",
     image: Bulldog,
     info: {
-      bio: "A medium-sized breed known for its loose, wrinkled skin.",
+      bio: "A medium-sized breed known for its loose, wrinkled skin, the Bulldog is gentle and friendly. They are known for their calm demeanor and affectionate nature. Bulldogs are great with children and make excellent family pets, adapting well to various living situations.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Bulldog",
     },
   },
@@ -501,7 +501,7 @@ export const DOGGIES: Dog[] = [
     key: "cairn-terrier",
     image: CairnTerrier,
     info: {
-      bio: "A small, hardy breed known for its spirited personality.",
+      bio: "A small, hardy breed known for its spirited personality, the Cairn Terrier is lively and loves to explore. Originally bred in Scotland for hunting vermin, they have a strong prey drive and are known for their intelligence. Cairn Terriers are affectionate and make great companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Cairn_Terrier",
     },
   },
@@ -509,7 +509,7 @@ export const DOGGIES: Dog[] = [
     key: "cane-corso",
     image: CaneCorso,
     info: {
-      bio: "A large and powerful breed, known for its guarding abilities.",
+      bio: "A large and powerful breed known for its guarding abilities, the Cane Corso is loyal and protective of its family. Originally bred in Italy, they are intelligent and require consistent training and socialization. Despite their imposing size, they are affectionate and good with children when properly trained.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Cane_Corso",
     },
   },
@@ -517,7 +517,7 @@ export const DOGGIES: Dog[] = [
     key: "cavalier-king-charles-spaniel",
     image: CavalierKingCharlesSpaniel,
     info: {
-      bio: "A friendly and affectionate breed known for its silky coat.",
+      bio: "A friendly and affectionate breed known for its silky coat, the Cavalier King Charles Spaniel is a small companion dog that loves to be around people. They are gentle and great with children, making them ideal family pets. Their playful nature and adaptability make them suitable for various living situations.",
       wikipediaUrl:
         "https://en.wikipedia.org/wiki/Cavalier_King_Charles_Spaniel",
     },
@@ -526,7 +526,7 @@ export const DOGGIES: Dog[] = [
     key: "chihuahua",
     image: Chihuahua,
     info: {
-      bio: "The smallest dog breed, known for its big personality.",
+      bio: "The smallest dog breed, known for its big personality, the Chihuahua is often bold and confident. They form strong bonds with their owners and are known for their loyalty. Despite their size, they can be quite protective, making them excellent companions and watchdogs.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Chihuahua",
     },
   },
@@ -534,7 +534,7 @@ export const DOGGIES: Dog[] = [
     key: "chow-chow",
     image: ChowChow,
     info: {
-      bio: "A distinctive breed known for its lion-like appearance.",
+      bio: "A distinctive breed known for its lion-like appearance and unique blue-black tongue, the Chow Chow is known for its independent and aloof nature. Originally bred in China, they are loyal and protective, requiring early socialization and training to thrive in a family environment.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Chow_Chow",
     },
   },
@@ -542,7 +542,7 @@ export const DOGGIES: Dog[] = [
     key: "collie",
     image: Collie,
     info: {
-      bio: "A large breed known for its herding and loyalty.",
+      bio: "A large breed known for its herding and loyalty, the Collie is intelligent and easy to train. They are famous for their beautiful coats and gentle demeanor, making them excellent family pets. Their strong work ethic and protective nature make them great companions for children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Collie",
     },
   },
@@ -550,7 +550,7 @@ export const DOGGIES: Dog[] = [
     key: "coton-de-tulear",
     image: CotonDeTulear,
     info: {
-      bio: "A small breed known for its long, cotton-like coat.",
+      bio: "A small breed known for its long, cotton-like coat, the Coton de Tulear is affectionate and friendly. Originating from Madagascar, they are known for their cheerful personality and adaptability to family life. Their playful nature makes them great companions for families and individuals alike.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Coton_de_Tulear",
     },
   },
@@ -558,7 +558,7 @@ export const DOGGIES: Dog[] = [
     key: "dachshund",
     image: Dachshund,
     info: {
-      bio: "A small breed known for its long body and short legs.",
+      bio: "A small breed known for its long body and short legs, the Dachshund is playful and curious. Originally bred for hunting small game, they are energetic and require regular exercise. Their unique appearance and spirited personality make them beloved family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Dachshund",
     },
   },
@@ -566,7 +566,7 @@ export const DOGGIES: Dog[] = [
     key: "dalmatian",
     image: Dalmatian,
     info: {
-      bio: "A distinctive breed known for its black or liver-spotted coat.",
+      bio: "A distinctive breed known for its black or liver-spotted coat, the Dalmatian is energetic and playful. Originally used as carriage dogs, they are known for their strong instincts and high energy levels. Dalmatians thrive in active environments and make loyal companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Dalmatian_(dog)",
     },
   },
@@ -574,7 +574,7 @@ export const DOGGIES: Dog[] = [
     key: "doberman-pinscher",
     image: DobermanPinscher,
     info: {
-      bio: "A loyal and intelligent breed, often used in police work.",
+      bio: "A loyal and intelligent breed often used in police work, the Doberman Pinscher is known for its agility and protective nature. They require consistent training and socialization to thrive. Despite their fierce reputation, they are affectionate and make devoted family companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Doberman",
     },
   },
@@ -582,7 +582,7 @@ export const DOGGIES: Dog[] = [
     key: "dogue-de-bordeaux",
     image: DogueDeBordeaux,
     info: {
-      bio: "A large breed known for its strong, muscular build.",
+      bio: "A large breed known for its strong, muscular build, the Dogue de Bordeaux is gentle and loyal. Often used as a guard dog, they are protective of their families and require early socialization. Their calm demeanor makes them great companions, especially in family settings.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Dogue_de_Bordeaux",
     },
   },
@@ -590,7 +590,7 @@ export const DOGGIES: Dog[] = [
     key: "dutch-shepherd",
     image: DutchShepherd,
     info: {
-      bio: "A versatile breed known for its intelligence and trainability.",
+      bio: "A versatile breed known for its intelligence and trainability, the Dutch Shepherd is an excellent working dog. They excel in various dog sports and require regular exercise and mental stimulation. Their loyalty and protective nature make them great family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Dutch_Shepherd",
     },
   },
@@ -598,7 +598,7 @@ export const DOGGIES: Dog[] = [
     key: "english-bulldog",
     image: EnglishBulldog,
     info: {
-      bio: "A breed known for its loose skin and distinctive pushed-in nose.",
+      bio: "A breed known for its loose skin and distinctive pushed-in nose, the English Bulldog is gentle and affectionate. They are known for their calm demeanor and make excellent companions. Despite their muscular build, they are not overly active and prefer a relaxed lifestyle, often enjoying lounging around with their families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/English_Bulldog",
     },
   },
@@ -606,7 +606,7 @@ export const DOGGIES: Dog[] = [
     key: "english-cocker-spaniel",
     image: EnglishCockerSpaniel,
     info: {
-      bio: "A friendly breed known for its long, floppy ears.",
+      bio: "A friendly breed known for its long, floppy ears, the English Cocker Spaniel is playful and affectionate. They thrive on companionship and require regular exercise to stay happy. Originally bred for hunting, they are energetic and excel in various dog sports and activities.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/English_Cocker_Spaniel",
     },
   },
@@ -614,7 +614,7 @@ export const DOGGIES: Dog[] = [
     key: "english-setter",
     image: EnglishSetter,
     info: {
-      bio: "A breed known for its friendly disposition and hunting skills.",
+      bio: "A breed known for its friendly disposition and hunting skills, the English Setter is gentle and sociable. They have a beautiful coat and require regular grooming. Highly trainable and eager to please, they excel in various activities, making them great companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/English_Setter",
     },
   },
@@ -622,7 +622,7 @@ export const DOGGIES: Dog[] = [
     key: "english-springer-spaniel",
     image: EnglishSpringerSpaniel,
     info: {
-      bio: "A friendly and energetic breed known for its hunting skills.",
+      bio: "A friendly and energetic breed known for its hunting skills, the English Springer Spaniel is versatile and intelligent. They require regular exercise and thrive in active environments. Known for their affectionate nature, they bond well with families and enjoy participating in various activities.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/English_Springer_Spaniel",
     },
   },
@@ -630,7 +630,7 @@ export const DOGGIES: Dog[] = [
     key: "french-bulldog",
     image: FrenchBulldog,
     info: {
-      bio: "A small breed known for its playful and affectionate nature.",
+      bio: "A small breed known for its playful and affectionate nature, the French Bulldog is sociable and makes a great companion. They are adaptable to various living situations, including apartments, and enjoy being around people. Their charming personality and unique bat-like ears make them a popular choice.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/French_Bulldog",
     },
   },
@@ -638,7 +638,7 @@ export const DOGGIES: Dog[] = [
     key: "german-pinscher",
     image: GermanPinscher,
     info: {
-      bio: "A medium-sized breed known for its agility and intelligence.",
+      bio: "A medium-sized breed known for its agility and intelligence, the German Pinscher is a confident and energetic dog. They are versatile and excel in various dog sports. With a strong protective instinct, they require proper training and socialization to thrive in family settings.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/German_Pinscher",
     },
   },
@@ -646,7 +646,7 @@ export const DOGGIES: Dog[] = [
     key: "german-shepherd",
     image: GermanShepherd,
     info: {
-      bio: "A highly intelligent and versatile working breed.",
+      bio: "A highly intelligent and versatile working breed, the German Shepherd is known for its loyalty and trainability. They excel in various roles, including police and service work. Their protective nature and strong work ethic make them great family companions and working dogs.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/German_Shepherd",
     },
   },
@@ -654,7 +654,7 @@ export const DOGGIES: Dog[] = [
     key: "german-shorthaired-pointer",
     image: GermanShorthairedPointer,
     info: {
-      bio: "A versatile hunting breed known for its agility.",
+      bio: "A versatile hunting breed known for its agility, the German Shorthaired Pointer is energetic and requires regular exercise. They are friendly and make excellent family pets, thriving in active households. Their intelligence and eagerness to please make them highly trainable.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/German_Shorthaired_Pointer",
     },
   },
@@ -662,7 +662,7 @@ export const DOGGIES: Dog[] = [
     key: "german-wirehaired-pointer",
     image: GermanWirehairedPointer,
     info: {
-      bio: "A hardy hunting breed known for its versatility.",
+      bio: "A hardy hunting breed known for its versatility, the German Wirehaired Pointer is intelligent and adaptable. They have a distinctive wiry coat and are excellent companions for active families. Their strong hunting instincts require regular mental and physical stimulation.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/German_Wirehaired_Pointer",
     },
   },
@@ -670,7 +670,7 @@ export const DOGGIES: Dog[] = [
     key: "golden-retriever",
     image: GoldenRetriever,
     info: {
-      bio: "An intelligent and friendly breed, known for its loyalty.",
+      bio: "An intelligent and friendly breed, known for its loyalty, the Golden Retriever is a beloved family pet. They are playful and require regular exercise, thriving in active households. Their gentle nature and eagerness to please make them great companions for children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Golden_Retriever",
     },
   },
@@ -678,7 +678,7 @@ export const DOGGIES: Dog[] = [
     key: "golden-doodle",
     image: GoldenDoodle,
     info: {
-      bio: "A friendly breed known for its hypoallergenic coat.",
+      bio: "A friendly breed known for its hypoallergenic coat, the Golden Doodle is a mix between a Golden Retriever and a Poodle. They are intelligent, friendly, and great for families with allergies. Their playful and sociable nature makes them excellent companions for various lifestyles.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Goldendoodle",
     },
   },
@@ -686,7 +686,7 @@ export const DOGGIES: Dog[] = [
     key: "great-dane",
     image: GreatDane,
     info: {
-      bio: "A giant breed known for its gentle nature.",
+      bio: "A giant breed known for its gentle nature, the Great Dane is affectionate and loyal. Despite their size, they are friendly and good with children. Known as 'gentle giants,' they require regular exercise and socialization to thrive in family environments.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Great_Dane",
     },
   },
@@ -694,7 +694,7 @@ export const DOGGIES: Dog[] = [
     key: "great-pyrenees",
     image: GreatPyrenees,
     info: {
-      bio: "A large and gentle breed known for its guarding abilities.",
+      bio: "A large and gentle breed known for its guarding abilities, the Great Pyrenees is protective and loyal. They require regular exercise and enjoy outdoor activities. Their calm demeanor makes them great family companions, especially in homes with children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Great_Pyrenees",
     },
   },
@@ -702,7 +702,7 @@ export const DOGGIES: Dog[] = [
     key: "greater-swiss-mountain-dog",
     image: GreaterSwissMountainDog,
     info: {
-      bio: "A large breed known for its strength and loyalty.",
+      bio: "A large breed known for its strength and loyalty, the Greater Swiss Mountain Dog is friendly and good with children. Originally bred for farm work, they are strong and require regular exercise. Their calm and gentle nature makes them great family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Greater_Swiss_Mountain_Dog",
     },
   },
@@ -710,7 +710,7 @@ export const DOGGIES: Dog[] = [
     key: "greyhound",
     image: Greyhound,
     info: {
-      bio: "A breed known for its speed and gentle nature.",
+      bio: "A breed known for its speed and gentle nature, the Greyhound is one of the fastest dog breeds. They are surprisingly low-energy and enjoy lounging around. Despite their athleticism, they are affectionate and make great companions for families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Greyhound",
     },
   },
@@ -718,7 +718,7 @@ export const DOGGIES: Dog[] = [
     key: "havanese",
     image: Havanese,
     info: {
-      bio: "A small breed known for its cheerful and friendly disposition.",
+      bio: "A small breed known for its cheerful and friendly disposition, the Havanese is sociable and enjoys being around people. They are intelligent and trainable, making them great companions for families. Their playful nature and adaptability make them suitable for various living situations.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Havanese",
     },
   },
@@ -726,7 +726,7 @@ export const DOGGIES: Dog[] = [
     key: "irish-setter",
     image: IrishSetter,
     info: {
-      bio: "A friendly and energetic breed known for its hunting skills.",
+      bio: "A friendly and energetic breed known for its hunting skills, the Irish Setter is characterized by its stunning red coat. They are highly social and require plenty of exercise, making them great companions for active families. Their playful nature and affectionate demeanor make them a popular choice.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Irish_Setter",
     },
   },
@@ -734,7 +734,7 @@ export const DOGGIES: Dog[] = [
     key: "irish-wolfhound",
     image: IrishWolfhound,
     info: {
-      bio: "One of the largest dog breeds, known for its gentle nature.",
+      bio: "One of the largest dog breeds, known for its gentle nature, the Irish Wolfhound is a loyal and affectionate companion. Despite their size, they are known for being gentle giants. They require moderate exercise and thrive in family environments, making them excellent companions for children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Irish_Wolfhound",
     },
   },
@@ -742,7 +742,7 @@ export const DOGGIES: Dog[] = [
     key: "italian-greyhound",
     image: ItalianGreyhound,
     info: {
-      bio: "A small and elegant breed known for its speed.",
+      bio: "A small and elegant breed known for its speed, the Italian Greyhound is playful and affectionate. They are often seen as a lap dog and enjoy spending time with their families. Their graceful appearance and gentle demeanor make them a charming addition to any household.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Italian_Greyhound",
     },
   },
@@ -750,7 +750,7 @@ export const DOGGIES: Dog[] = [
     key: "jack-russell-terrier",
     image: JackRussellTerrier,
     info: {
-      bio: "A small, energetic breed known for its intelligence.",
+      bio: "A small, energetic breed known for its intelligence, the Jack Russell Terrier is highly trainable and loves to play. They have a strong hunting instinct and require plenty of exercise. Their spirited personality and determination make them a fun and engaging companion.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Jack_Russell_Terrier",
     },
   },
@@ -758,7 +758,7 @@ export const DOGGIES: Dog[] = [
     key: "japanese-chin",
     image: JapaneseChin,
     info: {
-      bio: "A small breed known for its playful and affectionate nature.",
+      bio: "A small breed known for its playful and affectionate nature, the Japanese Chin is a charming companion. They are intelligent and enjoy interactive playtime. Their elegant appearance and loving disposition make them suitable for families and individuals alike.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Japanese_Chin",
     },
   },
@@ -766,7 +766,7 @@ export const DOGGIES: Dog[] = [
     key: "keeshond",
     image: Keeshond,
     info: {
-      bio: "A medium-sized breed known for its friendly disposition.",
+      bio: "A medium-sized breed known for its friendly disposition, the Keeshond is intelligent and highly social. They thrive on human interaction and enjoy being involved in family activities. Their distinctive 'spectacles' and lively personality make them a beloved companion.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Keeshond",
     },
   },
@@ -774,7 +774,7 @@ export const DOGGIES: Dog[] = [
     key: "labrador-retriever",
     image: LabradorRetriever,
     info: {
-      bio: "An intelligent and friendly breed, one of the most popular.",
+      bio: "An intelligent and friendly breed, one of the most popular, the Labrador Retriever is known for its loyalty and versatility. They excel in various roles, including service and therapy work. Their playful and loving nature makes them great companions for families and individuals.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Labrador_Retriever",
     },
   },
@@ -782,7 +782,7 @@ export const DOGGIES: Dog[] = [
     key: "lhasa-apso",
     image: LhasaApso,
     info: {
-      bio: "A small breed known for its long, flowing coat.",
+      bio: "A small breed known for its long, flowing coat, the Lhasa Apso is affectionate and has a confident personality. Originally bred as a sentinel for Tibetan monasteries, they are alert and make excellent watchdogs. Their playful nature makes them great companions for families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Lhasa_Apso",
     },
   },
@@ -790,7 +790,7 @@ export const DOGGIES: Dog[] = [
     key: "maltese",
     image: Maltese,
     info: {
-      bio: "A small breed known for its long, silky coat.",
+      bio: "A small breed known for its long, silky coat, the Maltese is gentle and playful. They thrive on human companionship and make excellent lap dogs. Their charming personality and affectionate nature make them a popular choice for families and individuals.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Maltese_(dog)",
     },
   },
@@ -798,7 +798,7 @@ export const DOGGIES: Dog[] = [
     key: "maltipoo",
     image: Maltipoo,
     info: {
-      bio: "A small, playful breed that is a mix between Maltese and Poodle.",
+      bio: "A small, playful breed that is a mix between Maltese and Poodle, the Maltipoo is known for its friendly disposition and hypoallergenic coat. They are intelligent and trainable, making them great companions for families and individuals with allergies.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Maltipoo",
     },
   },
@@ -806,7 +806,7 @@ export const DOGGIES: Dog[] = [
     key: "newfoundland",
     image: Newfoundland,
     info: {
-      bio: "A giant breed known for its gentle nature and swimming ability.",
+      bio: "A giant breed known for its gentle nature and swimming ability, the Newfoundland is affectionate and loyal. They are excellent with children and are often used in water rescue. Their calm demeanor makes them great family pets, especially in active households.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Newfoundland_dog",
     },
   },
@@ -814,7 +814,7 @@ export const DOGGIES: Dog[] = [
     key: "norfolk-terrier",
     image: NorfolkTerrier,
     info: {
-      bio: "A small, sturdy breed known for its cheerful disposition.",
+      bio: "A small, sturdy breed known for its cheerful disposition, the Norfolk Terrier is friendly and playful. They are intelligent and adaptable, making them great companions for various living situations. Their spirited personality makes them a delightful addition to any family.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Norfolk_Terrier",
     },
   },
@@ -822,7 +822,7 @@ export const DOGGIES: Dog[] = [
     key: "norwegian-elkhound",
     image: NorwegianElkhound,
     info: {
-      bio: "A medium-sized breed known for its endurance and loyalty.",
+      bio: "A medium-sized breed known for its endurance and loyalty, the Norwegian Elkhound is confident and friendly. They were originally bred for hunting and have a strong prey drive. Their energetic nature requires regular exercise, making them great companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Norwegian_Elkhound",
     },
   },
@@ -830,7 +830,7 @@ export const DOGGIES: Dog[] = [
     key: "pekingese",
     image: Pekingese,
     info: {
-      bio: "A small breed known for its long, flowing coat and regal demeanor.",
+      bio: "A small breed known for its long, flowing coat and regal demeanor, the Pekingese is affectionate and loyal. They are confident and can be quite independent, often developing a strong bond with their owners. Their charming personality makes them a unique companion.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Pekingese",
     },
   },
@@ -838,7 +838,7 @@ export const DOGGIES: Dog[] = [
     key: "pomeranian",
     image: Pomeranian,
     info: {
-      bio: "A small breed known for its fluffy coat and lively personality.",
+      bio: "A small breed known for its fluffy coat and lively personality, the Pomeranian is friendly and alert. They are highly social and enjoy being the center of attention. Their playful nature and intelligence make them a favorite among dog lovers.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Pomeranian_(dog)",
     },
   },
@@ -846,7 +846,7 @@ export const DOGGIES: Dog[] = [
     key: "poodle",
     image: Poodle,
     info: {
-      bio: "An intelligent breed known for its hypoallergenic coat.",
+      bio: "An intelligent breed known for its hypoallergenic coat, the Poodle comes in three sizes: standard, miniature, and toy. They are highly trainable and excel in various activities, including agility and obedience. Their playful nature makes them great family companions.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Poodle",
     },
   },
@@ -854,7 +854,7 @@ export const DOGGIES: Dog[] = [
     key: "portuguese-water-dog",
     image: PortugueseWaterDog,
     info: {
-      bio: "A medium-sized breed known for its swimming ability.",
+      bio: "A medium-sized breed known for its swimming ability, the Portuguese Water Dog is energetic and intelligent. They are often used as service dogs and excel in water-related activities. Their friendly disposition and hypoallergenic coat make them great companions for families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Portuguese_Water_Dog",
     },
   },
@@ -862,7 +862,7 @@ export const DOGGIES: Dog[] = [
     key: "rottweiler",
     image: Rottweiler,
     info: {
-      bio: "A powerful and loyal breed known for its guarding instincts.",
+      bio: "A powerful and loyal breed known for its guarding instincts, the Rottweiler is confident and intelligent. They require consistent training and socialization from a young age. With proper training, they are gentle family pets who are excellent with children.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Rottweiler",
     },
   },
@@ -870,7 +870,7 @@ export const DOGGIES: Dog[] = [
     key: "saluki",
     image: Saluki,
     info: {
-      bio: "An ancient breed known for its speed and agility.",
+      bio: "An ancient breed known for its speed and agility, the Saluki is often referred to as the 'Royal Dog of Egypt.' They are highly intelligent and require regular exercise to thrive. Their graceful appearance and gentle demeanor make them excellent companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Saluki",
     },
   },
@@ -878,7 +878,7 @@ export const DOGGIES: Dog[] = [
     key: "samoyed",
     image: Samoyed,
     info: {
-      bio: "A fluffy breed known for its friendly disposition.",
+      bio: "A fluffy breed known for its friendly disposition, the Samoyed is characterized by its stunning white coat and signature 'Sammy smile.' Originally bred for herding and sledding, they are highly social and require regular exercise to keep them happy. Their playful nature makes them great family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Samoyed",
     },
   },
@@ -886,7 +886,7 @@ export const DOGGIES: Dog[] = [
     key: "shiba-inu",
     image: ShibaInu,
     info: {
-      bio: "A small, agile breed known for its spirited personality.",
+      bio: "A small, agile breed known for its spirited personality, the Shiba Inu is one of Japan's oldest breeds. They are intelligent and independent, often displaying a cat-like demeanor. Their loyalty and strong will make them excellent companions for those who appreciate their unique character.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Shiba_Inu",
     },
   },
@@ -894,7 +894,7 @@ export const DOGGIES: Dog[] = [
     key: "siberian-husky",
     image: SiberianHusky,
     info: {
-      bio: "A medium-sized breed known for its endurance and friendly nature.",
+      bio: "A medium-sized breed known for its endurance and friendly nature, the Siberian Husky was originally bred for sledding. They are highly energetic and require plenty of exercise. Their striking appearance, with beautiful blue or multi-colored eyes, and sociable personality make them popular family pets.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Siberian_Husky",
     },
   },
@@ -902,7 +902,7 @@ export const DOGGIES: Dog[] = [
     key: "staffordshire-bull-terrier",
     image: StaffordshireBullTerrier,
     info: {
-      bio: "A sturdy breed known for its strength and loyalty.",
+      bio: "A sturdy breed known for its strength and loyalty, the Staffordshire Bull Terrier is affectionate and great with children. They are highly trainable and thrive on human interaction. Despite their muscular build, they are often referred to as 'nanny dogs' due to their gentle nature with families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Staffordshire_Bull_Terrier",
     },
   },
@@ -910,7 +910,7 @@ export const DOGGIES: Dog[] = [
     key: "vizsla",
     image: Vizsla,
     info: {
-      bio: "An energetic breed known for its hunting abilities.",
+      bio: "An energetic breed known for its hunting abilities, the Vizsla is highly affectionate and loyal to its family. They require regular exercise and mental stimulation to stay happy. Their distinctive rust-colored coat and loving demeanor make them excellent companions for active families.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Vizsla",
     },
   },
@@ -918,7 +918,7 @@ export const DOGGIES: Dog[] = [
     key: "weimaraner",
     image: Weimaraner,
     info: {
-      bio: "A large breed known for its speed and agility.",
+      bio: "A large breed known for its speed and agility, the Weimaraner is often called the 'Gray Ghost' due to its striking silver-gray coat. They are intelligent and require regular exercise to channel their energy. Their friendly and social nature makes them great companions for active households.",
       wikipediaUrl: "https://en.wikipedia.org/wiki/Weimaraner",
     },
   },
