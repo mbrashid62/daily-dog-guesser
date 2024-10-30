@@ -8,7 +8,8 @@ import { Modal } from "../../toolbox/Modal/Modal";
 import { DogImage } from "../../components/DogImage/DogImage";
 import { Button } from "../../toolbox/Button/Button";
 import { Dog } from "../../global-types";
-import { YouWon } from "../YouWon/YouWon";
+import { Confetti } from "../Animations/Confetti/Confetti";
+import { Metrics } from "../Cards/Metrics";
 
 export const Home = () => {
   const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
@@ -32,7 +33,15 @@ export const Home = () => {
   };
 
   if (dogsRemaining.length === 0) {
-    return <YouWon resetGame={resetGame} />;
+    return (
+      <Confetti>
+        <h1>Congratulations!</h1>
+        <h3 style={{ paddingBottom: 16 }}>
+          Wow, you named all {DOGGIES.length} doggies. That's impressive!
+        </h3>
+        <Button onClick={resetGame} label="Play again" />
+      </Confetti>
+    );
   }
 
   return (
@@ -43,9 +52,15 @@ export const Home = () => {
       </div>
       <OptionGroup
         activeDog={activeDog}
-        totalOptions={4}
-        setStreak={setStreak}
+        metrics={{
+          correctGuesses: successCount,
+          streak,
+          remaining: dogsRemaining.length,
+        }}
+        onWrongAnswer={() => setStreak(0)}
         onCorrectAnswer={(dog) => {
+          setStreak((s) => s + 1);
+
           const dogsRemainingFiltered = dogsRemaining.filter(
             ({ key }) => key !== dog.key,
           );
@@ -64,6 +79,7 @@ export const Home = () => {
             }
 
             let newInt = previousInt;
+
             // Keep generating a new random integer until it's different from the previous one
             while (newInt === previousInt) {
               newInt = getRandomInt(0, dogsRemainingFiltered.length);
@@ -76,19 +92,11 @@ export const Home = () => {
       <div>
         {!!successCount && (
           <Flex flexDirection="column" margin="32px 0 0 0">
-            <span>
-              {" "}
-              You correctly named <b>{successCount}</b>{" "}
-              {successCount === 1 ? "doggy" : "doggies"}.
-            </span>
-            <span style={{ paddingTop: 8, paddingBottom: 8 }}>
-              Can you name the remaining <b>{dogsRemaining.length}</b>?
-            </span>
-            {!!streak && (
-              <span>
-                Streak (<b>{streak}</b>)
-              </span>
-            )}
+            <Metrics
+              correctGuesses={successCount}
+              remaining={dogsRemaining.length}
+              streak={streak}
+            />
             <div style={{ marginTop: 32 }}>
               <Button
                 onClick={() => setShowResetConfirmation(true)}

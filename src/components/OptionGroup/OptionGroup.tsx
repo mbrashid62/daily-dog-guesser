@@ -3,16 +3,15 @@ import { Dog } from "../../global-types";
 import { DOGGIES } from "../../constants";
 import { OptionCard } from "./OptionCard";
 import { shuffleArray } from "../../utils";
-import "./OptionGroup.css";
-import { ConfirmationModal } from "../StateModals/ConfirmationModal";
 import { CorrectAnswerModal } from "../StateModals/CorrectAnswerModal";
 import { WrongAnswerModal } from "../StateModals/WrongAnswerModal";
+import { MetricsProps } from "../Cards/Metrics";
 
 type OptionGroupProps = {
   activeDog: Dog;
-  totalOptions: number;
+  metrics: MetricsProps;
   onCorrectAnswer: (dog: Dog) => void;
-  setStreak: React.Dispatch<React.SetStateAction<number>>;
+  onWrongAnswer: () => void;
 };
 
 function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
@@ -38,17 +37,15 @@ function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
 
 export const OptionGroup = ({
   activeDog,
-  totalOptions,
+  metrics,
   onCorrectAnswer,
-  setStreak,
+  onWrongAnswer,
 }: OptionGroupProps) => {
   const options = useMemo<Dog[]>(() => {
-    const generatedOptions = generateOptions(activeDog, totalOptions);
+    const generatedOptions = generateOptions(activeDog, 4);
     return shuffleArray(generatedOptions);
   }, [activeDog]);
 
-  const [showConfirmationModal, setShowConfirmationModal] =
-    useState<boolean>(false);
   const [showCorrectAnswerModal, setShowCorrectAnswerModal] =
     useState<boolean>(false);
   const [showWrongAnswerModal, setShowWrongAnswerModal] =
@@ -57,28 +54,20 @@ export const OptionGroup = ({
   const [selectedDog, setSelectedDog] = useState<Dog | null>(null);
 
   const assertSelection = (selectedDog: Dog) => {
-    setShowConfirmationModal(false);
-
     if (selectedDog.key === activeDog.key) {
       setShowCorrectAnswerModal(true);
       onCorrectAnswer(selectedDog);
-      setStreak((c) => c + 1);
     } else {
       setShowWrongAnswerModal(true);
-      setStreak(0);
+      onWrongAnswer();
     }
   };
 
   return (
     <div className="doggy-options-container">
-      <ConfirmationModal
-        assertSelection={assertSelection}
-        errorCopy="Uh oh! Something went wrong. Please refresh the page."
-        modalState={[showConfirmationModal, setShowConfirmationModal]}
-        selectedDog={selectedDog}
-      />
       <CorrectAnswerModal
         errorCopy="Uh oh! Something went wrong. Please refresh the page."
+        metrics={metrics}
         modalState={[showCorrectAnswerModal, setShowCorrectAnswerModal]}
         selectedDog={selectedDog}
       />
@@ -91,16 +80,11 @@ export const OptionGroup = ({
         <OptionCard
           key={option.key}
           dog={option}
-          onOptionSelect={(e, dog: Dog, clickType) => {
+          onOptionSelect={(e, dog: Dog) => {
             e.preventDefault();
 
             setSelectedDog(dog);
-
-            if (clickType === "single") {
-              setShowConfirmationModal(true);
-            } else {
-              assertSelection(dog);
-            }
+            assertSelection(dog);
           }}
         />
       ))}

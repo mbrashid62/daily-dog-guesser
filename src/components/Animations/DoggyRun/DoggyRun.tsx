@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { DOGGIES } from "../../constants";
-import "./YouWon.css"; // Import the CSS from above
-import { Button } from "../../toolbox/Button/Button";
+import "./YouWon.css";
 
-type YouWonProps = {
-  resetGame: () => void;
+type ConfettiProps = {
+  children: React.ReactNode;
 };
 
-export const YouWon = ({ resetGame }: YouWonProps) => {
+export const Confetti = ({ children }: ConfettiProps) => {
   const [confettiElements, setConfettiElements] = useState<React.ReactNode[]>(
     [],
   );
@@ -28,14 +26,5 @@ export const YouWon = ({ resetGame }: YouWonProps) => {
     setConfettiElements(confettiArr);
   }, []);
 
-  return (
-    <div className="confett-container">
-      {confettiElements}
-      <h1>Congratulations!</h1>
-      <h3 style={{ paddingBottom: 16 }}>
-        Wow, you named all {DOGGIES.length} doggies. That's impressive!
-      </h3>
-      <Button onClick={resetGame} label="Play again" />
-    </div>
-  );
+  return <div className="confett-container"></div>;
 };

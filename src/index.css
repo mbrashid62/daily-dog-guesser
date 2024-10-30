@@ -53,3 +53,26 @@ h1 {
     font-size: 1.7em;
   }
 }
+
+/* Container for the doggy options */
+.doggy-options-container {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
+  gap: 16px; /* Adds spacing between the cards */
+}
+
+/* Media query for small screens (below 600px) */
+@media (max-width: 600px) {
+  .doggy-options-container {
+    grid-template-columns: 1fr; /* Stacks the cards vertically */
+  }
+}
+
+.metrics-container {
+  display: flex;
+  opacity: 0.5;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
+  padding: 16px 8px;
+}
