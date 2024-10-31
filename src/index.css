@@ -116,14 +116,8 @@ h1 {
   }
 }
 
-.footer-container {
-  position: relative; /* Allow it to be positioned normally */
-  margin-bottom: 16px;
-  display: flex;
-  width: 100%;
-}
-
-.footer-content {
+.github-link-container {
+  margin-top: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,4 +127,18 @@ h1 {
 .title {
   margin-top: 48px;
   margin-bottom: 0;
+}
+
+.help-container {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .help-container {
+    right: 16px;
+    top: 16px;
+  }
 }
