@@ -3,7 +3,6 @@ import { useState } from "react";
 import { DOGGIES } from "../../constants";
 import { getRandomInt } from "../../utils";
 import { OptionGroup } from "../../components/OptionGroup/OptionGroup";
-import { Modal } from "../../toolbox/Modal/Modal";
 import { DogImage } from "../../components/DogImage/DogImage";
 import { Button } from "../../toolbox/Button/Button";
 import { Dog } from "../../global-types";
@@ -22,13 +21,10 @@ export const Home = () => {
 
   const [streak, setStreak] = useState(0);
 
-  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
-
   const resetGame = () => {
     setDogsRemaining(DOGGIES);
     setSuccessCount(0);
     setStreak(0);
-    setShowResetConfirmation(false);
   };
 
   if (dogsRemaining.length === 0) {
@@ -92,36 +88,11 @@ export const Home = () => {
       </div>
       <div className="middle-container">
         {!!successCount && (
-          <>
-            <Metrics
-              correctGuesses={successCount}
-              remaining={dogsRemaining.length}
-              streak={streak}
-            />
-            <div className="reset-container">
-              <Button
-                onClick={() => setShowResetConfirmation(true)}
-                label="Reset your score"
-              />
-              <Modal
-                isOpen={showResetConfirmation}
-                onClose={() => setShowResetConfirmation(false)}
-              >
-                <p style={{ paddingBottom: 24 }}>
-                  Are you sure? You will lose your streak too.
-                </p>
-                <Button
-                  onClick={() => setShowResetConfirmation(false)}
-                  label="Nevermind"
-                />
-                <Button
-                  label="Yes, reset"
-                  margin="0 0 0 16px"
-                  onClick={resetGame}
-                />
-              </Modal>
-            </div>
-          </>
+          <Metrics
+            correctGuesses={successCount}
+            remaining={dogsRemaining.length}
+            streak={streak}
+          />
         )}
       </div>
       <footer className="footer-container">
@@ -132,11 +103,11 @@ export const Home = () => {
             alt="GitHub logo"
           />
           See an issue?
-          <span style={{ margin: "0 4px" }}></span> {/* This adds a space */}
+          <span style={{ margin: "0 4px" }} />
           <a
             href="https://github.com/mbrashid62/daily-dog-guesser/issues"
             target="_blank"
-            rel="noopener noreferrer" // Always a good practice for links with target="_blank"
+            rel="noopener noreferrer"
           >
             Log it on GitHub
           </a>

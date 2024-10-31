@@ -51,12 +51,12 @@ h1 {
 }
 
 .dog-img-container {
-  padding-bottom: 32px;
+  margin: 32px 0;
 }
 
 @media (max-width: 600px) {
   .dog-img-container {
-    padding-bottom: 0;
+    margin: 8px 0;
   }
 }
 
@@ -65,7 +65,6 @@ h1 {
   display: grid; /* Use grid layout */
   grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
   gap: 16px; /* Adds spacing between the cards */
-  padding-bottom: 32px;
 }
 
 /* Media query for small screens (below 600px) */
@@ -107,24 +106,19 @@ h1 {
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
-  padding: 16px 8px;
-}
-
-.reset-container {
-  padding-top: 40px;
-  padding-bottom: 64px;
+  padding: 32px 8px;
 }
 
 @media (max-width: 600px) {
-  .reset-container {
-    padding-top: 32px;
-    padding-bottom: 0;
+  .metrics-container {
+    height: 100%;
+    margin: 24px 0;
   }
 }
 
 .footer-container {
   position: relative; /* Allow it to be positioned normally */
-  padding-bottom: 16px;
+  margin-bottom: 16px;
   display: flex;
   width: 100%;
 }
@@ -137,11 +131,6 @@ h1 {
 }
 
 .title {
-  padding-top: 48px;
-}
-
-@media (max-width: 600px) {
-  .title {
-    padding-top: 0;
-  }
+  margin-top: 48px;
+  margin-bottom: 0;
 }
