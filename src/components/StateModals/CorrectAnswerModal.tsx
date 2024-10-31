@@ -16,39 +16,52 @@ type CorrectAnswerModalProps = {
   selectedDog: Dog | null;
 };
 
-const getRandomCelebrationCopy = (input: {
-  number: number;
-  type: "guesses" | "streak";
-}): string => {
-  const { number, type } = input;
+type GetRandomCelebrationCopyInput = {
+  showGuessesCelebration: boolean;
+  showStreakCelebration: boolean;
+  metrics: MetricsProps;
+};
 
-  if (type === "guesses") {
-    const GUESSES = [
-      `Holy cow ${number} dogs!`,
-      `You named ${number} dogs. Nice Work!`,
-      `Achievement unlocked. ${number} dogs!`,
-      `Wow ${number} dogs! Can you get to ${number + 5}?`,
-      `Way to go! You named ${number} dogs!`,
-      `${number} dogs! You're an expert!`,
-    ];
+const getRandomCelebrationCopy = (
+  input: GetRandomCelebrationCopyInput,
+): string | null => {
+  const { showGuessesCelebration, showStreakCelebration, metrics } = input;
 
-    const randomInt = getRandomInt(0, GUESSES.length - 1);
+  const showCelebration = Boolean(
+    showStreakCelebration || showGuessesCelebration,
+  );
 
-    return `${GUESSES[randomInt]} 🐕`;
+  if (!showCelebration) {
+    return null;
   }
 
-  const STREAKS = [
-    `${number} dogs in a row. Nice job!`,
-    `You're on fire! You named ${number} dogs in a row.`,
-    `${number} dogs! That's an impressive streak!`,
-    `${number} dogs in row! Can you get to ${number + 5}?`,
-    `Way to go! You named ${number} dogs in a row!`,
-    `${number} dogs without missing a beat! You're an expert!`,
+  if (showStreakCelebration) {
+    const number = metrics.streak;
+
+    const STREAKS = [
+      `${number} dogs in a row. Nice job!`,
+      `You're on fire! You named ${number} dogs in a row.`,
+      `${number} dogs! That's an impressive streak!`,
+      `${number} dogs in row! Can you get to ${number + 5}?`,
+      `Way to go! You named ${number} dogs in a row!`,
+      `${number} dogs without missing a beat! You're an expert!`,
+    ];
+
+    return `${STREAKS[getRandomInt(0, STREAKS.length - 1)]} ⚡`;
+  }
+
+  const number = metrics.correctGuesses;
+
+  const GUESSES = [
+    `Holy cow ${number} dogs!`,
+    `You named ${number} dogs. Nice Work!`,
+    `Achievement unlocked. ${number} dogs!`,
+    `Wow ${number} dogs! Can you get to ${number + 5}?`,
+    `Way to go! You named ${number} dogs!`,
+    `${number} dogs! You're an expert!`,
   ];
 
-  const randomInt = getRandomInt(0, STREAKS.length - 1);
-
-  return `${STREAKS[randomInt]} ⚡`;
+  return `${GUESSES[getRandomInt(0, GUESSES.length - 1)]} 🐕`;
 };
 
 export const CorrectAnswerModal = ({
@@ -64,15 +77,18 @@ export const CorrectAnswerModal = ({
   const showGuessesCelebration = Boolean(
     correctGuesses > 0 && correctGuesses % 5 === 0,
   );
+
   const showStreakCelebration = Boolean(streak > 0 && streak % 5 === 0);
 
   const handleClose = () => {
     setShowCorrectAnswerModal(false);
   };
 
-  const showCelebration = Boolean(
-    showGuessesCelebration || showStreakCelebration,
-  );
+  const celebrationCopy = getRandomCelebrationCopy({
+    showGuessesCelebration,
+    showStreakCelebration,
+    metrics,
+  });
 
   return (
     <Modal isOpen={showCorrectAnswerModal} onClose={handleClose}>
@@ -80,27 +96,13 @@ export const CorrectAnswerModal = ({
         <Flex flexDirection="column" alignItems="center">
           <DogImage size="large" dog={selectedDog} />
 
-          {showCelebration && (
+          {celebrationCopy && (
             <Confetti>
               <span />
             </Confetti>
           )}
 
-          {showCelebration && (
-            <h3>
-              {getRandomCelebrationCopy(
-                showGuessesCelebration
-                  ? {
-                      number: correctGuesses,
-                      type: "guesses",
-                    }
-                  : {
-                      number: streak,
-                      type: "streak",
-                    },
-              )}
-            </h3>
-          )}
+          {celebrationCopy && <h3>{celebrationCopy}</h3>}
           <p>
             {`You are right, that dog is ${isFirstCharVowel(selectedDog?.key || "") ? "an" : "a"} `}
             <b>{kebabToTitleCase(selectedDog.key)}</b>!

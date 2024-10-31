@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DOGGIES } from "../../constants";
+import { Flex } from "../../toolbox/Flex/Flex";
 
 export const InfoModal = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
@@ -16,21 +17,27 @@ export const InfoModal = () => {
       />
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)}>
         <div className="help-modal-container">
-          <h3>How it works</h3>
+          <Flex alignItems="center" justifyContent="center">
+            <h3 style={{ marginRight: 8 }}>How it works</h3>
+            <img
+              alt="Info Icon"
+              src="/info.png"
+              onClick={() => setShowHelp(true)}
+              style={{ width: 20, height: 20 }}
+            />
+          </Flex>
           <p>
-            You will be shown a dog at random and asked to identify its breed.
-            If you answer correctly, it will be removed from the list and you
-            will be asked to name another.
+            You will be shown a dog at random and asked to name its breed. If
+            you answer correctly, it will be removed from the list.
           </p>
           <p>
-            For every dog you name correctly, your score will increase by one.
-            As you name consecutive dogs correctly, your streak will increase by
-            one also.
+            When you name a dog correctly, your score will increase by one. If
+            you answer correctly consecutively, your streak will increase by one
+            also.
           </p>
           <p>
-            For every five dogs you answer correctly, you will see an animation.
-            This will also occur whenever your streak grows to a multiple of
-            five.
+            You will see an animation for every five dogs you name correctly or
+            when you achieve a streak that is a multiple of five.
           </p>
           <p>To reset your score, simply refresh the page.</p>
           <p>To win, name all {DOGGIES.length} dogs!</p>
