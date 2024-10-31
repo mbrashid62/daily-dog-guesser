@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DOGGIES } from "../../constants";
-import { Button } from "../../toolbox/Button/Button";
 
 export const InfoModal = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
