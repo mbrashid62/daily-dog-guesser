@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DOGGIES } from "../../constants";
+import { Button } from "../../toolbox/Button/Button";
 
 export const InfoModal = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
@@ -12,7 +13,7 @@ export const InfoModal = () => {
         alt="Info Icon"
         src="/info.png"
         onClick={() => setShowHelp(true)}
-        style={{ width: 20, height: 20 }}
+        style={{ width: 20, height: 20, cursor: "pointer" }}
       />
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)}>
         <div className="help-modal-container">
@@ -27,10 +28,13 @@ export const InfoModal = () => {
           </p>
           <p>
             For every five dogs you answer correctly, you will see an animation.
-            The same applies when you achieve a streak as a multiple of five.
+            The same applies when your streak grows to multiple of five.
           </p>
           <p>To reset your score, simply refresh the page.</p>
           <p>To win, name all {DOGGIES.length} dogs!</p>
+          <button style={{ width: "25%" }} onClick={() => setShowHelp(false)}>
+            Got it
+          </button>
           <div className="github-link-container">
             <img
               style={{ width: 20, height: 20, marginRight: 8 }}

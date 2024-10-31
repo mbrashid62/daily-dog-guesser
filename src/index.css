@@ -117,7 +117,7 @@ h1 {
 }
 
 .github-link-container {
-  margin-top: 32px;
+  margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,7 +133,6 @@ h1 {
   position: absolute;
   right: 32px;
   top: 32px;
-  cursor: pointer;
 }
 
 @media (max-width: 600px) {
