@@ -16,6 +16,7 @@ export const InfoModal = () => {
       />
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)}>
         <div className="help-modal-container">
+          <h3>How it works</h3>
           <p>
             As you answer each dog correctly, it will be removed from the list
             and you will be asked to name another dog at random.
@@ -31,8 +32,11 @@ export const InfoModal = () => {
           </p>
           <p>To reset your score, simply refresh the page.</p>
           <p>To win, name all {DOGGIES.length} dogs!</p>
-          <button style={{ width: "25%" }} onClick={() => setShowHelp(false)}>
-            Got it
+          <button
+            style={{ margin: "16px 0" }}
+            onClick={() => setShowHelp(false)}
+          >
+            Sounds good
           </button>
           <div className="github-link-container">
             <img
