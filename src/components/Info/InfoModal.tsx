@@ -18,17 +18,19 @@ export const InfoModal = () => {
         <div className="help-modal-container">
           <h3>How it works</h3>
           <p>
-            As you answer each dog correctly, it will be removed from the list
-            and you will be asked to name another dog at random.
+            You will be shown a dog at random and asked to identify its breed.
+            If you answer correctly, it will be removed from the list and you
+            will be asked to name another.
           </p>
           <p>
             For every dog you name correctly, your score will increase by one.
-            If you name consecutive dogs correctly, your streak will increase by
-            one well.
+            As you name consecutive dogs correctly, your streak will increase by
+            one also.
           </p>
           <p>
             For every five dogs you answer correctly, you will see an animation.
-            The same applies when your streak grows to multiple of five.
+            This will also occur whenever your streak grows to a multiple of
+            five.
           </p>
           <p>To reset your score, simply refresh the page.</p>
           <p>To win, name all {DOGGIES.length} dogs!</p>
