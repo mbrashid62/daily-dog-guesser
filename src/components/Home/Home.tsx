@@ -29,13 +29,20 @@ export const Home = () => {
 
   if (dogsRemaining.length === 0) {
     return (
-      <Confetti>
-        <h1>Congratulations!</h1>
-        <h3 style={{ paddingBottom: 16 }}>
-          Wow, you named all {DOGGIES.length} doggies. That's impressive!
-        </h3>
-        <Button onClick={resetGame} label="Play again" />
-      </Confetti>
+      <div style={{ padding: "16px 32px" }}>
+        <Confetti />
+        <div className="top-container">
+          <h1>Congratulations!</h1>
+          <h3 style={{ paddingBottom: 16 }}>
+            Wow, you named all {DOGGIES.length} doggies. That's impressive!
+          </h3>
+        </div>
+        <div className="middle-container">
+          <div className="play-again-container">
+            <Button onClick={resetGame} label="Play again" />
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -87,13 +94,11 @@ export const Home = () => {
         />
       </div>
       <div className="middle-container">
-        {!!successCount && (
-          <Metrics
-            correctGuesses={successCount}
-            remaining={dogsRemaining.length}
-            streak={streak}
-          />
-        )}
+        <Metrics
+          correctGuesses={successCount}
+          remaining={dogsRemaining.length}
+          streak={streak}
+        />
       </div>
     </>
   );

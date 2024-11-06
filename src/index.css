@@ -141,3 +141,12 @@ h1 {
     top: 16px;
   }
 }
+@media (max-width: 600px) {
+  .play-again-container {
+    width: 100%;
+  }
+
+  .play-again-container button {
+    width: 100%;
+  }
+}

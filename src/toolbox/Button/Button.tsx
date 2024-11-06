@@ -37,6 +37,7 @@ export const Button = ({
     }
   };
 
+  // Double click isn't used for anything anymore but keeping it here since since it's a good use of refs.
   const handleDoubleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
     if (timeoutRef.current) {
       // Prevent the single-click action

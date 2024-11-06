@@ -11,6 +11,10 @@ export const Metrics = ({
   remaining,
   streak,
 }: MetricsProps) => {
+  if (correctGuesses === 0) {
+    return null;
+  }
+
   return (
     <div className="metrics-container">
       <span>

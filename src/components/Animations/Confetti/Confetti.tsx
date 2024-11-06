@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Confetti.css";
 
 type ConfettiProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Confetti = ({ children }: ConfettiProps) => {
@@ -29,7 +29,7 @@ export const Confetti = ({ children }: ConfettiProps) => {
   return (
     <div className="confetti-container">
       {confettiElements}
-      {children}
+      {!!children && children}
     </div>
   );
 };
