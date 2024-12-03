@@ -5,11 +5,9 @@ import { OptionCard } from "./OptionCard";
 import { shuffleArray } from "../../utils";
 import { CorrectAnswerModal } from "../StateModals/CorrectAnswerModal";
 import { WrongAnswerModal } from "../StateModals/WrongAnswerModal";
-import { MetricsProps } from "../Cards/Metrics";
 
 type OptionGroupProps = {
   activeDog: Dog;
-  metrics: MetricsProps;
   onCorrectAnswer: (dog: Dog) => void;
   onWrongAnswer: () => void;
 };
@@ -35,9 +33,10 @@ function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
   return options;
 }
 
+type ModalState = "correct" | "wrong" | null;
+
 export const OptionGroup = ({
   activeDog,
-  metrics,
   onCorrectAnswer,
   onWrongAnswer,
 }: OptionGroupProps) => {
@@ -46,19 +45,15 @@ export const OptionGroup = ({
     return shuffleArray(generatedOptions);
   }, [activeDog]);
 
-  const [showCorrectAnswerModal, setShowCorrectAnswerModal] =
-    useState<boolean>(false);
-  const [showWrongAnswerModal, setShowWrongAnswerModal] =
-    useState<boolean>(false);
-
+  const [activeModal, setActiveModal] = useState<ModalState>(null);
   const [selectedDog, setSelectedDog] = useState<Dog | null>(null);
 
   const assertSelection = (selectedDog: Dog) => {
     if (selectedDog.key === activeDog.key) {
-      setShowCorrectAnswerModal(true);
+      setActiveModal("correct");
       onCorrectAnswer(selectedDog);
     } else {
-      setShowWrongAnswerModal(true);
+      setActiveModal("wrong");
       onWrongAnswer();
     }
   };
@@ -66,21 +61,18 @@ export const OptionGroup = ({
   return (
     <div className="doggy-options-container">
       <CorrectAnswerModal
-        errorCopy="Uh oh! Something went wrong. Please refresh the page."
-        metrics={metrics}
-        modalState={[showCorrectAnswerModal, setShowCorrectAnswerModal]}
+        modalState={[activeModal === "correct", () => setActiveModal(null)]}
         selectedDog={selectedDog}
       />
       <WrongAnswerModal
-        errorCopy="Uh oh! Something went wrong. Please refresh the page."
-        modalState={[showWrongAnswerModal, setShowWrongAnswerModal]}
+        modalState={[activeModal === "wrong", () => setActiveModal(null)]}
         selectedDog={selectedDog}
       />
       {options.map((option) => (
         <OptionCard
           key={option.key}
           dog={option}
-          onOptionSelect={(e, dog: Dog) => {
+          onOptionSelect={(e, dog) => {
             e.preventDefault();
 
             setSelectedDog(dog);

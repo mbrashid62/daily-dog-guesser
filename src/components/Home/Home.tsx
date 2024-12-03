@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 
 import { DOGGIES } from "../../constants";
 import { getRandomInt } from "../../utils";
@@ -9,17 +9,29 @@ import { Dog } from "../../global-types";
 import { Confetti } from "../Animations/Confetti/Confetti";
 import { Metrics } from "../Cards/Metrics";
 
+type MetricsData = {
+  correctGuesses: number;
+  remaining: number;
+  streak: number;
+};
+
+export const MetricsContext = createContext<MetricsData>({
+  correctGuesses: 0,
+  remaining: 0,
+  streak: 0,
+});
+
 export const Home = () => {
   const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
-  const [successCount, setSuccessCount] = useState(0);
+  const [successCount, setSuccessCount] = useState<number>(0);
 
-  const [randomInt, setRandomInt] = useState(
+  const [randomInt, setRandomInt] = useState<number>(
     getRandomInt(0, dogsRemaining.length - 1),
   );
 
-  const activeDog = dogsRemaining[randomInt];
+  const [streak, setStreak] = useState<number>(0);
 
-  const [streak, setStreak] = useState(0);
+  const activeDog = dogsRemaining[randomInt];
 
   const resetGame = () => {
     setDogsRemaining(DOGGIES);
@@ -46,6 +58,12 @@ export const Home = () => {
     );
   }
 
+  const metrics = {
+    correctGuesses: successCount,
+    remaining: dogsRemaining.length,
+    streak,
+  };
+
   return (
     <>
       <div className="top-container">
@@ -53,52 +71,47 @@ export const Home = () => {
         <div className="dog-img-container">
           <DogImage size="xlarge" dog={activeDog} />
         </div>
-        <OptionGroup
-          activeDog={activeDog}
-          metrics={{
-            correctGuesses: successCount,
-            streak,
-            remaining: dogsRemaining.length,
-          }}
-          onWrongAnswer={() => setStreak(0)}
-          onCorrectAnswer={(dog) => {
-            setStreak((s) => s + 1);
+        <MetricsContext.Provider value={metrics}>
+          <OptionGroup
+            activeDog={activeDog}
+            onWrongAnswer={() => setStreak(0)}
+            onCorrectAnswer={(dog) => {
+              setStreak((s) => s + 1);
 
-            const dogsRemainingFiltered = dogsRemaining.filter(
-              ({ key }) => key !== dog.key,
-            );
+              const dogsRemainingFiltered = dogsRemaining.filter(
+                ({ key }) => key !== dog.key,
+              );
 
-            setDogsRemaining(dogsRemainingFiltered);
+              setDogsRemaining(dogsRemainingFiltered);
 
-            setSuccessCount((count) => count + 1);
+              setSuccessCount((count) => count + 1);
 
-            setRandomInt((previousInt) => {
-              if (dogsRemainingFiltered.length === 1) {
-                return 0;
-              }
+              setRandomInt((previousInt) => {
+                if (dogsRemainingFiltered.length === 1) {
+                  return 0;
+                }
 
-              if (dogsRemainingFiltered.length === 0) {
-                return 1;
-              }
+                if (dogsRemainingFiltered.length === 0) {
+                  return 1;
+                }
 
-              let newInt = previousInt;
+                let newInt = previousInt;
 
-              // Keep generating a new random integer until it's different from the previous one
-              while (newInt === previousInt) {
-                newInt = getRandomInt(0, dogsRemainingFiltered.length);
-              }
+                // Keep generating a new random integer until it's different from the previous one
+                while (newInt === previousInt) {
+                  newInt = getRandomInt(0, dogsRemainingFiltered.length);
+                }
 
-              return newInt;
-            });
-          }}
-        />
+                return newInt;
+              });
+            }}
+          />
+        </MetricsContext.Provider>
       </div>
       <div className="middle-container">
-        <Metrics
-          correctGuesses={successCount}
-          remaining={dogsRemaining.length}
-          streak={streak}
-        />
+        <MetricsContext.Provider value={metrics}>
+          <Metrics />
+        </MetricsContext.Provider>
       </div>
     </>
   );

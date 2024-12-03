@@ -1,16 +1,10 @@
+import { useContext } from "react";
 import "./Metrics";
+import { MetricsContext } from "../Home/Home";
 
-export type MetricsProps = {
-  streak: number;
-  remaining: number;
-  correctGuesses: number;
-};
+export const Metrics = () => {
+  const { correctGuesses, remaining, streak } = useContext(MetricsContext);
 
-export const Metrics = ({
-  correctGuesses,
-  remaining,
-  streak,
-}: MetricsProps) => {
   if (correctGuesses === 0) {
     return null;
   }
