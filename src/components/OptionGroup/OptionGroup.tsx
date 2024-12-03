@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import { Dog } from "../../global-types";
 import { DOGGIES } from "../../constants";
 import { OptionCard } from "./OptionCard";
@@ -11,6 +11,10 @@ type OptionGroupProps = {
   onCorrectAnswer: (dog: Dog) => void;
   onWrongAnswer: () => void;
 };
+
+type ModalState = "correct" | "wrong" | null;
+
+export const SelectedDogContext = createContext<Dog | null>(null);
 
 function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
   const options = [activeDog];
@@ -32,8 +36,6 @@ function generateOptions(activeDog: Dog, totalOptions: number): Dog[] {
 
   return options;
 }
-
-type ModalState = "correct" | "wrong" | null;
 
 export const OptionGroup = ({
   activeDog,
@@ -60,14 +62,14 @@ export const OptionGroup = ({
 
   return (
     <div className="doggy-options-container">
-      <CorrectAnswerModal
-        modalState={[activeModal === "correct", () => setActiveModal(null)]}
-        selectedDog={selectedDog}
-      />
-      <WrongAnswerModal
-        modalState={[activeModal === "wrong", () => setActiveModal(null)]}
-        selectedDog={selectedDog}
-      />
+      <SelectedDogContext.Provider value={selectedDog}>
+        <CorrectAnswerModal
+          modalState={[activeModal === "correct", () => setActiveModal(null)]}
+        />
+        <WrongAnswerModal
+          modalState={[activeModal === "wrong", () => setActiveModal(null)]}
+        />
+      </SelectedDogContext.Provider>
       {options.map((option) => (
         <OptionCard
           key={option.key}

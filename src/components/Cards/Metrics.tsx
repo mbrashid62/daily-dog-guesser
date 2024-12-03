@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import "./Metrics";
 import { MetricsContext } from "../Home/Home";
+import { DOGGIES } from "../../constants";
 
 export const Metrics = () => {
-  const { correctGuesses, remaining, streak } = useContext(MetricsContext);
+  const {
+    correctGuesses = 0,
+    remaining = DOGGIES.length,
+    streak = 0,
+  } = useContext(MetricsContext) || {};
 
   if (correctGuesses === 0) {
     return null;

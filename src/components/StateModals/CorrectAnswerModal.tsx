@@ -1,17 +1,16 @@
 import { Dispatch, SetStateAction, useContext } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
-import { Dog } from "../../global-types";
 import { getRandomInt, isFirstCharVowel, kebabToTitleCase } from "../../utils";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 import { DogImage } from "../DogImage/DogImage";
 import { Confetti } from "../Animations/Confetti/Confetti";
 import { MetricsContext } from "../Home/Home";
+import { SelectedDogContext } from "../OptionGroup/OptionGroup";
 
 type CorrectAnswerModalProps = {
   modalState: [boolean, Dispatch<SetStateAction<boolean>>];
-  selectedDog: Dog | null;
 };
 
 type GetRandomCelebrationCopyInput = {
@@ -66,13 +65,11 @@ const getRandomCelebrationCopy = (
 
 const shouldCelebrate = (value: number) => value > 0 && value % 5 === 0;
 
-export const CorrectAnswerModal = ({
-  selectedDog,
-  modalState,
-}: CorrectAnswerModalProps) => {
+export const CorrectAnswerModal = ({ modalState }: CorrectAnswerModalProps) => {
   const [showCorrectAnswerModal, setShowCorrectAnswerModal] = modalState;
 
   const { correctGuesses = 0, streak = 0 } = useContext(MetricsContext) || {};
+  const selectedDog = useContext(SelectedDogContext);
 
   const showGuessesCelebration = shouldCelebrate(correctGuesses);
   const showStreakCelebration = shouldCelebrate(streak);
