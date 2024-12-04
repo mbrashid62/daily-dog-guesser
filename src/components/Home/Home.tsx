@@ -44,7 +44,6 @@ export const Home = () => {
       correctGuesses: successCount,
       remaining: dogsRemaining.length,
       streak,
-      powerups: 3,
     }),
     [successCount, dogsRemaining.length, streak],
   );
