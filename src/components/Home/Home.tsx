@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 import { DOGGIES } from "../../constants";
 import { getRandomInt } from "../../utils";
@@ -39,6 +39,16 @@ export const Home = () => {
     setStreak(0);
   };
 
+  const metrics = useMemo(
+    () => ({
+      correctGuesses: successCount,
+      remaining: dogsRemaining.length,
+      streak,
+      powerups: 3,
+    }),
+    [successCount, dogsRemaining.length, streak],
+  );
+
   if (dogsRemaining.length === 0) {
     return (
       <div style={{ padding: "16px 32px" }}>
@@ -58,61 +68,51 @@ export const Home = () => {
     );
   }
 
-  const metrics = {
-    correctGuesses: successCount,
-    remaining: dogsRemaining.length,
-    streak,
-  };
-
   return (
-    <>
+    <MetricsContext.Provider value={metrics}>
       <div className="top-container">
         <h1 className="title">Can you name this dog?</h1>
         <div className="dog-img-container">
           <DogImage size="xlarge" dog={activeDog} />
         </div>
-        <MetricsContext.Provider value={metrics}>
-          <OptionGroup
-            activeDog={activeDog}
-            onWrongAnswer={() => setStreak(0)}
-            onCorrectAnswer={(dog) => {
-              setStreak((s) => s + 1);
+        <OptionGroup
+          activeDog={activeDog}
+          onWrongAnswer={() => setStreak(0)}
+          onCorrectAnswer={(dog) => {
+            setStreak((s) => s + 1);
 
-              const dogsRemainingFiltered = dogsRemaining.filter(
-                ({ key }) => key !== dog.key,
-              );
+            const dogsRemainingFiltered = dogsRemaining.filter(
+              ({ key }) => key !== dog.key,
+            );
 
-              setDogsRemaining(dogsRemainingFiltered);
+            setDogsRemaining(dogsRemainingFiltered);
 
-              setSuccessCount((count) => count + 1);
+            setSuccessCount((count) => count + 1);
 
-              setRandomInt((previousInt) => {
-                if (dogsRemainingFiltered.length === 1) {
-                  return 0;
-                }
+            setRandomInt((previousInt) => {
+              if (dogsRemainingFiltered.length === 1) {
+                return 0;
+              }
 
-                if (dogsRemainingFiltered.length === 0) {
-                  return 1;
-                }
+              if (dogsRemainingFiltered.length === 0) {
+                return 1;
+              }
 
-                let newInt = previousInt;
+              let newInt = previousInt;
 
-                // Keep generating a new random integer until it's different from the previous one
-                while (newInt === previousInt) {
-                  newInt = getRandomInt(0, dogsRemainingFiltered.length);
-                }
+              // Keep generating a new random integer until it's different from the previous one
+              while (newInt === previousInt) {
+                newInt = getRandomInt(0, dogsRemainingFiltered.length);
+              }
 
-                return newInt;
-              });
-            }}
-          />
-        </MetricsContext.Provider>
+              return newInt;
+            });
+          }}
+        />
       </div>
       <div className="middle-container">
-        <MetricsContext.Provider value={metrics}>
-          <Metrics />
-        </MetricsContext.Provider>
+        <Metrics />
       </div>
-    </>
+    </MetricsContext.Provider>
   );
 };
