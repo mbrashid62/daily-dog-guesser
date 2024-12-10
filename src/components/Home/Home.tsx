@@ -1,4 +1,10 @@
-import { createContext, useMemo, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+  useState,
+} from "react";
 
 import { DOGGIES } from "../../constants";
 import { getRandomInt } from "../../utils";
@@ -21,7 +27,11 @@ export const MetricsContext = createContext<MetricsData>({
   streak: 0,
 });
 
-export const Home = () => {
+type HomeProps = {
+  setIsSideBarOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export const Home = ({ setIsSideBarOpen }: HomeProps) => {
   const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
   const [successCount, setSuccessCount] = useState<number>(0);
 

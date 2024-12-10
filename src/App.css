@@ -4,3 +4,11 @@
 
   text-align: center;
 }
+
+.side-menu-parent-container {
+  display: flex;
+  border: 1px solid green;
+  position: absolute;
+  left: 0;
+  height: 100vh;
+}

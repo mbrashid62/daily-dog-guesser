@@ -1,0 +1,27 @@
+/* Sidebar Styles */
+.sidebar-container {
+  width: 0;
+  background-color: #444;
+  color: white;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.sidebar-container.open {
+  width: 200px;
+}
+
+.sidebar-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-container li {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.sidebar-container li:hover {
+  background-color: #555;
+}
