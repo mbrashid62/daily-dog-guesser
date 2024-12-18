@@ -1,14 +1,17 @@
-import { Menu } from "./components/Menu/Menu";
-import { Home } from "./components/Home/Home";
-import { InfoModal } from "./components/Info/InfoModal";
-
 import "./App.css";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext } from "react";
+import { LeaderboardPage } from "./components/LeaderboardPage";
+import { InfoPage } from "./components/InfoPage";
+import { HomePage } from "./HomePage";
+import { Menu } from "./components/Menu/Menu";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -50,10 +53,15 @@ function App() {
         auth,
       }}
     >
-      <Menu />
       <div className="app-container">
-        <InfoModal />
-        <Home />
+        <BrowserRouter>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/info" element={<InfoPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </GoogleContext.Provider>
   );

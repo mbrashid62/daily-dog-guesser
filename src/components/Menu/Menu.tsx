@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, ReactElement } from "react";
 
 import {
   onAuthStateChanged,
@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import "./Menu.css";
 import { GoogleContext } from "../../App";
+import { Link } from "react-router-dom";
 
 const provider = new GoogleAuthProvider(); // Google Auth Provider
 
@@ -38,6 +39,26 @@ function mapAuthUserToInternalUser(authUser: unknown): User {
     email: authUser.email,
     displayName: authUser.displayName,
   };
+}
+
+function getRouterLinks(): ReactElement[] {
+  return [
+    <li key="home">
+      <Link className="nav-link fourth-color" to="/">
+        Home
+      </Link>
+    </li>,
+    <li key="leaderboard">
+      <Link className="nav-link fourth-color" to="/leaderboard">
+        Leaderboard
+      </Link>
+    </li>,
+    <li key="info">
+      <Link className="nav-link fourth-color" to="/info">
+        Info
+      </Link>
+    </li>,
+  ];
 }
 
 export const Menu = () => {
@@ -73,37 +94,29 @@ export const Menu = () => {
       console.error("Error signing in:", error);
     }
   };
-  console.log("user --> ", user);
 
   return (
     <nav className="nav-container">
       <div className="nav-logo">
-        {user ? (
+        {user && (
           <>
             Welcome, <b>{user.displayName}</b>.
           </>
-        ) : (
-          <>Dog Guesser.</>
         )}
       </div>
       <ul className="nav-links">
-        {user ? (
-          <>
-            <li className="nav-link">Settings</li>
-            <li onClick={handleLogout} className="nav-link">
+        <>
+          {getRouterLinks()}{" "}
+          {user ? (
+            <li className="nav-link fourth-color" onClick={handleLogout}>
               Sign out
             </li>
-          </>
-        ) : (
-          <>
-            <li onClick={handleLogin} className="nav-link">
-              Login
+          ) : (
+            <li className="nav-link fourth-color" onClick={handleLogin}>
+              Sign in
             </li>
-            <li onClick={handleLogin} className="nav-link">
-              Signup
-            </li>
-          </>
-        )}
+          )}
+        </>
       </ul>
     </nav>
   );
