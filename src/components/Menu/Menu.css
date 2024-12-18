@@ -17,6 +17,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-link {
@@ -46,4 +47,17 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.privacy-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.privacy-page-container-section {
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -4,3 +4,8 @@
 
   text-align: center;
 }
+
+.settings-page-container {
+  display: flex;
+  flex-direction: column;
+}

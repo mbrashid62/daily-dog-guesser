@@ -8,7 +8,7 @@ import { Auth, getAuth } from "firebase/auth";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext } from "react";
 import { LeaderboardPage } from "./components/LeaderboardPage";
-import { InfoPage } from "./components/InfoPage";
+import { PrivacyPage } from "./components/PrivacyPage";
 import { HomePage } from "./HomePage";
 import { Menu } from "./components/Menu/Menu";
 
@@ -58,7 +58,7 @@ function App() {
           <Menu />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/info" element={<InfoPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
           </Routes>
         </BrowserRouter>

@@ -136,7 +136,7 @@ h1 {
   margin-bottom: 0;
 }
 
-.help-container {
+/* .help-container {
   position: absolute;
   right: 32px;
   top: 32px;
@@ -147,7 +147,7 @@ h1 {
     right: 16px;
     top: 16px;
   }
-}
+} */
 @media (max-width: 600px) {
   .play-again-container {
     width: 100%;

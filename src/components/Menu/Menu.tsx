@@ -8,7 +8,8 @@ import {
 } from "firebase/auth";
 import "./Menu.css";
 import { GoogleContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useRoutes } from "react-router-dom";
+import { InfoModal } from "../Info/InfoModal";
 
 const provider = new GoogleAuthProvider(); // Google Auth Provider
 
@@ -41,30 +42,26 @@ function mapAuthUserToInternalUser(authUser: unknown): User {
   };
 }
 
-function getRouterLinks(): ReactElement[] {
-  return [
-    <li key="home">
-      <Link className="nav-link fourth-color" to="/">
-        Home
-      </Link>
-    </li>,
-    <li key="leaderboard">
-      <Link className="nav-link fourth-color" to="/leaderboard">
-        Leaderboard
-      </Link>
-    </li>,
-    <li key="info">
-      <Link className="nav-link fourth-color" to="/info">
-        Info
-      </Link>
-    </li>,
-  ];
-}
+// function renderLogoSectionByLocation(location: Location): ReactElement {
+//   const { pathname } = location;
+
+//   switch pathname {
+//     case '/':
+//       return (
+//         <>
+//             Welcome, <b>{user.displayName}</b>.
+//           </>
+//       )
+//   }
+// }
 
 export const Menu = () => {
+  const [showHelp, setShowHelp] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
   const { auth } = useContext(GoogleContext);
+
+  const location = useLocation();
 
   // Monitor Firebase authentication state
   useEffect(() => {
@@ -98,24 +95,47 @@ export const Menu = () => {
   return (
     <nav className="nav-container">
       <div className="nav-logo">
-        {user && (
+        {location.pathname === "/" ? (
           <>
-            Welcome, <b>{user.displayName}</b>.
+            {user && (
+              <>
+                Welcome, <b>{user?.displayName}</b>.
+              </>
+            )}
           </>
+        ) : (
+          <Link className="nav-link fourth-color" to="/">
+            Go Back
+          </Link>
         )}
       </div>
       <ul className="nav-links">
         <>
-          {getRouterLinks()}{" "}
           {user ? (
-            <li className="nav-link fourth-color" onClick={handleLogout}>
-              Sign out
-            </li>
+            <>
+              <li>
+                <Link className="nav-link fourth-color" to="/privacy">
+                  Privacy
+                </Link>
+              </li>
+              <li className="nav-link fourth-color" onClick={handleLogout}>
+                Sign out
+              </li>
+            </>
           ) : (
             <li className="nav-link fourth-color" onClick={handleLogin}>
               Sign in
             </li>
           )}
+          <li style={{ display: "flex" }}>
+            <img
+              alt="Info Icon"
+              src="/info.png"
+              onClick={() => setShowHelp(true)}
+              style={{ width: 20, height: 20, cursor: "pointer" }}
+            />
+            <InfoModal showHelp={showHelp} setShowHelp={setShowHelp} />
+          </li>
         </>
       </ul>
     </nav>
