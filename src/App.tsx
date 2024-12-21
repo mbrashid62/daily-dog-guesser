@@ -11,6 +11,9 @@ import { LeaderboardPage } from "./components/LeaderboardPage";
 import { PrivacyPage } from "./components/PrivacyPage";
 import { HomePage } from "./HomePage";
 import { Menu } from "./components/Menu/Menu";
+import { LoadingProvider } from "./components/Spinner/LoadingContext";
+import { useLoading } from "./components/Spinner/useLoading";
+import { Spinner } from "./components/Spinner/Spinner";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -44,6 +47,24 @@ export const GoogleContext = createContext<GoogleContextType>({
   auth,
 });
 
+function AppContainer() {
+  const { isLoading } = useLoading();
+
+  return (
+    <div className="app-container">
+      <BrowserRouter>
+        {isLoading && <Spinner />}
+        <Menu />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
 function App() {
   return (
     <GoogleContext.Provider
@@ -53,16 +74,9 @@ function App() {
         auth,
       }}
     >
-      <div className="app-container">
-        <BrowserRouter>
-          <Menu />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <LoadingProvider>
+        <AppContainer />
+      </LoadingProvider>
     </GoogleContext.Provider>
   );
 }

@@ -10,6 +10,7 @@ import "./Menu.css";
 import { GoogleContext } from "../../App";
 import { Link, useLocation, useRoutes } from "react-router-dom";
 import { InfoModal } from "../Info/InfoModal";
+import { useLoading } from "../Spinner/useLoading";
 
 const provider = new GoogleAuthProvider(); // Google Auth Provider
 
@@ -58,8 +59,8 @@ function mapAuthUserToInternalUser(authUser: unknown): User {
 export const Menu = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
-
   const { auth } = useContext(GoogleContext);
+  const { startLoading, stopLoading } = useLoading();
 
   const location = useLocation();
 
@@ -79,16 +80,25 @@ export const Menu = () => {
 
   const handleLogout = async () => {
     try {
+      startLoading();
+
       await signOut(auth);
     } catch (error) {
       console.error("Error signing out:", error);
+    } finally {
+      stopLoading();
     }
   };
+
   const handleLogin = async () => {
     try {
+      startLoading();
+
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Error signing in:", error);
+    } finally {
+      stopLoading();
     }
   };
 
