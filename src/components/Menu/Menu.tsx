@@ -1,4 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import {
   onAuthStateChanged,
@@ -46,7 +52,7 @@ function mapAuthUserToInternalUser(authUser: unknown): User {
   };
 }
 
-const GoBackNavLink = () => {
+const GoBackNavLinkItem = () => {
   return (
     <li>
       <Link className="go-back-link nav-link fourth-color" to="/">
@@ -60,10 +66,41 @@ const GoBackNavLink = () => {
   );
 };
 
+const HelpLinkItem = ({
+  showHelpState,
+}: {
+  showHelpState: [boolean, Dispatch<SetStateAction<boolean>>];
+}) => {
+  const [showHelp, setShowHelp] = showHelpState;
+  return (
+    <li style={{ display: "inline-flex" }}>
+      <img
+        alt="Help Icon"
+        src="/question.png"
+        onClick={() => setShowHelp(true)}
+        style={{ width: 20, height: 20, cursor: "pointer" }}
+      />
+      <HelpModal showHelp={showHelp} setShowHelp={setShowHelp} />
+    </li>
+  );
+};
+
+const ProfilePhotoLinkItem = ({ url }: { url: string }) => {
+  return (
+    <li className="profile-photo-container">
+      <Link to="/">
+        <img alt="Profile Photo." src={url} />
+      </Link>
+    </li>
+  );
+};
+
 export const Menu = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
+
   const { auth } = useContext(GoogleContext);
+
   const { startLoading, stopLoading } = useLoading();
 
   const location = useLocation();
@@ -114,14 +151,8 @@ export const Menu = () => {
     return (
       <nav className="nav-container">
         <ul className="nav-links">
-          {location.pathname !== "/" && <GoBackNavLink />}
-          <img
-            alt="Help Icon"
-            src="/question.png"
-            onClick={() => setShowHelp(true)}
-            style={{ width: 20, height: 20, cursor: "pointer" }}
-          />
-          <HelpModal showHelp={showHelp} setShowHelp={setShowHelp} />
+          {location.pathname !== "/" && <GoBackNavLinkItem />}
+          <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
         </ul>
         <ul className="nav-links">
           <li className="nav-link fourth-color" onClick={handleLogin}>
@@ -140,14 +171,8 @@ export const Menu = () => {
   return (
     <nav className="nav-container">
       <ul className="nav-links">
-        {location.pathname !== "/" && <GoBackNavLink />}
-        <img
-          alt="Info Icon"
-          src="/question.png"
-          onClick={() => setShowHelp(true)}
-          style={{ width: 20, height: 20, cursor: "pointer" }}
-        />
-        <HelpModal showHelp={showHelp} setShowHelp={setShowHelp} />
+        {location.pathname !== "/" && <GoBackNavLinkItem />}
+        <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
       </ul>
       <ul className="nav-links">
         <li>
@@ -158,13 +183,7 @@ export const Menu = () => {
         <li className="nav-link fourth-color" onClick={handleLogout}>
           Sign out
         </li>
-        {user.photoURL && (
-          <li className="profile-photo-container">
-            <Link to="/">
-              <img src={user.photoURL} />
-            </Link>
-          </li>
-        )}
+        {user.photoURL && <ProfilePhotoLinkItem url={user.photoURL} />}
       </ul>
     </nav>
   );
