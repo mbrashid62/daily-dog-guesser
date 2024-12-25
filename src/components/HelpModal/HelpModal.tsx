@@ -1,14 +1,14 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { Modal } from "../../toolbox/Modal/Modal";
 import { DOGGIES } from "../../constants";
 import { Flex } from "../../toolbox/Flex/Flex";
 
-type InfoModalProps = {
+type HelpModalProps = {
   showHelp: boolean;
   setShowHelp: Dispatch<SetStateAction<boolean>>;
 };
-export const InfoModal = ({ showHelp, setShowHelp }: InfoModalProps) => {
+export const HelpModal = ({ showHelp, setShowHelp }: HelpModalProps) => {
   return (
     <div className="help-container">
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)}>
@@ -17,7 +17,7 @@ export const InfoModal = ({ showHelp, setShowHelp }: InfoModalProps) => {
             <h3 style={{ marginRight: 8 }}>How it works</h3>
             <img
               alt="Info Icon"
-              src="/info.png"
+              src="/question.png"
               onClick={() => setShowHelp(true)}
               style={{ width: 20, height: 20 }}
             />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, ReactElement } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import {
   onAuthStateChanged,
@@ -8,27 +8,29 @@ import {
 } from "firebase/auth";
 import "./Menu.css";
 import { GoogleContext } from "../../App";
-import { Link, useLocation, useRoutes } from "react-router-dom";
-import { InfoModal } from "../Info/InfoModal";
+import { Link, useLocation } from "react-router-dom";
+import { HelpModal } from "../HelpModal/HelpModal";
 import { useLoading } from "../Spinner/useLoading";
 
 const provider = new GoogleAuthProvider(); // Google Auth Provider
 
-interface User {
+type User = {
   email: string;
   displayName: string;
-}
+  photoURL: string | null;
+};
 
 // Type guard to check if authUser is valid
 function isValidAuthUser(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   authUser: any,
-): authUser is { email: string; displayName: string } {
+): authUser is User {
   return (
     typeof authUser === "object" &&
     authUser !== null &&
     typeof authUser.email === "string" &&
-    typeof authUser.displayName === "string"
+    typeof authUser.displayName === "string" &&
+    typeof authUser?.photoURL === "string"
   );
 }
 
@@ -40,21 +42,23 @@ function mapAuthUserToInternalUser(authUser: unknown): User {
   return {
     email: authUser.email,
     displayName: authUser.displayName,
+    photoURL: authUser.photoURL ?? null,
   };
 }
 
-// function renderLogoSectionByLocation(location: Location): ReactElement {
-//   const { pathname } = location;
-
-//   switch pathname {
-//     case '/':
-//       return (
-//         <>
-//             Welcome, <b>{user.displayName}</b>.
-//           </>
-//       )
-//   }
-// }
+const GoBackNavLink = () => {
+  return (
+    <li>
+      <Link className="go-back-link nav-link fourth-color" to="/">
+        <img
+          src="/back-arrow.png"
+          style={{ width: 20, height: 20, paddingRight: 16 }}
+        />
+        Back
+      </Link>
+    </li>
+  );
+};
 
 export const Menu = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
@@ -102,51 +106,65 @@ export const Menu = () => {
     }
   };
 
+  // when user is unauthenticated
+  // 1. if not on home, back button
+  // 2. help icon
+  // 4. sign in button
+  if (!user) {
+    return (
+      <nav className="nav-container">
+        <ul className="nav-links">
+          {location.pathname !== "/" && <GoBackNavLink />}
+          <img
+            alt="Help Icon"
+            src="/question.png"
+            onClick={() => setShowHelp(true)}
+            style={{ width: 20, height: 20, cursor: "pointer" }}
+          />
+          <HelpModal showHelp={showHelp} setShowHelp={setShowHelp} />
+        </ul>
+        <ul className="nav-links">
+          <li className="nav-link fourth-color" onClick={handleLogin}>
+            Sign in
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+
+  // when user authenticated
+  // 1. if not on home, back button
+  // 2. help icon
+  // 3. sign out btn
+  // 4. profile icon
   return (
     <nav className="nav-container">
-      <div className="nav-logo">
-        {location.pathname === "/" ? (
-          <>
-            {user && (
-              <>
-                Welcome, <b>{user?.displayName}</b>.
-              </>
-            )}
-          </>
-        ) : (
-          <Link className="nav-link fourth-color" to="/">
-            Go Back
-          </Link>
-        )}
-      </div>
       <ul className="nav-links">
-        <>
-          {user ? (
-            <>
-              <li>
-                <Link className="nav-link fourth-color" to="/privacy">
-                  Privacy
-                </Link>
-              </li>
-              <li className="nav-link fourth-color" onClick={handleLogout}>
-                Sign out
-              </li>
-            </>
-          ) : (
-            <li className="nav-link fourth-color" onClick={handleLogin}>
-              Sign in
-            </li>
-          )}
-          <li style={{ display: "flex" }}>
-            <img
-              alt="Info Icon"
-              src="/info.png"
-              onClick={() => setShowHelp(true)}
-              style={{ width: 20, height: 20, cursor: "pointer" }}
-            />
-            <InfoModal showHelp={showHelp} setShowHelp={setShowHelp} />
+        {location.pathname !== "/" && <GoBackNavLink />}
+        <img
+          alt="Info Icon"
+          src="/question.png"
+          onClick={() => setShowHelp(true)}
+          style={{ width: 20, height: 20, cursor: "pointer" }}
+        />
+        <HelpModal showHelp={showHelp} setShowHelp={setShowHelp} />
+      </ul>
+      <ul className="nav-links">
+        <li>
+          <Link className="nav-link fourth-color" to="Privacy">
+            Account
+          </Link>
+        </li>
+        <li className="nav-link fourth-color" onClick={handleLogout}>
+          Sign out
+        </li>
+        {user.photoURL && (
+          <li className="profile-photo-container">
+            <Link to="/">
+              <img src={user.photoURL} />
+            </Link>
           </li>
-        </>
+        )}
       </ul>
     </nav>
   );

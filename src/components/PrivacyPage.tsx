@@ -2,15 +2,9 @@ import { useContext, useState } from "react";
 import { GoogleContext } from "../App";
 import { Button } from "../toolbox/Button/Button";
 import { Modal } from "../toolbox/Modal/Modal";
-import { deleteUser } from "firebase/auth";
-import { useLoading } from "./Spinner/useLoading";
-import { useNavigate } from "react-router-dom";
 
 export const PrivacyPage = () => {
   const { auth } = useContext(GoogleContext);
-  const { startLoading, stopLoading } = useLoading();
-  const navigate = useNavigate();
-  navigate("/");
 
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
 
@@ -34,20 +28,21 @@ export const PrivacyPage = () => {
         </p>
         <Button
           label="Delete your account"
-          onClick={async () => {
-            if (!auth.currentUser) {
-              // navigate("/");
-              return;
-            }
+          onClick={() => {
+            alert("this is under constructions");
+            // if (!auth.currentUser) {
+            //   // navigate("/");
+            //   return;
+            // }
 
-            try {
-              await deleteUser(auth.currentUser);
-              navigate("/");
-            } catch (error) {
-              alert(`Uh Oh! ${error.message}`);
-            } finally {
-              stopLoading();
-            }
+            // try {
+            //   await deleteUser(auth.currentUser);
+            //   navigate("/");
+            // } catch (error) {
+            //   alert(`Uh Oh! ${error.message}`);
+            // } finally {
+            //   stopLoading();
+            // }
           }}
         />
       </div>
