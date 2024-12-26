@@ -10,7 +10,7 @@ import { createContext } from "react";
 import { LeaderboardPage } from "./components/LeaderboardPage";
 import { PrivacyPage } from "./components/PrivacyPage";
 import { HomePage } from "./HomePage";
-import { Menu } from "./components/Menu/Menu";
+import { TopNavigation } from "./components/TopNavigation/TopNavigation";
 import { LoadingProvider } from "./components/Spinner/LoadingContext";
 import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
@@ -54,7 +54,7 @@ function AppContainer() {
     <div className="app-container">
       <BrowserRouter>
         {isLoading && <Spinner />}
-        <Menu />
+        <TopNavigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

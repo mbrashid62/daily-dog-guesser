@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useEffect,
   useContext,
@@ -12,7 +12,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import "./Menu.css";
+import "./TopNavigation.css";
 import { GoogleContext } from "../../App";
 import { Link, useLocation } from "react-router-dom";
 import { HelpModal } from "../HelpModal/HelpModal";
@@ -58,7 +58,7 @@ const GoBackNavLinkItem = ({ showBack }: { showBack: boolean }) => {
   }
 
   return (
-    <Link className="go-back-link nav-link fourth-color" to="/">
+    <Link className="go-back-link top-nav-link fourth-color" to="/">
       <img
         src="/back-arrow.png"
         style={{ width: 20, height: 20, paddingRight: 16 }}
@@ -87,33 +87,18 @@ const HelpLinkItem = ({
   );
 };
 
-const ProfilePhotoLinkItem = ({ url }: { url: string | null }) => {
-  if (!url) {
-    return null;
-  }
-
-  return (
-    <div className="profile-photo-container">
-      <Link to="/">
-        <img alt="Profile Photo." src={url} />
-      </Link>
-    </div>
-  );
-};
-
-export const MenuOptions = ({ children }: { children: React.ReactElement }) => {
+const MenuPopover = ({ children }: { children: React.ReactElement }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <div className="more-options-container">
-      <div
-        className="more-options-trigger"
+    <div className="menu-popover-trigger-container">
+      <img
+        alt="More Options Icon"
         onClick={() => setOpenMenu(!openMenu)}
-      >
-        <img alt="More Options Icon" src="/menu.png" />
-      </div>
+        src="/menu.png"
+      />
       <div
-        className={`more-options-list-container ${openMenu ? "open" : "closed"}`}
+        className={`menu-popover-children-container ${openMenu ? "open" : "closed"}`}
       >
         {children}
       </div>
@@ -121,7 +106,7 @@ export const MenuOptions = ({ children }: { children: React.ReactElement }) => {
   );
 };
 
-export const Menu = () => {
+export const TopNavigation = () => {
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
@@ -175,17 +160,17 @@ export const Menu = () => {
   // 4. sign in button
   if (!user) {
     return (
-      <nav className="nav-container">
-        <ul className="nav-links">
+      <div className="top-nav-container">
+        <div className="left-col">
           <GoBackNavLinkItem showBack={location.pathname !== "/"} />
           <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
-        </ul>
-        <ul className="nav-links">
-          <li className="nav-link fourth-color" onClick={handleLogin}>
+        </div>
+        <div className="right-col">
+          <div className="top-nav-link fourth-color" onClick={handleLogin}>
             Sign in
-          </li>
-        </ul>
-      </nav>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -195,24 +180,30 @@ export const Menu = () => {
   // 3. sign out btn
   // 4. profile icon
   return (
-    <nav className="nav-container">
-      <div className="nav-links">
+    <div className="top-nav-container">
+      <div className="top-nav-left-col">
         <GoBackNavLinkItem showBack={location.pathname !== "/"} />
         <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
       </div>
-      <div className="right-col">
-        <MenuOptions>
-          <div className="menu-links">
-            <div className="menu-link-item">
+      <div className="top-nav-right-col">
+        <MenuPopover>
+          <div className="popover-menu-container">
+            <div className="popover-menu-item">
               <Link to="Privacy">Account</Link>
             </div>
-            <div className="menu-link-item" onClick={handleLogout}>
+            <div className="popover-menu-item" onClick={handleLogout}>
               <a href="javascript:void(0);">Sign out</a>
             </div>
           </div>
-        </MenuOptions>
-        <ProfilePhotoLinkItem url={user.photoURL} />
+        </MenuPopover>
+        {user.photoURL && (
+          <div className="profile-photo-container">
+            <Link to="/">
+              <img alt="Profile Photo." src={user.photoURL} />
+            </Link>
+          </div>
+        )}
       </div>
-    </nav>
+    </div>
   );
 };

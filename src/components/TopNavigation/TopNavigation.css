@@ -1,5 +1,5 @@
 /* Base styles */
-.nav-container {
+.top-nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,39 +7,25 @@
   border-bottom: 1px solid #616161;
 }
 
-.nav-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  column-gap: 32;
-}
-
-.nav-links {
+.top-nav-left-col {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.nav-link {
-  text-decoration: none;
+.top-nav-right-col {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav-link {
   font-size: 1rem;
   cursor: pointer;
   font-weight: 600;
 }
-
-.nav-link:hover {
-  opacity: 0.8;
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
-  .nav-links {
-    gap: 0.5rem;
-    /* width: 100%; */
-  }
-
-  .nav-link {
+  .top-nav-links {
     width: 100%;
     text-align: center;
   }
@@ -77,54 +63,41 @@
   align-items: center;
 }
 
-.more-options-trigger {
-  margin-right: 16px;
+.menu-popover-trigger-container {
+  position: relative;
   display: inline-flex;
+  margin-right: 16px;
+  cursor: pointer;
 }
 
-.more-options-trigger img {
+.menu-popover-trigger-container img {
   width: 24px;
   height: 24px;
 }
 
-.more-options-trigger :hover {
-  transition: all 200ms;
-  cursor: pointer;
-}
-
-.more-options-container {
-  position: relative;
-  display: inline-flex;
-}
-
-.more-options-list-container {
+.menu-popover-children-container {
   display: flex;
   flex-direction: column;
   transition: all 200ms;
   position: absolute;
   top: 32px;
-  right: 8px;
+  right: 0;
   box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
   background-color: #c4e3cb;
   border-radius: 8px;
 }
 
-.more-options-list-container.closed {
+.menu-popover-children-container.closed {
   pointer-events: none;
   opacity: 0;
 }
 
-.more-options-list-container.open {
+.menu-popover-children-container.open {
   pointer-events: initial;
   opacity: 1;
 }
 
-.right-col {
-  display: flex;
-  align-items: center;
-}
-
-.menu-links {
+.popover-menu-container {
   display: flex;
   flex-direction: column;
   display: flex;
@@ -132,19 +105,19 @@
   border-radius: 8px;
 }
 
-.menu-link-item {
+.popover-menu-item {
   width: max-content;
   margin: 12px 0;
 }
 
-.menu-link-item :hover {
-  transition: background-color 600ms;
-  background-color: #8aae92;
-}
-
-.menu-link-item a {
+.popover-menu-item a {
   font-weight: 600;
   color: #616161;
   padding: 8px 40px;
   margin: 8px 0;
+}
+
+.popover-menu-item :hover {
+  transition: background-color 600ms;
+  background-color: #8aae92;
 }
