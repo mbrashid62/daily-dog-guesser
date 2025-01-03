@@ -18,6 +18,7 @@ import { GoogleContext } from "../../App";
 import { Link, useLocation } from "react-router-dom";
 import { HelpModal } from "../HelpModal/HelpModal";
 import { useLoading } from "../Spinner/useLoading";
+import { useToast } from "../Toast/ToastProvider";
 
 const provider = new GoogleAuthProvider(); // Google Auth Provider
 
@@ -149,15 +150,20 @@ export const TopNavigation = () => {
   const { startLoading, stopLoading } = useLoading();
 
   const location = useLocation();
+  const { showToast } = useToast();
 
   // Monitor Firebase authentication state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser === null) {
         setUser(null);
+
+        showToast("Logged out.", "success");
       } else {
         const user = mapAuthUserToInternalUser(currentUser);
         setUser(user);
+
+        showToast(`Logged in as ${user.email}.`, "success");
       }
     });
 

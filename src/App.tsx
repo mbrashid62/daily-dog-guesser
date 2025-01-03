@@ -14,6 +14,7 @@ import { TopNavigation } from "./components/TopNavigation/TopNavigation";
 import { LoadingProvider } from "./components/Spinner/LoadingContext";
 import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
+import { ToastProvider } from "./components/Toast/ToastProvider";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -74,9 +75,11 @@ function App() {
         auth,
       }}
     >
-      <LoadingProvider>
-        <AppContainer />
-      </LoadingProvider>
+      <ToastProvider>
+        <LoadingProvider>
+          <AppContainer />
+        </LoadingProvider>
+      </ToastProvider>
     </GoogleContext.Provider>
   );
 }
