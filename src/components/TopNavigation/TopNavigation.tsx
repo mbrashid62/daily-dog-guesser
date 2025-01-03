@@ -228,9 +228,9 @@ export const TopNavigation = () => {
       <div className="top-nav-right-col">
         <MenuPopover pathname={location.pathname}>
           <div className="popover-menu-container">
-            <div className="popover-menu-item">
+            {/* <div className="popover-menu-item">
               <Link to="account">Account</Link>
-            </div>
+            </div> */}
             <div className="popover-menu-item" onClick={handleLogout}>
               <a href="javascript:void(0);">Sign out</a>
             </div>
