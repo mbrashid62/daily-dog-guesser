@@ -31,19 +31,6 @@
   }
 }
 
-.privacy-page-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.privacy-page-container-section {
-  width: 550px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .profile-photo-container {
   display: inline-flex;
 }

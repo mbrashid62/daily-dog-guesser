@@ -79,22 +79,12 @@ h1 {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  min-width: 550px;
+  max-width: 600px;
 }
 
 @media (max-width: 600px) {
   .app-container {
-    min-width: auto;
-  }
-}
-
-.top-container {
-  padding-top: 32px;
-}
-
-@media (max-width: 600px) {
-  .top-container {
-    padding-top: 0;
+    max-width: 320px;
   }
 }
 
@@ -131,23 +121,6 @@ h1 {
   width: 100%;
 }
 
-.title {
-  margin-top: 48px;
-  margin-bottom: 0;
-}
-
-/* .help-container {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-}
-
-@media (max-width: 600px) {
-  .help-container {
-    right: 16px;
-    top: 16px;
-  }
-} */
 @media (max-width: 600px) {
   .play-again-container {
     width: 100%;

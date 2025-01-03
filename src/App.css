@@ -1,11 +1,8 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-
   text-align: center;
-}
-
-.settings-page-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }

@@ -4,6 +4,7 @@ import {
   useContext,
   Dispatch,
   SetStateAction,
+  useRef,
 } from "react";
 
 import {
@@ -87,8 +88,40 @@ const HelpLinkItem = ({
   );
 };
 
-const MenuPopover = ({ children }: { children: React.ReactElement }) => {
+const MenuPopover = ({
+  children,
+  pathname,
+}: {
+  children: React.ReactElement;
+  pathname: string;
+}) => {
   const [openMenu, setOpenMenu] = useState(false);
+
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target as Node)
+    ) {
+      setOpenMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
+  useEffect(() => {
+    if (openMenu) {
+      setOpenMenu(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   return (
     <div className="menu-popover-trigger-container">
@@ -99,6 +132,7 @@ const MenuPopover = ({ children }: { children: React.ReactElement }) => {
       />
       <div
         className={`menu-popover-children-container ${openMenu ? "open" : "closed"}`}
+        ref={popoverRef}
       >
         {children}
       </div>
@@ -186,10 +220,10 @@ export const TopNavigation = () => {
         <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
       </div>
       <div className="top-nav-right-col">
-        <MenuPopover>
+        <MenuPopover pathname={location.pathname}>
           <div className="popover-menu-container">
             <div className="popover-menu-item">
-              <Link to="Privacy">Account</Link>
+              <Link to="account">Account</Link>
             </div>
             <div className="popover-menu-item" onClick={handleLogout}>
               <a href="javascript:void(0);">Sign out</a>

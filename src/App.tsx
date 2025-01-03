@@ -7,8 +7,8 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext } from "react";
-import { LeaderboardPage } from "./components/LeaderboardPage";
-import { PrivacyPage } from "./components/PrivacyPage";
+import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
+import { AcccountPage } from "./components/Pages/Account/AccountPage";
 import { HomePage } from "./HomePage";
 import { TopNavigation } from "./components/TopNavigation/TopNavigation";
 import { LoadingProvider } from "./components/Spinner/LoadingContext";
@@ -57,8 +57,8 @@ function AppContainer() {
         <TopNavigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/account" element={<AcccountPage />} />
+          <Route path="/leaderboard" element={<LeaderBoardPage />} />
         </Routes>
       </BrowserRouter>
     </div>
