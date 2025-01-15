@@ -16,13 +16,35 @@ import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { LOCAL_CONFIG } from "../local.config";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+function safelyReadFirebaseApiKey(): string {
+  if (import.meta.env.DEV) {
+    if (!LOCAL_CONFIG.FIREBASE_API_KEY) {
+      throw new Error(
+        "Uh oh! Looks like your local config isn't setup correctly.",
+      );
+    }
+
+    console.log("Using Firebase API key from local config.");
+    return LOCAL_CONFIG.FIREBASE_API_KEY;
+  }
+
+  const VITE_FIREBASE_API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+
+  if (!VITE_FIREBASE_API_KEY) {
+    throw new Error(
+      "import.meta.env.VITE_FIREBASE_API_KEY is not set in production.",
+    );
+  }
+
+  console.log("Using environment API key in production mode");
+  return import.meta.env.VITE_FIREBASE_API_KEY;
+}
+
+// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBFpciMnyZ9hVNtO311TygA7BzmsPI-4S8",
+  apiKey: safelyReadFirebaseApiKey(),
   authDomain: "doggy-guesser.firebaseapp.com",
   projectId: "doggy-guesser",
   storageBucket: "doggy-guesser.firebasestorage.app",
