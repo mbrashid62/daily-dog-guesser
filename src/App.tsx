@@ -21,6 +21,8 @@ let localConfigApiKey: string | null = null;
 // Dynamically import local config in dev mode
 if (import.meta.env.DEV) {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore skip typing here so the remote build passes
     const { LOCAL_CONFIG } = await import("../local.config.ts");
     localConfigApiKey = LOCAL_CONFIG.FIREBASE_API_KEY;
   } catch {
