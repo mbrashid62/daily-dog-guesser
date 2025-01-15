@@ -16,30 +16,38 @@ import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
 
-import { LOCAL_CONFIG } from "../local.config";
+let localConfigApiKey: string | null = null;
 
-function safelyReadFirebaseApiKey(): string {
+// Dynamically import local config in dev mode
+if (import.meta.env.DEV) {
+  try {
+    const { LOCAL_CONFIG } = await import("../local.config.ts");
+    localConfigApiKey = LOCAL_CONFIG.FIREBASE_API_KEY;
+  } catch {
+    console.warn(
+      "Local config file not found. Make sure you have local.config.ts setup local development.",
+    );
+  }
+}
+
+export function safelyReadFirebaseApiKey(): string {
   if (import.meta.env.DEV) {
-    if (!LOCAL_CONFIG.FIREBASE_API_KEY) {
-      throw new Error(
-        "Uh oh! Looks like your local config isn't setup correctly.",
-      );
+    if (localConfigApiKey) {
+      console.log("Using local config API key in development mode");
+      return localConfigApiKey;
+    } else {
+      throw new Error("Local config API key is missing in development mode.");
     }
-
-    console.log("Using Firebase API key from local config.");
-    return LOCAL_CONFIG.FIREBASE_API_KEY;
   }
 
   const VITE_FIREBASE_API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
 
   if (!VITE_FIREBASE_API_KEY) {
-    throw new Error(
-      "import.meta.env.VITE_FIREBASE_API_KEY is not set in production.",
-    );
+    throw new Error("VITE_FIREBASE_API_KEY is not set in production.");
   }
 
   console.log("Using environment API key in production mode");
-  return import.meta.env.VITE_FIREBASE_API_KEY;
+  return VITE_FIREBASE_API_KEY;
 }
 
 // Firebase configuration
