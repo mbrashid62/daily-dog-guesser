@@ -1,5 +1,11 @@
 // ToastContext.tsx
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useCallback,
+} from "react";
 
 type ToastType = "success" | "error";
 
@@ -9,8 +15,10 @@ interface Toast {
   type: ToastType;
 }
 
+export type ShowToast = (message: string, type: ToastType) => void;
+
 interface ToastContextType {
-  showToast: (message: string, type: ToastType) => void;
+  showToast: ShowToast;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -28,7 +36,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = (message: string, type: ToastType) => {
+  const showToast = useCallback((message: string, type: ToastType) => {
     const id = Date.now(); // Unique ID for each toast
     setToasts((prev) => [...prev, { message, id, type }]);
 
@@ -36,7 +44,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     }, 3000);
-  };
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast }}>
