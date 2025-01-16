@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
   User as FirebaseUser,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { GoogleContext } from "../../App";
 import { Link, useLocation } from "react-router-dom";
@@ -31,6 +32,16 @@ export const TopNavigation: React.FC = () => {
   const { showToast } = useToast();
 
   const [isSigningIn, setIsSigningIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth, showToast]);
 
   const handleLogout = async () => {
     try {

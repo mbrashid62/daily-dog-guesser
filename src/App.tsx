@@ -4,9 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { Auth, getAuth } from "firebase/auth";
+import {
+  Auth,
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
 import { Analytics, getAnalytics } from "firebase/analytics";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
 import { AcccountPage } from "./components/Pages/Account/AccountPage";
 import { HomePage } from "./HomePage";
@@ -74,6 +79,16 @@ type GoogleContextType = {
   auth: Auth;
 };
 
+// Initialize Firebase Persistence
+const initializeAuthPersistence = async (auth: Auth) => {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+    console.log("Firebase auth persistence set to local.");
+  } catch (error) {
+    console.error("Error setting Firebase auth persistence:", error);
+  }
+};
+
 export const GoogleContext = createContext<GoogleContextType>({
   firebase: app,
   analytics,
@@ -82,6 +97,10 @@ export const GoogleContext = createContext<GoogleContextType>({
 
 function AppContainer() {
   const { isLoading } = useLoading();
+
+  useEffect(() => {
+    initializeAuthPersistence(auth);
+  }, []);
 
   return (
     <div className="app-container">
