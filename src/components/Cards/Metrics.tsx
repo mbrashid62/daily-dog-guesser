@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Metrics";
-import { MetricsContext } from "../Home/Home";
+import { MetricsContext } from "../Pages/Home/HomePage";
 import { DOGGIES } from "../../constants";
 
 export const Metrics = () => {

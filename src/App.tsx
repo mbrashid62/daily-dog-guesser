@@ -14,12 +14,13 @@ import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext, useEffect } from "react";
 import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
 import { AcccountPage } from "./components/Pages/Account/AccountPage";
-import { HomePage } from "./HomePage";
 import { TopNavigation } from "./components/TopNavigation/TopNavigation";
 import { LoadingProvider } from "./components/Spinner/LoadingContext";
 import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
+import { ErrorBoundary } from "./ErrorBoundary.tsx";
+import { HomePage } from "./components/Pages/Home/HomePage.tsx";
 
 let localConfigApiKey: string | null = null;
 
@@ -107,11 +108,13 @@ function AppContainer() {
       <BrowserRouter>
         {isLoading && <Spinner />}
         <TopNavigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/account" element={<AcccountPage />} />
-          <Route path="/leaderboard" element={<LeaderBoardPage />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/account" element={<AcccountPage />} />
+            <Route path="/leaderboard" element={<LeaderBoardPage />} />
+          </Routes>
+        </ErrorBoundary>
       </BrowserRouter>
     </div>
   );
@@ -128,7 +131,9 @@ function App() {
     >
       <ToastProvider>
         <LoadingProvider>
-          <AppContainer />
+          <ErrorBoundary>
+            <AppContainer />
+          </ErrorBoundary>
         </LoadingProvider>
       </ToastProvider>
     </GoogleContext.Provider>
