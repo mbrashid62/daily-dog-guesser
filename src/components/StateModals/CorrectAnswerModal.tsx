@@ -6,7 +6,7 @@ import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 import { DogImage } from "../DogImage/DogImage";
 import { Confetti } from "../Animations/Confetti/Confetti";
-import { MetricsContext } from "../Home/Home";
+import { MetricsContext } from "../Pages/Home/HomePage";
 import { SelectedDogContext } from "../OptionGroup/OptionGroup";
 
 type CorrectAnswerModalProps = {

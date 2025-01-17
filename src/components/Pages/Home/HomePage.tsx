@@ -1,13 +1,13 @@
 import { createContext, useMemo, useState } from "react";
 
-import { DOGGIES } from "../../constants";
-import { getRandomInt } from "../../utils";
-import { OptionGroup } from "../../components/OptionGroup/OptionGroup";
-import { DogImage } from "../../components/DogImage/DogImage";
-import { Button } from "../../toolbox/Button/Button";
-import { Dog } from "../../global-types";
-import { Confetti } from "../Animations/Confetti/Confetti";
-import { Metrics } from "../Cards/Metrics";
+import { DOGGIES } from "../../../constants";
+import { getRandomInt } from "../../../utils";
+import { OptionGroup } from "../../OptionGroup/OptionGroup";
+import { DogImage } from "../../DogImage/DogImage";
+import { Button } from "../../../toolbox/Button/Button";
+import { Dog } from "../../../global-types";
+import { Confetti } from "../../Animations/Confetti/Confetti";
+import { Metrics } from "../../Cards/Metrics";
 
 type MetricsData = {
   correctGuesses: number;
@@ -21,7 +21,7 @@ export const MetricsContext = createContext<MetricsData>({
   streak: 0,
 });
 
-export const Home = () => {
+export const HomePage = () => {
   const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
   const [successCount, setSuccessCount] = useState<number>(0);
 
