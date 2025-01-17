@@ -2,14 +2,14 @@ import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Import the functions you need from the SDKs you need
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
   Auth,
   getAuth,
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext, useEffect } from "react";
 import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
@@ -21,6 +21,7 @@ import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
 import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { HomePage } from "./components/Pages/Home/HomePage.tsx";
+import { FirestoreProvider } from "./FireStoreProvider.tsx";
 
 let localConfigApiKey: string | null = null;
 
@@ -71,11 +72,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const metricsRef = collection(db, "metrics");
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 type GoogleContextType = {
-  firebase: FirebaseApp;
   analytics: Analytics;
   auth: Auth;
 };
@@ -91,7 +93,6 @@ const initializeAuthPersistence = async (auth: Auth) => {
 };
 
 export const GoogleContext = createContext<GoogleContextType>({
-  firebase: app,
   analytics,
   auth,
 });
@@ -124,18 +125,19 @@ function App() {
   return (
     <GoogleContext.Provider
       value={{
-        firebase: app,
         analytics,
         auth,
       }}
     >
-      <ToastProvider>
-        <LoadingProvider>
-          <ErrorBoundary>
-            <AppContainer />
-          </ErrorBoundary>
-        </LoadingProvider>
-      </ToastProvider>
+      <FirestoreProvider db={db}>
+        <ToastProvider>
+          <LoadingProvider>
+            <ErrorBoundary>
+              <AppContainer />
+            </ErrorBoundary>
+          </LoadingProvider>
+        </ToastProvider>
+      </FirestoreProvider>
     </GoogleContext.Provider>
   );
 }
