@@ -1,0 +1,110 @@
+/* Base styles */
+.top-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #616161;
+}
+
+.top-nav-left-col {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-nav-right-col {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav-link {
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .top-nav-links {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.profile-photo-container {
+  display: inline-flex;
+}
+
+.profile-photo-container a {
+  display: inline-flex;
+}
+
+.profile-photo-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.go-back-link {
+  display: flex;
+  align-items: center;
+}
+
+.menu-popover-trigger-container {
+  position: relative;
+  display: inline-flex;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.menu-popover-trigger-container img {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-popover-children-container {
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms;
+  position: absolute;
+  top: 32px;
+  right: 0;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
+  background-color: #c4e3cb;
+  border-radius: 8px;
+}
+
+.menu-popover-children-container.closed {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.menu-popover-children-container.open {
+  pointer-events: initial;
+  opacity: 1;
+}
+
+.popover-menu-container {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.popover-menu-item {
+  width: max-content;
+  margin: 12px 0;
+}
+
+.popover-menu-item a {
+  font-weight: 600;
+  color: #616161;
+  padding: 8px 40px;
+  margin: 8px 0;
+}
+
+.popover-menu-item :hover {
+  transition: background-color 600ms;
+  background-color: #8aae92;
+}

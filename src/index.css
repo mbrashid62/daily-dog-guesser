@@ -79,15 +79,12 @@ h1 {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  justify-content: space-between;
-}
-.top-container {
-  padding-top: 32px;
+  max-width: 600px;
 }
 
 @media (max-width: 600px) {
-  .top-container {
-    padding-top: 0;
+  .app-container {
+    max-width: 320px;
   }
 }
 
@@ -124,23 +121,6 @@ h1 {
   width: 100%;
 }
 
-.title {
-  margin-top: 48px;
-  margin-bottom: 0;
-}
-
-.help-container {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-}
-
-@media (max-width: 600px) {
-  .help-container {
-    right: 16px;
-    top: 16px;
-  }
-}
 @media (max-width: 600px) {
   .play-again-container {
     width: 100%;
@@ -148,5 +128,28 @@ h1 {
 
   .play-again-container button {
     width: 100%;
+  }
+}
+
+/* Add this to your global CSS file */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
