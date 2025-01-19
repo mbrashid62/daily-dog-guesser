@@ -39,12 +39,11 @@ export const HomePage = () => {
     setStreak(0);
   };
 
-  const metrics = useMemo(
+  const metrics = useMemo<MetricsData>(
     () => ({
       correctGuesses: successCount,
       remaining: dogsRemaining.length,
       streak,
-      powerups: 3,
     }),
     [successCount, dogsRemaining.length, streak],
   );
