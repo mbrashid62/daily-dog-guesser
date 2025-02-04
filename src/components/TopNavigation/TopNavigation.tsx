@@ -14,6 +14,7 @@ import "./TopNavigation.css";
 import { HelpLinkItem } from "./HelpLinkItem";
 import { MenuPopover } from "./MenuPopover";
 import { GoBackNavLinkItem } from "./GoBackNavLinkItem";
+import { LeaderBoardLinkItem } from "./LeaderBoardLinkItem";
 
 // TODO: Should this be moved to Context?
 const provider = new GoogleAuthProvider();
@@ -110,6 +111,9 @@ export const TopNavigation: React.FC = () => {
       <div className="top-nav-right-col">
         <MenuPopover pathname={location.pathname}>
           <div className="popover-menu-container">
+            <div className="popover-menu-item">
+              <LeaderBoardLinkItem showLeaderBoard />
+            </div>
             <div className="popover-menu-item" onClick={handleLogout}>
               <a href="javascript:void(0);">Sign out</a>
             </div>

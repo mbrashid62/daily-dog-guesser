@@ -9,13 +9,13 @@ import { Dog } from "../../../global-types";
 import { Confetti } from "../../Animations/Confetti/Confetti";
 import { Metrics } from "../../Cards/Metrics";
 
-type MetricsData = {
+export type MetricsAppData = {
   correctGuesses: number;
   remaining: number;
   streak: number;
 };
 
-export const MetricsContext = createContext<MetricsData>({
+export const MetricsContext = createContext<MetricsAppData>({
   correctGuesses: 0,
   remaining: 0,
   streak: 0,
@@ -39,7 +39,7 @@ export const HomePage = () => {
     setStreak(0);
   };
 
-  const metrics = useMemo<MetricsData>(
+  const metrics = useMemo<MetricsAppData>(
     () => ({
       correctGuesses: successCount,
       remaining: dogsRemaining.length,

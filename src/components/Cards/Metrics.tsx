@@ -13,7 +13,7 @@ export const Metrics = () => {
   } = useContext(MetricsContext) || {};
 
   const { auth } = useContext(GoogleContext);
-  const { getMetrics, saveMetrics } = useFirestore();
+  const { fetchUserScore, saveUserScore } = useFirestore();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const Metrics = () => {
       }
 
       try {
-        const metrics = await getMetrics(auth.currentUser.uid);
+        const metrics = await fetchUserScore(auth.currentUser.uid);
 
         if (metrics) {
           console.log("Loaded metrics:", metrics);
@@ -36,7 +36,7 @@ export const Metrics = () => {
     };
 
     loadMetrics();
-  }, [auth.currentUser, getMetrics]);
+  }, [auth.currentUser, fetchUserScore]);
 
   if (correctGuesses === 0) {
     return null;
@@ -46,11 +46,19 @@ export const Metrics = () => {
     if (!auth.currentUser) {
       return;
     }
+
     try {
-      await saveMetrics(auth.currentUser.uid, {
-        correctGuesses,
-        streak,
-        remaining,
+      await saveUserScore(auth.currentUser.uid, {
+        metrics: {
+          correctGuesses,
+          streak,
+          remaining,
+        },
+        user: {
+          displayName: auth.currentUser.displayName,
+          photoURL: auth.currentUser.photoURL,
+        },
+        version: "1.0.0",
       });
 
       showToast("Metrics saved successfully!", "success");

@@ -4,24 +4,29 @@ import {
   doc,
   setDoc,
   Firestore,
-  getDocs,
+  getDoc,
   query,
-  where,
+  orderBy,
+  limit,
+  getDocs,
 } from "firebase/firestore";
+import { User } from "firebase/auth";
+import { MetricsAppData } from "./components/Pages/Home/HomePage";
 
-type Metrics = {
-  userId: string;
-  correctGuesses: number;
-  remaining: number;
-  streak: number;
+type UserSavedProperties = Pick<User, "displayName" | "photoURL">;
+
+export type LeaderBoardEntry = {
+  metrics: MetricsAppData;
+  user: UserSavedProperties;
+  version: string;
 };
 
 type FirestoreContextType = {
-  getMetrics: (userId: string) => Promise<Metrics | null>;
-  saveMetrics: (
-    userId: string,
-    metrics: Omit<Metrics, "userId">,
-  ) => Promise<void>;
+  fetchLeaderBoard: (
+    type: "correctGuesses" | "streak",
+  ) => Promise<LeaderBoardEntry[]>;
+  fetchUserScore: (userId: string) => Promise<LeaderBoardEntry | null>;
+  saveUserScore: (userId: string, entry: LeaderBoardEntry) => Promise<void>;
 };
 
 const FirestoreContext = createContext<FirestoreContextType | null>(null);
@@ -32,30 +37,50 @@ export const FirestoreProvider: React.FC<{
 }> = ({ db, children }) => {
   const metricsCollection = collection(db, "metrics");
 
-  const getMetrics = async (userId: string): Promise<Metrics | null> => {
-    const q = query(metricsCollection, where("userId", "==", userId));
+  const fetchLeaderBoard = async (
+    type: "correctGuesses" | "streak",
+  ): Promise<LeaderBoardEntry[]> => {
+    const queryConstraint =
+      type === "correctGuesses"
+        ? orderBy("metrics.correctGuesses", "desc")
+        : orderBy("metrics.streak", "desc");
 
-    const queryResult = await getDocs(q);
+    const q = query(metricsCollection, queryConstraint, limit(10));
 
-    const docSnapshot = queryResult.docs[0];
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map((doc) => doc.data() as LeaderBoardEntry);
+  };
+
+  const fetchUserScore = async (
+    userId: string,
+  ): Promise<LeaderBoardEntry | null> => {
+    const docRef = doc(metricsCollection, userId);
+    const docSnapshot = await getDoc(docRef);
 
     if (!docSnapshot.exists()) {
       return null;
     }
 
-    return docSnapshot.data() as Metrics;
+    return docSnapshot.data() as LeaderBoardEntry;
   };
 
-  const saveMetrics = async (
+  const saveUserScore = async (
     userId: string,
-    metrics: Omit<Metrics, "userId">,
+    entry: LeaderBoardEntry,
   ): Promise<void> => {
     const metricsDoc = doc(metricsCollection, userId);
-    await setDoc(metricsDoc, { userId, ...metrics }, { merge: true });
+    await setDoc(metricsDoc, { ...entry }, { merge: true });
   };
 
   return (
-    <FirestoreContext.Provider value={{ getMetrics, saveMetrics }}>
+    <FirestoreContext.Provider
+      value={{
+        fetchLeaderBoard,
+        fetchUserScore,
+        saveUserScore,
+      }}
+    >
       {children}
     </FirestoreContext.Provider>
   );
