@@ -9,11 +9,11 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
-import { collection, getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { createContext, useEffect } from "react";
 import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
-import { AcccountPage } from "./components/Pages/Account/AccountPage";
+import { AccountPage } from "./components/Pages/Account/AccountPage";
 import { TopNavigation } from "./components/TopNavigation/TopNavigation";
 import { LoadingProvider } from "./components/Spinner/LoadingContext";
 import { useLoading } from "./components/Spinner/useLoading";
@@ -73,7 +73,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const metricsRef = collection(db, "metrics");
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
@@ -112,7 +111,7 @@ function AppContainer() {
         <ErrorBoundary>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/account" element={<AcccountPage />} />
+            <Route path="/account" element={<AccountPage />} />
             <Route path="/leaderboard" element={<LeaderBoardPage />} />
           </Routes>
         </ErrorBoundary>

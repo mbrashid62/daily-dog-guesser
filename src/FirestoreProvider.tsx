@@ -9,6 +9,7 @@ import {
   orderBy,
   limit,
   getDocs,
+  deleteDoc,
 } from "firebase/firestore";
 import { User } from "firebase/auth";
 import { MetricsAppData } from "./components/Pages/Home/HomePage";
@@ -25,17 +26,38 @@ type FirestoreContextType = {
   fetchLeaderBoard: (
     type: "correctGuesses" | "streak",
   ) => Promise<LeaderBoardEntry[]>;
-  fetchUserScore: (userId: string) => Promise<LeaderBoardEntry | null>;
+  fetchUserDoc: (userId: string) => Promise<LeaderBoardEntry | null>;
   saveUserScore: (userId: string, entry: LeaderBoardEntry) => Promise<void>;
+  deleteUserDoc: (userId: string) => Promise<void>;
 };
 
 const FirestoreContext = createContext<FirestoreContextType | null>(null);
 
+/**
+ * import { doc, deleteDoc } from "firebase/firestore";
+
+const deleteMetrics = async (userId: string): Promise<void> => {
+  const docRef = doc(metricsCollection, userId);
+
+  try {
+    await deleteDoc(docRef);
+    console.log(`Document with ID ${userId} deleted successfully`);
+  } catch (error) {
+    console.error("Error deleting document:", error);
+  }
+};
+
+ */
 export const FirestoreProvider: React.FC<{
   db: Firestore;
   children: ReactNode;
 }> = ({ db, children }) => {
   const metricsCollection = collection(db, "metrics");
+
+  const deleteUserDoc = async (userId: string) => {
+    const docRef = doc(metricsCollection, userId);
+    return deleteDoc(docRef);
+  };
 
   const fetchLeaderBoard = async (
     type: "correctGuesses" | "streak",
@@ -52,7 +74,7 @@ export const FirestoreProvider: React.FC<{
     return querySnapshot.docs.map((doc) => doc.data() as LeaderBoardEntry);
   };
 
-  const fetchUserScore = async (
+  const fetchUserDoc = async (
     userId: string,
   ): Promise<LeaderBoardEntry | null> => {
     const docRef = doc(metricsCollection, userId);
@@ -77,8 +99,9 @@ export const FirestoreProvider: React.FC<{
     <FirestoreContext.Provider
       value={{
         fetchLeaderBoard,
-        fetchUserScore,
+        fetchUserDoc,
         saveUserScore,
+        deleteUserDoc,
       }}
     >
       {children}

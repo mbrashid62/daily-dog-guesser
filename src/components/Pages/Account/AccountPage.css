@@ -9,3 +9,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.account-page-container p {
+  text-align: left;
+}

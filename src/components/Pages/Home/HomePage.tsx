@@ -7,7 +7,8 @@ import { DogImage } from "../../DogImage/DogImage";
 import { Button } from "../../../toolbox/Button/Button";
 import { Dog } from "../../../global-types";
 import { Confetti } from "../../Animations/Confetti/Confetti";
-import { Metrics } from "../../Cards/Metrics";
+import { ActiveScore } from "../../Cards/ActiveScore";
+import { HighScores } from "../../TopNavigation/HighScores";
 
 export type MetricsAppData = {
   correctGuesses: number;
@@ -110,7 +111,8 @@ export const HomePage = () => {
         />
       </div>
       <div className="middle-container">
-        <Metrics />
+        <HighScores />
+        <ActiveScore />
       </div>
     </MetricsContext.Provider>
   );
