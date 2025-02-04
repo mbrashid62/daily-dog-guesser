@@ -22,7 +22,7 @@ export type LeaderBoardEntry = {
   version: string;
 };
 
-type FirestoreContextType = {
+type FireStoreContextType = {
   fetchLeaderBoard: (
     type: "correctGuesses" | "streak",
   ) => Promise<LeaderBoardEntry[]>;
@@ -31,24 +31,9 @@ type FirestoreContextType = {
   deleteUserDoc: (userId: string) => Promise<void>;
 };
 
-const FirestoreContext = createContext<FirestoreContextType | null>(null);
+const FireStoreContext = createContext<FireStoreContextType | null>(null);
 
-/**
- * import { doc, deleteDoc } from "firebase/firestore";
-
-const deleteMetrics = async (userId: string): Promise<void> => {
-  const docRef = doc(metricsCollection, userId);
-
-  try {
-    await deleteDoc(docRef);
-    console.log(`Document with ID ${userId} deleted successfully`);
-  } catch (error) {
-    console.error("Error deleting document:", error);
-  }
-};
-
- */
-export const FirestoreProvider: React.FC<{
+export const FireStoreProvider: React.FC<{
   db: Firestore;
   children: ReactNode;
 }> = ({ db, children }) => {
@@ -96,7 +81,7 @@ export const FirestoreProvider: React.FC<{
   };
 
   return (
-    <FirestoreContext.Provider
+    <FireStoreContext.Provider
       value={{
         fetchLeaderBoard,
         fetchUserDoc,
@@ -105,12 +90,12 @@ export const FirestoreProvider: React.FC<{
       }}
     >
       {children}
-    </FirestoreContext.Provider>
+    </FireStoreContext.Provider>
   );
 };
 
-export const useFirestore = (): FirestoreContextType => {
-  const context = useContext(FirestoreContext);
+export const useFireStore = (): FireStoreContextType => {
+  const context = useContext(FireStoreContext);
   if (!context) {
     throw new Error("useFirestore must be used within a FirestoreProvider");
   }

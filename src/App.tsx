@@ -21,7 +21,7 @@ import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
 import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { HomePage } from "./components/Pages/Home/HomePage.tsx";
-import { FirestoreProvider } from "./FireStoreProvider.tsx";
+import { FireStoreProvider } from "./FireStoreProvider.tsx";
 
 let localConfigApiKey: string | null = null;
 
@@ -128,7 +128,7 @@ function App() {
         auth,
       }}
     >
-      <FirestoreProvider db={db}>
+      <FireStoreProvider db={db}>
         <ToastProvider>
           <LoadingProvider>
             <ErrorBoundary>
@@ -136,7 +136,7 @@ function App() {
             </ErrorBoundary>
           </LoadingProvider>
         </ToastProvider>
-      </FirestoreProvider>
+      </FireStoreProvider>
     </GoogleContext.Provider>
   );
 }

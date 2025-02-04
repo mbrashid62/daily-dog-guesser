@@ -4,7 +4,7 @@ import { Button } from "../../../toolbox/Button/Button";
 import { Modal } from "../../../toolbox/Modal/Modal";
 import "./AccountPage.css";
 import { useToast } from "../../Toast/ToastProvider";
-import { useFirestore } from "../../../FireStoreProvider";
+import { useFireStore } from "../../../FireStoreProvider";
 import { useLoading } from "../../Spinner/useLoading";
 import { useNavigate } from "react-router-dom";
 import {
@@ -22,7 +22,7 @@ export const AccountPage = () => {
   const { showToast } = useToast();
   const { startLoading, stopLoading } = useLoading();
   const navigate = useNavigate();
-  const { deleteUserDoc } = useFirestore();
+  const { deleteUserDoc } = useFireStore();
 
   const handleDeleteAccount = async () => {
     if (!auth.currentUser) {

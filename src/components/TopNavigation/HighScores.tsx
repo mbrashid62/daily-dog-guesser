@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { MetricsContext } from "../Pages/Home/HomePage";
-import { LeaderBoardEntry, useFirestore } from "../../FireStoreProvider";
+import { LeaderBoardEntry, useFireStore } from "../../FireStoreProvider";
 import { GoogleContext } from "../../App";
 import { useToast } from "../Toast/ToastProvider";
 
 export const HighScores = () => {
-  const { fetchUserDoc, saveUserScore } = useFirestore();
+  const { fetchUserDoc, saveUserScore } = useFireStore();
   const { showToast } = useToast();
 
   const [savedLeaderBoardEntry, setSavedLeaderBoardEntry] = useState<
