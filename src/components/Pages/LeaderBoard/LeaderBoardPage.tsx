@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { LeaderBoardEntry, useFireStore } from "../../../FireStoreProvider";
 
 import "./LeaderBoard.css";
 import { Flex } from "../../../toolbox/Flex/Flex";
+import {
+  LeaderBoardEntry,
+  useFirestore,
+} from "../../Firestore/FirestoreProvider";
 
 export const LeaderBoardPage = () => {
-  const { fetchLeaderBoard } = useFireStore();
+  const { fetchLeaderBoard } = useFirestore();
 
   const [leaderBoardType, setLeaderBoardType] = useState<
     "correctGuesses" | "streak"

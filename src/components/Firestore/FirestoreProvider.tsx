@@ -12,7 +12,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { User } from "firebase/auth";
-import { MetricsAppData } from "./components/Pages/Home/HomePage";
+import { MetricsAppData } from "../Pages/Home/HomePage";
 
 type UserSavedProperties = Pick<User, "displayName" | "photoURL">;
 
@@ -22,7 +22,7 @@ export type LeaderBoardEntry = {
   version: string;
 };
 
-type FireStoreContextType = {
+type FirestoreContextType = {
   fetchLeaderBoard: (
     type: "correctGuesses" | "streak",
   ) => Promise<LeaderBoardEntry[]>;
@@ -31,9 +31,9 @@ type FireStoreContextType = {
   deleteUserDoc: (userId: string) => Promise<void>;
 };
 
-const FireStoreContext = createContext<FireStoreContextType | null>(null);
+const FirestoreContext = createContext<FirestoreContextType | null>(null);
 
-export const FireStoreProvider: React.FC<{
+export const FirestoreProvider: React.FC<{
   db: Firestore;
   children: ReactNode;
 }> = ({ db, children }) => {
@@ -81,7 +81,7 @@ export const FireStoreProvider: React.FC<{
   };
 
   return (
-    <FireStoreContext.Provider
+    <FirestoreContext.Provider
       value={{
         fetchLeaderBoard,
         fetchUserDoc,
@@ -90,12 +90,12 @@ export const FireStoreProvider: React.FC<{
       }}
     >
       {children}
-    </FireStoreContext.Provider>
+    </FirestoreContext.Provider>
   );
 };
 
-export const useFireStore = (): FireStoreContextType => {
-  const context = useContext(FireStoreContext);
+export const useFirestore = (): FirestoreContextType => {
+  const context = useContext(FirestoreContext);
   if (!context) {
     throw new Error("useFirestore must be used within a FirestoreProvider");
   }

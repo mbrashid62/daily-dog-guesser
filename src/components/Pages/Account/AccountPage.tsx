@@ -4,7 +4,6 @@ import { Button } from "../../../toolbox/Button/Button";
 import { Modal } from "../../../toolbox/Modal/Modal";
 import "./AccountPage.css";
 import { useToast } from "../../Toast/ToastProvider";
-import { useFireStore } from "../../../FireStoreProvider";
 import { useLoading } from "../../Spinner/useLoading";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,6 +13,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { Flex } from "../../../toolbox/Flex/Flex";
+import { useFirestore } from "../../Firestore/FirestoreProvider";
 
 export const AccountPage = () => {
   const { auth } = useContext(GoogleContext);
@@ -22,7 +22,7 @@ export const AccountPage = () => {
   const { showToast } = useToast();
   const { startLoading, stopLoading } = useLoading();
   const navigate = useNavigate();
-  const { deleteUserDoc } = useFireStore();
+  const { deleteUserDoc } = useFirestore();
 
   const handleDeleteAccount = async () => {
     if (!auth.currentUser) {
