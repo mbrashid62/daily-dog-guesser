@@ -65,7 +65,7 @@ export const AccountPage = () => {
       location.reload();
     } catch (error) {
       console.error("Error deleting user:", error);
-      showToast(`Error deleting account: ${error.message}`, "error");
+      showToast(`Error deleting account`, "error");
     } finally {
       stopLoading();
       setShowDeleteModal(false); // Close modal after deletion attempt
@@ -102,7 +102,7 @@ export const AccountPage = () => {
 
       <div className="account-page-container-section">
         <p>
-          This game uses Google to authenticate you as a user. With Google, we
+          This game uses Google to authenticate you as a user. From Google, we
           read basic profile information like your name and profile photo. If
           you wish to disconnect your Google account, you can do so at any point
           by clicking the button below.
