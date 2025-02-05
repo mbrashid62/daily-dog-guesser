@@ -4,6 +4,8 @@ import { LeaderBoardEntry, useFirestore } from "../Firestore/FirestoreProvider";
 import { GoogleContext } from "../../App";
 import { useToast } from "../Toast/ToastProvider";
 
+import "./HighScores.css";
+
 export const HighScores = () => {
   const { fetchUserDoc, saveUserScore } = useFirestore();
   const { showToast } = useToast();
@@ -125,10 +127,9 @@ export const HighScores = () => {
   }
 
   return (
-    <h3>
-      High Scores{" "}
-      <span>({savedLeaderBoardEntry?.metrics.correctGuesses} 🐕)</span>{" "}
-      <span>({savedLeaderBoardEntry?.metrics.streak} ⚡)</span>
+    <h3 className="high-scores">
+      <span>({savedLeaderBoardEntry.metrics.correctGuesses} 🐕)</span>
+      <span>({savedLeaderBoardEntry.metrics.streak} ⚡)</span>
     </h3>
   );
 };

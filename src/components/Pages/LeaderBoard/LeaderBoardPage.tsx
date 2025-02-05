@@ -7,6 +7,21 @@ import {
   useFirestore,
 } from "../../Firestore/FirestoreProvider";
 
+const formatName = (fullName: string | null): string => {
+  if (fullName === null) {
+    return "--";
+  }
+
+  const nameParts = fullName.trim().split(" ");
+
+  if (nameParts.length < 2) {
+    return fullName; // Return as-is if there's no last name
+  }
+
+  const [firstName, lastName] = nameParts;
+  return `${firstName} ${lastName.charAt(0)}.`;
+};
+
 export const LeaderBoardPage = () => {
   const { fetchLeaderBoard } = useFirestore();
 
@@ -56,7 +71,7 @@ export const LeaderBoardPage = () => {
         </h3>
         <span>
           {leaderBoardType === "correctGuesses"
-            ? "These people know their dogs!"
+            ? "These people know their dogs."
             : "These folks didn't miss a beat."}
         </span>
       </div>
@@ -64,12 +79,8 @@ export const LeaderBoardPage = () => {
         <thead>
           <tr>
             <th>Rank</th>
-            <th>User</th>
-            <th>
-              {leaderBoardType === "correctGuesses"
-                ? "Correct Guesses"
-                : "Best Streak"}
-            </th>
+            <th style={{ textAlign: "left" }}>User</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
@@ -78,14 +89,14 @@ export const LeaderBoardPage = () => {
               <tr key={index} className="text-center">
                 <td>{index + 1}</td>
                 <td>
-                  <Flex alignItems="center" justifyContent="center">
+                  <Flex alignItems="center">
                     {entry.user.photoURL && (
                       <img
                         className="profile-photo"
                         src={entry.user.photoURL}
                       />
                     )}
-                    {entry.user.displayName}
+                    {formatName(entry.user.displayName)}
                   </Flex>
                 </td>
                 <td>
