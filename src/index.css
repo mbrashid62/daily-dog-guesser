@@ -99,17 +99,16 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 16 auto;
-  opacity: 0.8;
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
   padding: 32px 8px;
+  margin-bottom: 32px;
 }
 
 @media (max-width: 600px) {
   .metrics-container {
     height: 100%;
-    margin: 24px 0;
   }
 }
 
