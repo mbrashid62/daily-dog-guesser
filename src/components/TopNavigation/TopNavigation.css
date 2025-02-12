@@ -105,8 +105,3 @@
   padding: 8px 40px;
   margin: 8px 0;
 }
-
-.popover-menu-item :hover {
-  transition: background-color 600ms;
-  background-color: #8aae92;
-}

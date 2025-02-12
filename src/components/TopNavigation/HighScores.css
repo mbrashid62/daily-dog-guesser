@@ -1,8 +1,8 @@
 .high-scores {
-  padding: 32px 0;
+  padding: 16px 0;
   border-top: 1px solid green;
   border-bottom: 1px solid green;
-
+  margin-bottom: 32px;
   display: flex;
   justify-content: center;
   column-gap: 16px;
@@ -11,5 +11,35 @@
 @media (max-width: 600px) {
   .high-scores {
     padding: 8px 0;
+  }
+}
+
+.high-scores-empty {
+  padding: 16px 0;
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 16px;
+  text-align: left;
+}
+
+.high-scores-dismiss-button {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .high-scores-empty {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+  }
+  .high-scores-dismiss-button {
+    margin-top: 16px;
   }
 }
