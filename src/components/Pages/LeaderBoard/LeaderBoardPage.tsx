@@ -45,7 +45,7 @@ export const LeaderBoardPage = () => {
 
   return (
     <div className="leaderboard-container">
-      <h1>Leader Board</h1>
+      <h1>Leaderboard</h1>
 
       {/* Toggle Buttons for Leaderboard Type */}
       <div className="leaderboard-copy-container">

@@ -111,8 +111,8 @@ export const HomePage = () => {
         />
       </div>
       <div className="middle-container">
-        <HighScores />
         <ActiveScore />
+        <HighScores />
       </div>
     </MetricsContext.Provider>
   );

@@ -13,70 +13,48 @@ export const HighScores = () => {
   const [savedLeaderBoardEntry, setSavedLeaderBoardEntry] = useState<
     LeaderBoardEntry | undefined
   >();
+  const [hasDismissedSignInCTA, setHasDismissedSignInCTA] = useState(false);
 
   const { correctGuesses, streak, remaining } = useContext(MetricsContext);
   const { auth } = useContext(GoogleContext);
+  const userId = auth.currentUser?.uid;
 
   useEffect(() => {
-    async function updateScoresIfNeeded() {
-      if (!auth.currentUser?.uid) {
-        return;
-      }
+    if (!userId) return;
 
-      const userId = auth.currentUser.uid;
+    const updateScoresIfNeeded = async () => {
       const userDoc = await fetchUserDoc(userId);
 
-      if (!userDoc) {
-        // If nothing is saved and the user has answered at least one dog successfully, save it
-        if (correctGuesses >= 1) {
-          saveUserScore(userId, {
-            user: {
-              displayName: auth.currentUser.displayName,
-              photoURL: auth.currentUser.photoURL,
-            },
-            metrics: {
-              correctGuesses,
-              streak,
-              remaining,
-            },
-            version: "1.0.0",
-          });
+      // If no record exists and the user has at least one correct guess, create a new entry
+      if (!userDoc && correctGuesses >= 1) {
+        const newEntry: LeaderBoardEntry = {
+          user: {
+            displayName: auth.currentUser?.displayName || "Anonymous",
+            photoURL: auth.currentUser?.photoURL || "",
+          },
+          metrics: { correctGuesses, streak, remaining },
+          version: "1.0.0",
+        };
 
-          setSavedLeaderBoardEntry({
-            user: {
-              displayName: auth.currentUser.displayName,
-              photoURL: auth.currentUser.photoURL,
-            },
-            metrics: {
-              correctGuesses,
-              streak,
-              remaining,
-            },
-            version: "1.0.0",
-          });
-
-          // Show success toast
-          showToast("New high score saved!", "success");
-        }
+        await saveUserScore(userId, newEntry);
+        setSavedLeaderBoardEntry(newEntry);
+        showToast("New high score saved!", "success");
         return;
       }
 
-      const {
-        correctGuesses: savedCorrectGuesses,
-        streak: savedStreak,
-        remaining: savedRemaining,
-      } = userDoc.metrics;
+      // Prevent unnecessary updates if userDoc is still missing
+      if (!userDoc) {
+        return;
+      }
+
+      const { correctGuesses: savedCorrectGuesses, streak: savedStreak } =
+        userDoc.metrics;
 
       setSavedLeaderBoardEntry(userDoc);
 
       let hasNewHighScore = false;
-      const updatedMetrics: LeaderBoardEntry["metrics"] = {
-        correctGuesses: savedCorrectGuesses,
-        streak: savedStreak,
-        remaining: savedRemaining,
-      };
+      const updatedMetrics = { ...userDoc.metrics };
 
-      // Compare local scores with saved scores, updating if needed
       if (correctGuesses > savedCorrectGuesses) {
         updatedMetrics.correctGuesses = correctGuesses;
         hasNewHighScore = true;
@@ -88,48 +66,70 @@ export const HighScores = () => {
       }
 
       if (hasNewHighScore) {
-        // Save the new high score
-        await saveUserScore(userId, {
+        const updatedEntry: LeaderBoardEntry = {
           user: {
-            displayName: auth.currentUser.displayName,
-            photoURL: auth.currentUser.photoURL,
+            displayName: auth.currentUser?.displayName || "Anonymous",
+            photoURL: auth.currentUser?.photoURL || "",
           },
           metrics: updatedMetrics,
           version: "1.0.0",
-        });
+        };
 
-        setSavedLeaderBoardEntry({
-          user: {
-            displayName: auth.currentUser.displayName,
-            photoURL: auth.currentUser.photoURL,
-          },
-          metrics: updatedMetrics,
-          version: "1.0.0",
-        });
-
-        // Show success toast
+        await saveUserScore(userId, updatedEntry);
+        setSavedLeaderBoardEntry(updatedEntry);
         showToast("New high score saved!", "success");
       }
-    }
+    };
 
     updateScoresIfNeeded();
   }, [
+    userId,
     correctGuesses,
     streak,
+    remaining,
     fetchUserDoc,
     saveUserScore,
-    remaining,
     showToast,
-  ]); // Runs whenever scores or user changes
+  ]);
 
-  if (!savedLeaderBoardEntry) {
-    return null;
+  if (!userId) {
+    // 🔹 If user is not signed in AND has dismissed the sign-in message, show nothing.
+    if (hasDismissedSignInCTA) {
+      return null;
+    }
+
+    // 🔹 Otherwise, show the sign-in message.
+    return (
+      <h3 className="high-scores-empty">
+        <span>Sign in to save your high score.</span>
+        <div>
+          <button
+            className="high-scores-dismiss-button"
+            onClick={() => setHasDismissedSignInCTA(true)}
+          >
+            Dismiss
+          </button>
+        </div>
+      </h3>
+    );
   }
 
+  if (!savedLeaderBoardEntry) {
+    return (
+      <h3 className="high-scores-empty">
+        <span>
+          Welcome, {auth.currentUser.displayName}! Your high scores will appear
+          here.
+        </span>
+      </h3>
+    );
+  }
+
+  // 🔹 Render the leaderboard entry
   return (
     <h3 className="high-scores">
-      <span>({savedLeaderBoardEntry.metrics.correctGuesses} 🐕)</span>
-      <span>({savedLeaderBoardEntry.metrics.streak} ⚡)</span>
+      <span>{savedLeaderBoardEntry.metrics.correctGuesses} 🐕</span>
+      <span>{savedLeaderBoardEntry.metrics.streak} ⚡</span>
     </h3>
   );
 };

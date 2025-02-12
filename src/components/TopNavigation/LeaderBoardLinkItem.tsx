@@ -7,7 +7,7 @@ export const LeaderBoardLinkItem = () => {
       to="/leaderboard"
       target="_blank"
     >
-      Leader Board
+      Leaderboard
     </Link>
   );
 };
