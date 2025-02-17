@@ -8,7 +8,6 @@ import { Button } from "../../../toolbox/Button/Button";
 import { Dog } from "../../../global-types";
 import { Confetti } from "../../Animations/Confetti/Confetti";
 import { ActiveScore } from "../../Cards/ActiveScore";
-import { HighScores } from "../../TopNavigation/HighScores";
 
 export type MetricsAppData = {
   correctGuesses: number;
@@ -112,7 +111,6 @@ export const HomePage = () => {
       </div>
       <div className="middle-container">
         <ActiveScore />
-        <HighScores />
       </div>
     </MetricsContext.Provider>
   );

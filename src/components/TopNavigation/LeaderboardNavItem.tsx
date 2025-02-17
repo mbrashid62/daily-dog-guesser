@@ -1,26 +1,30 @@
 import { useContext, useEffect, useState } from "react";
-import { MetricsContext } from "../Pages/Home/HomePage";
+import { Modal } from "../../toolbox/Modal/Modal";
+
+import "./LeaderboardNavItem.css";
 import { LeaderBoardEntry, useFirestore } from "../Firestore/FirestoreProvider";
 import { GoogleContext } from "../../App";
+import { MetricsContext } from "../Pages/Home/HomePage";
 import { useToast } from "../Toast/ToastProvider";
+import { Leaderboard } from "../Leaderboard/Leaderboard";
 
-import "./HighScores.css";
-
-export const HighScores = () => {
+export const LeaderboardNavItem = () => {
+  const [show, setShow] = useState<boolean>(false);
   const { fetchUserDoc, saveUserScore } = useFirestore();
   const { showToast } = useToast();
 
-  const [savedLeaderBoardEntry, setSavedLeaderBoardEntry] = useState<
+  const [savedLeaderboardEntry, setSavedLeaderboardEntry] = useState<
     LeaderBoardEntry | undefined
   >();
-  const [hasDismissedSignInCTA, setHasDismissedSignInCTA] = useState(false);
 
   const { correctGuesses, streak, remaining } = useContext(MetricsContext);
   const { auth } = useContext(GoogleContext);
   const userId = auth.currentUser?.uid;
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId) {
+      return;
+    }
 
     const updateScoresIfNeeded = async () => {
       const userDoc = await fetchUserDoc(userId);
@@ -37,7 +41,7 @@ export const HighScores = () => {
         };
 
         await saveUserScore(userId, newEntry);
-        setSavedLeaderBoardEntry(newEntry);
+        setSavedLeaderboardEntry(newEntry);
         showToast("New high score saved!", "success");
         return;
       }
@@ -50,7 +54,7 @@ export const HighScores = () => {
       const { correctGuesses: savedCorrectGuesses, streak: savedStreak } =
         userDoc.metrics;
 
-      setSavedLeaderBoardEntry(userDoc);
+      setSavedLeaderboardEntry(userDoc);
 
       let hasNewHighScore = false;
       const updatedMetrics = { ...userDoc.metrics };
@@ -76,7 +80,7 @@ export const HighScores = () => {
         };
 
         await saveUserScore(userId, updatedEntry);
-        setSavedLeaderBoardEntry(updatedEntry);
+        setSavedLeaderboardEntry(updatedEntry);
         showToast("New high score saved!", "success");
       }
     };
@@ -92,44 +96,21 @@ export const HighScores = () => {
     showToast,
   ]);
 
-  if (!userId) {
-    // 🔹 If user is not signed in AND has dismissed the sign-in message, show nothing.
-    if (hasDismissedSignInCTA) {
-      return null;
-    }
-
-    // 🔹 Otherwise, show the sign-in message.
-    return (
-      <h3 className="high-scores-empty">
-        <span>Sign in to save your high score.</span>
-        <div>
-          <button
-            className="high-scores-dismiss-button"
-            onClick={() => setHasDismissedSignInCTA(true)}
-          >
-            Dismiss
-          </button>
-        </div>
-      </h3>
-    );
-  }
-
-  if (!savedLeaderBoardEntry) {
-    return (
-      <h3 className="high-scores-empty">
-        <span>
-          Welcome, {auth.currentUser.displayName}! Your high scores will appear
-          here.
-        </span>
-      </h3>
-    );
-  }
-
-  // 🔹 Render the leaderboard entry
   return (
-    <h3 className="high-scores">
-      <span>{savedLeaderBoardEntry.metrics.correctGuesses} 🐕</span>
-      <span>{savedLeaderBoardEntry.metrics.streak} ⚡</span>
-    </h3>
+    <div className="leaderboard-nav-container">
+      <span className="leaderboard-cta" onClick={() => setShow(true)}>
+        Leaderboard
+      </span>
+      {savedLeaderboardEntry && (
+        <span className="high-scores">
+          <span>{savedLeaderboardEntry.metrics.correctGuesses} 🐕</span>{" "}
+          <span>{savedLeaderboardEntry.metrics.streak} ⚡</span>
+        </span>
+      )}
+
+      <Modal isOpen={show} onClose={() => setShow(false)}>
+        <Leaderboard onClose={() => setShow(false)} />
+      </Modal>
+    </div>
   );
 };

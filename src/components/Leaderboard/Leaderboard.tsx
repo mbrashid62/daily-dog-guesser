@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 
 import "./LeaderBoard.css";
-import { Flex } from "../../../toolbox/Flex/Flex";
-import {
-  LeaderBoardEntry,
-  useFirestore,
-} from "../../Firestore/FirestoreProvider";
+import { Flex } from "../../toolbox/Flex/Flex";
+import { LeaderBoardEntry, useFirestore } from "../Firestore/FirestoreProvider";
+import { ModalProps } from "../../toolbox/Modal/Modal";
 
 const formatName = (fullName: string | null): string => {
   if (fullName === null) {
@@ -22,14 +20,16 @@ const formatName = (fullName: string | null): string => {
   return `${firstName} ${lastName.charAt(0)}.`;
 };
 
-export const LeaderBoardPage = () => {
+export const Leaderboard: React.FC<{ onClose: ModalProps["onClose"] }> = ({
+  onClose,
+}) => {
   const { fetchLeaderBoard } = useFirestore();
 
   const [leaderBoardType, setLeaderBoardType] = useState<
     "correctGuesses" | "streak"
   >("correctGuesses");
 
-  const [leaderBoardData, setLeaderBoardData] = useState<LeaderBoardEntry[]>(
+  const [leaderboardData, setLeaderBoardData] = useState<LeaderBoardEntry[]>(
     [],
   );
 
@@ -84,8 +84,8 @@ export const LeaderBoardPage = () => {
           </tr>
         </thead>
         <tbody>
-          {leaderBoardData.length > 0 ? (
-            leaderBoardData.map((entry, index) => (
+          {leaderboardData.length > 0 ? (
+            leaderboardData.map((entry, index) => (
               <tr key={index} className="text-center">
                 <td>{index + 1}</td>
                 <td>
@@ -113,6 +113,7 @@ export const LeaderBoardPage = () => {
           )}
         </tbody>
       </table>
+      <button onClick={onClose}>Go back</button>
     </div>
   );
 };

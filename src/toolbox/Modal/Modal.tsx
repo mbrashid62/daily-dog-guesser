@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Modal.css";
 
-type ModalProps = {
+export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
