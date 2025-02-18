@@ -8,20 +8,24 @@ import {
   getAuth,
   setPersistence,
   browserLocalPersistence,
+  User,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { Analytics, getAnalytics } from "firebase/analytics";
-import { createContext, useEffect } from "react";
-import { LeaderBoardPage } from "./components/Pages/LeaderBoard/LeaderBoardPage";
+import { createContext, useEffect, useState } from "react";
 import { AccountPage } from "./components/Pages/Account/AccountPage";
 import { TopNavigation } from "./components/TopNavigation/TopNavigation";
-import { LoadingProvider } from "./components/Spinner/LoadingContext";
+import {
+  LoadingContextProps,
+  LoadingProvider,
+} from "./components/Spinner/LoadingContext";
 import { useLoading } from "./components/Spinner/useLoading";
 import { Spinner } from "./components/Spinner/Spinner";
 import { ToastProvider } from "./components/Toast/ToastProvider";
 import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { HomePage } from "./components/Pages/Home/HomePage.tsx";
 import { FirestoreProvider } from "./components/Firestore/FirestoreProvider.tsx";
+import { MetricsProvider } from "./components/Metrics/MetricsProvider.tsx";
 
 let localConfigApiKey: string | null = null;
 
@@ -96,12 +100,36 @@ export const GoogleContext = createContext<GoogleContextType>({
   auth,
 });
 
+async function handleAuthLoadingState(
+  startLoading: LoadingContextProps["startLoading"],
+  stopLoading: LoadingContextProps["stopLoading"],
+) {
+  try {
+    startLoading();
+    await auth.authStateReady();
+  } finally {
+    stopLoading();
+  }
+}
 function AppContainer() {
-  const { isLoading } = useLoading();
+  const { isLoading, startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
     initializeAuthPersistence(auth);
   }, []);
+
+  useEffect(() => {
+    handleAuthLoadingState(startLoading, stopLoading);
+  }, []);
+
+  // No need to store user, just update state to trigger a re-render down the entire tree.
+  const [, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  });
 
   return (
     <div className="app-container">
@@ -112,7 +140,6 @@ function AppContainer() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/account" element={<AccountPage />} />
-            <Route path="/leaderboard" element={<LeaderBoardPage />} />
           </Routes>
         </ErrorBoundary>
       </BrowserRouter>
@@ -131,9 +158,11 @@ function App() {
       <FirestoreProvider db={db}>
         <ToastProvider>
           <LoadingProvider>
-            <ErrorBoundary>
-              <AppContainer />
-            </ErrorBoundary>
+            <MetricsProvider>
+              <ErrorBoundary>
+                <AppContainer />
+              </ErrorBoundary>
+            </MetricsProvider>
           </LoadingProvider>
         </ToastProvider>
       </FirestoreProvider>

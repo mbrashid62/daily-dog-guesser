@@ -35,6 +35,8 @@
 
 .profile-photo-container {
   display: inline-flex;
+  border: 1px solid green;
+  border-radius: 20px;
 }
 
 .profile-photo-container a {

@@ -1,0 +1,38 @@
+.leaderboard-nav-container {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .leaderboard-nav-container {
+    column-gap: 8px;
+  }
+
+  .leaderboard-cta {
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+.leaderboard-cta {
+  font-weight: 600;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.leaderboard-cta:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.high-scores {
+  font-weight: 600;
+  border-bottom: 1px solid green;
+}
+
+@media (max-width: 600px) {
+  .high-scores {
+    font-size: 14px;
+  }
+}

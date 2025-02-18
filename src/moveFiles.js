@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-console.log("hello world");
-
 // Path to the folder containing the dog SVG files
 const folderPath = "./destination-dogs"; // Change this to your actual folder path
 

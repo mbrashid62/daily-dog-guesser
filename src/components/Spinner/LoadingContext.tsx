@@ -4,7 +4,7 @@ type LoadingProviderProps = {
   children: React.ReactElement;
 };
 
-type LoadingContextProps = {
+export type LoadingContextProps = {
   isLoading: boolean;
   startLoading: () => void;
   stopLoading: () => void;
