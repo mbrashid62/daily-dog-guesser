@@ -108,8 +108,9 @@ export const TopNavigation: React.FC = () => {
       <div className="top-nav-left-col">
         <GoBackNavLinkItem showBack={location.pathname !== "/"} />
         <HelpLinkItem showHelpState={[showHelp, setShowHelp]} />
+        {location.pathname === "/" && <LeaderboardNavItem />}
       </div>
-      <div>{location.pathname === "/" && <LeaderboardNavItem />}</div>
+
       <div className="top-nav-right-col">
         <MenuPopover pathname={location.pathname}>
           <div className="popover-menu-container">

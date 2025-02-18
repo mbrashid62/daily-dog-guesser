@@ -4,9 +4,9 @@ import { Modal } from "../../toolbox/Modal/Modal";
 import "./LeaderboardNavItem.css";
 import { LeaderBoardEntry, useFirestore } from "../Firestore/FirestoreProvider";
 import { GoogleContext } from "../../App";
-import { MetricsContext } from "../Pages/Home/HomePage";
 import { useToast } from "../Toast/ToastProvider";
 import { Leaderboard } from "../Leaderboard/Leaderboard";
+import { useMetrics } from "../Metrics/MetricsProvider";
 
 export const LeaderboardNavItem = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -17,7 +17,9 @@ export const LeaderboardNavItem = () => {
     LeaderBoardEntry | undefined
   >();
 
-  const { correctGuesses, streak, remaining } = useContext(MetricsContext);
+  const { metrics } = useMetrics();
+  const { correctGuesses, remaining, streak } = metrics;
+
   const { auth } = useContext(GoogleContext);
   const userId = auth.currentUser?.uid;
 

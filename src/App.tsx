@@ -25,6 +25,7 @@ import { ToastProvider } from "./components/Toast/ToastProvider";
 import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { HomePage } from "./components/Pages/Home/HomePage.tsx";
 import { FirestoreProvider } from "./components/Firestore/FirestoreProvider.tsx";
+import { MetricsProvider } from "./components/Metrics/MetricsProvider.tsx";
 
 let localConfigApiKey: string | null = null;
 
@@ -157,9 +158,11 @@ function App() {
       <FirestoreProvider db={db}>
         <ToastProvider>
           <LoadingProvider>
-            <ErrorBoundary>
-              <AppContainer />
-            </ErrorBoundary>
+            <MetricsProvider>
+              <ErrorBoundary>
+                <AppContainer />
+              </ErrorBoundary>
+            </MetricsProvider>
           </LoadingProvider>
         </ToastProvider>
       </FirestoreProvider>

@@ -125,7 +125,7 @@ export const DOGGIES: Dog[] = [
     image: AkitaInu,
     info: {
       bio: "A large breed with a noble and intimidating presence, the Akita Inu is deeply loyal and protective of its family. Originally from Japan, this breed is known for its courage and devotion, often associated with the famous story of Hachiko, an Akita who waited for his owner every day, even after his passing.",
-      wikipediaUrl: "https://en.wikipedia.org/wiki/Akita",
+      wikipediaUrl: "https://en.wikipedia.org/wiki/Akita_(dog_breed)",
     },
   },
   {

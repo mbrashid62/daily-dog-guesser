@@ -91,14 +91,13 @@ h1 {
 .middle-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
 }
+
 .metrics-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 32px 0;
+  margin: 64px 0;
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
@@ -108,6 +107,7 @@ h1 {
 @media (max-width: 600px) {
   .metrics-container {
     height: 100%;
+    margin: 32px 0;
   }
 }
 

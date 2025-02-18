@@ -1,13 +1,11 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext } from "react";
 
 import { DOGGIES } from "../../../constants";
-import { getRandomInt } from "../../../utils";
 import { OptionGroup } from "../../OptionGroup/OptionGroup";
 import { DogImage } from "../../DogImage/DogImage";
-import { Button } from "../../../toolbox/Button/Button";
-import { Dog } from "../../../global-types";
 import { Confetti } from "../../Animations/Confetti/Confetti";
 import { ActiveScore } from "../../Cards/ActiveScore";
+import { useMetrics } from "../../Metrics/MetricsProvider";
 
 export type MetricsAppData = {
   correctGuesses: number;
@@ -22,33 +20,17 @@ export const MetricsContext = createContext<MetricsAppData>({
 });
 
 export const HomePage = () => {
-  const [dogsRemaining, setDogsRemaining] = useState<Dog[]>(DOGGIES);
-  const [successCount, setSuccessCount] = useState<number>(0);
+  const {
+    activeDog,
+    metrics,
 
-  const [randomInt, setRandomInt] = useState<number>(
-    getRandomInt(0, dogsRemaining.length - 1),
-  );
+    setDogsRemaining,
+    setSuccessCount,
+    setStreak,
+  } = useMetrics();
+  const { remaining } = metrics;
 
-  const [streak, setStreak] = useState<number>(0);
-
-  const activeDog = dogsRemaining[randomInt];
-
-  const resetGame = () => {
-    setDogsRemaining(DOGGIES);
-    setSuccessCount(0);
-    setStreak(0);
-  };
-
-  const metrics = useMemo<MetricsAppData>(
-    () => ({
-      correctGuesses: successCount,
-      remaining: dogsRemaining.length,
-      streak,
-    }),
-    [successCount, dogsRemaining.length, streak],
-  );
-
-  if (dogsRemaining.length === 0) {
+  if (remaining === 0) {
     return (
       <div style={{ padding: "16px 32px" }}>
         <Confetti />
@@ -60,15 +42,21 @@ export const HomePage = () => {
         </div>
         <div className="middle-container">
           <div className="play-again-container">
-            <Button onClick={resetGame} label="Play again" />
+            <span>Refresh the page to play again</span>
           </div>
         </div>
       </div>
     );
   }
 
+  if (!activeDog) {
+    // There should always be an activeDog until the game is finished which is handled by separate render path upstream.
+    // If this happens, there is a flaw in the metrics logic.
+    throw new Error("Uh oh! An unexpected error occurred");
+  }
+
   return (
-    <MetricsContext.Provider value={metrics}>
+    <div>
       <div className="top-container">
         <h1 className="title">Can you name this dog?</h1>
         <div className="dog-img-container">
@@ -80,38 +68,17 @@ export const HomePage = () => {
           onCorrectAnswer={(dog) => {
             setStreak((s) => s + 1);
 
-            const dogsRemainingFiltered = dogsRemaining.filter(
-              ({ key }) => key !== dog.key,
-            );
-
-            setDogsRemaining(dogsRemainingFiltered);
+            setDogsRemaining((dogsRemaining) => {
+              return dogsRemaining.filter(({ key }) => key !== dog.key);
+            });
 
             setSuccessCount((count) => count + 1);
-
-            setRandomInt((previousInt) => {
-              if (dogsRemainingFiltered.length === 1) {
-                return 0;
-              }
-
-              if (dogsRemainingFiltered.length === 0) {
-                return 1;
-              }
-
-              let newInt = previousInt;
-
-              // Keep generating a new random integer until it's different from the previous one
-              while (newInt === previousInt) {
-                newInt = getRandomInt(0, dogsRemainingFiltered.length);
-              }
-
-              return newInt;
-            });
           }}
         />
       </div>
       <div className="middle-container">
         <ActiveScore />
       </div>
-    </MetricsContext.Provider>
+    </div>
   );
 };
