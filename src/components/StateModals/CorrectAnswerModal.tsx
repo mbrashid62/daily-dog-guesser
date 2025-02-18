@@ -6,8 +6,8 @@ import { Flex } from "../../toolbox/Flex/Flex";
 import { Button } from "../../toolbox/Button/Button";
 import { DogImage } from "../DogImage/DogImage";
 import { Confetti } from "../Animations/Confetti/Confetti";
-import { MetricsContext } from "../Pages/Home/HomePage";
 import { SelectedDogContext } from "../OptionGroup/OptionGroup";
+import { useMetrics } from "../Metrics/MetricsProvider";
 
 type CorrectAnswerModalProps = {
   modalState: [boolean, Dispatch<SetStateAction<boolean>>];
@@ -68,7 +68,8 @@ const shouldCelebrate = (value: number) => value > 0 && value % 5 === 0;
 export const CorrectAnswerModal = ({ modalState }: CorrectAnswerModalProps) => {
   const [showCorrectAnswerModal, setShowCorrectAnswerModal] = modalState;
 
-  const { correctGuesses = 0, streak = 0 } = useContext(MetricsContext) || {};
+  const { metrics } = useMetrics();
+  const { correctGuesses, streak } = metrics;
   const selectedDog = useContext(SelectedDogContext);
 
   const showGuessesCelebration = shouldCelebrate(correctGuesses);

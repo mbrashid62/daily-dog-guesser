@@ -1,3 +1,6 @@
+.leaderboard-container {
+  padding: 0 32px;
+}
 .leaderboard-container table {
   box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
   border-radius: 8px;
