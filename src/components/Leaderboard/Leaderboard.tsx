@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "./LeaderBoard.css";
+import "./Leaderboard.css";
 import { Flex } from "../../toolbox/Flex/Flex";
 import { LeaderBoardEntry, useFirestore } from "../Firestore/FirestoreProvider";
 import { ModalProps } from "../../toolbox/Modal/Modal";
